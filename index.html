@@ -1,0 +1,448 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reo Kurniawan I.P | Portofolio Modern</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- AOS (Animate On Scroll) Library for animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a; /* Dark background */
+            color: #e5e7eb; /* Light gray text */
+        }
+        
+        /* Animated Gradient Background */
+        .animated-gradient {
+            background: linear-gradient(-45deg, #1e3a8a, #4c1d95, #047857, #7c2d12);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Card Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            height: 100%; /* Make cards in a grid have same height */
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        /* Typing effect */
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.5rem;
+            background-color: #3b82f6;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .contact-icon {
+            transition: all 0.3s ease;
+            color: #9ca3af;
+        }
+        .contact-icon:hover {
+            transform: scale(1.2) rotate(10deg);
+            color: #ffffff;
+        }
+        
+        .skill-tag {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            background-color: rgba(59, 130, 246, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            padding-bottom: 2rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+            padding-bottom: 0;
+        }
+        .timeline-icon {
+            position: absolute;
+            left: -1.2rem;
+            top: 0;
+            width: 2.25rem;
+            height: 2.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background-color: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header & Navigasi -->
+    <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-white tracking-widest">
+                PORTOFOLIO
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#pengalaman" class="text-gray-300 hover:text-white font-medium">Pengalaman</a>
+                <a href="#pendidikan" class="text-gray-300 hover:text-white font-medium">Pendidikan</a>
+                <a href="#keahlian" class="text-gray-300 hover:text-white font-medium">Keahlian</a>
+                <a href="#proyek" class="text-gray-300 hover:text-white font-medium">Proyek</a>
+                <a href="#kontak" class="text-gray-300 hover:text-white font-medium">Kontak</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-300 focus:outline-none">
+                    <i data-feather="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/50">
+            <a href="#pengalaman" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Pengalaman</a>
+            <a href="#pendidikan" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Pendidikan</a>
+            <a href="#keahlian" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Keahlian</a>
+            <a href="#proyek" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Proyek</a>
+            <a href="#kontak" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Kontak</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-20">
+
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-[80vh] flex items-center mb-20 md:mb-32">
+            <div class="absolute inset-0 animated-gradient opacity-20 blur-3xl"></div>
+            <div class="relative z-10 flex flex-col-reverse md:flex-row items-center w-full">
+                <div class="md:w-3/5 text-center md:text-left mt-10 md:mt-0" data-aos="fade-right">
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4">
+                        Reo Kurniawan I.P
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold text-blue-400 mb-6 h-10">
+                        <span id="typing-effect"></span><span class="typing-cursor"></span>
+                    </h2>
+                    <p class="text-lg text-gray-400 max-w-xl mx-auto md:mx-0 mb-8">
+                        Analisis mendalam yang dipadukan dengan keahlian praktis di lapangan dan keterampilan komunikasi yang kuat untuk memberikan kontribusi nyata, dengan memprioritaskan kepuasan dan keberhasilan bersama.
+                    </p>
+                    <a href="#kontak" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300">Hubungi Saya</a>
+                </div>
+                <div class="md:w-2/5 flex justify-center md:justify-end" data-aos="fade-left" data-aos-delay="200">
+                    <div class="relative w-72 h-72 md:w-96 md:h-96">
+                        <div class="absolute inset-0 animated-gradient rounded-full"></div>
+                        <!-- Gambar profil yang diperbarui -->
+                        <img src="https://i.ibb.co/p27D3r1/reo-profile-2.jpg" alt="Foto profil Reo Kurniawan" class="relative rounded-full w-full h-full object-cover p-2">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pengalaman Kerja -->
+        <section id="pengalaman" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Pengalaman Kerja</h2>
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
+                <!-- HR -->
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-teal-500/20 p-4 rounded-full border border-teal-500/30"><i data-feather="users" class="text-teal-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Jan 2024 - Feb 2024</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">HR</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4">IndoDigiCrev</p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Menurunkan waktu rekrutmen (time-to-hire) sebesar 30% dengan implementasi ATS.</li>
+                                <li>Mengurangi turnover karyawan sebesar 15% melalui program keterlibatan karyawan.</li>
+                                <li>Meningkatkan kepuasan tim sebesar 20% melalui program pelatihan kepemimpinan.</li>
+                                <li>Mengurangi pekerjaan administrasi manual hingga 40% dengan digitalisasi proses HR.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Brand Analyst -->
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-purple-500/20 p-4 rounded-full border border-purple-500/30"><i data-feather="bar-chart-2" class="text-purple-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Nov 2024 - Sekarang</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">Brand Analyst</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4">LOJEL</p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Meningkatkan pangsa pasar 5% melalui analisis tren konsumen.</li>
+                                <li>Meningkatkan ROI pemasaran digital sebesar 18% melalui optimalisasi budget.</li>
+                                <li>Mempercepat pengambilan keputusan berbasis data hingga 40% dengan dashboard otomatis.</li>
+                                <li>Meningkatkan sentimen positif merek 25% melalui analisis kompetitif.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content Creative -->
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-pink-500/20 p-4 rounded-full border border-pink-500/30"><i data-feather="camera" class="text-pink-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Jul 2024 - Sekarang</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">Content Creative</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4">Distrik Berisik</p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Meningkatkan brand awareness 30% dan menghasilkan 10.000+ leads melalui kampanye 360°.</li>
+                                <li>Meningkatkan engagement rate media sosial sebesar 50% dan menumbuhkan 100.000 pengikut.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Manager -->
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-orange-500/20 p-4 rounded-full border border-orange-500/30"><i data-feather="trending-up" class="text-orange-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">Apr 2025 - Sekarang</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">Manager</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4">StarS.Caffe</p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Memimpin tim melampaui target penjualan tahunan sebesar 20% selama dua tahun.</li>
+                                <li>Membimbing 3 anggota tim hingga mendapatkan promosi ke posisi senior dalam 3 bulan.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Recruiter & Fraud Analyst -->
+                <div class="glass-card p-8 md:col-span-2" data-aos="fade-up" data-aos-delay="500">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-blue-500/20 p-4 rounded-full border border-blue-500/30"><i data-feather="briefcase" class="text-blue-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">2023 - Sekarang</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">Recruiter & Fraud Analyst</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4">MyRobin ID</p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Berhasil menekan angka insiden penipuan di area monitoring sebesar <span class="font-bold text-green-400">80%</span>.</li>
+                                <li>Melampaui target pemenuhan kebutuhan klien hingga <span class="font-bold text-green-400">20%</span>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Riwayat Pendidikan -->
+        <section id="pendidikan" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Riwayat Pendidikan</h2>
+            <div class="max-w-2xl mx-auto glass-card p-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="relative">
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
+                        <div class="timeline-icon"><i data-feather="award" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">Universitas Muhammadiyah Malang</h3>
+                        <p class="text-gray-400">Ilmu Hukum</p>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="300">
+                        <div class="timeline-icon"><i data-feather="book-open" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">MA. Insan Generasi Islami</h3>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="400">
+                        <div class="timeline-icon"><i data-feather="book-open" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">MTS TMI Al-Amien Prenduan</h3>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="500">
+                        <div class="timeline-icon"><i data-feather="book" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">SDN Tagangser Daya 01</h3>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="600">
+                        <div class="timeline-icon"><i data-feather="gift" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">TK Al-Amien Jember</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Keahlian -->
+        <section id="keahlian" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Keahlian Utama</h2>
+            <div class="max-w-5xl mx-auto text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="skill-tag">Analisis Data</span>
+                    <span class="skill-tag">Google Spreadsheet & Doc</span>
+                    <span class="skill-tag">AppSheet</span>
+                    <span class="skill-tag">Looker Studio</span>
+                    <span class="skill-tag">Video Editing</span>
+                    <span class="skill-tag">Desain Grafis</span>
+                    <span class="skill-tag">Copywriting</span>
+                    <span class="skill-tag">Penyelesaian Masalah</span>
+                    <span class="skill-tag">Rekrutmen & ATS</span>
+                    <span class="skill-tag">Manajemen Tim</span>
+                    <span class="skill-tag">Analisis Merek</span>
+                    <span class="skill-tag">Strategi Konten</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proyek & Prestasi -->
+        <section id="proyek" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Proyek & Prestasi</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-green-500/20 p-3 rounded-full w-max mb-4 border border-green-500/30"><i data-feather="edit-3" class="text-green-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Editing Kreatif</h3>
+                    <p class="text-gray-400">Bertanggung jawab atas editing kreatif di MA. Insan Generasi Islami.</p>
+                </div>
+                <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-purple-500/20 p-3 rounded-full w-max mb-4 border border-purple-500/30"><i data-feather="users" class="text-purple-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Manajer Media Sosial</h3>
+                    <p class="text-gray-400">Mengelola media sosial untuk Group Boarding School.</p>
+                </div>
+                <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-yellow-500/20 p-3 rounded-full w-max mb-4 border border-yellow-500/30"><i data-feather="pen-tool" class="text-yellow-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Copywriter & PIC</h3>
+                    <p class="text-gray-400">Penulis konten dan penanggung jawab untuk Distrik Berisik di area Pamekasan.</p>
+                </div>
+                <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-red-500/20 p-3 rounded-full w-max mb-4 border border-red-500/30"><i data-feather="award" class="text-red-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Juara Harapan 1 Dai</h3>
+                    <p class="text-gray-400">Pada acara Milad Islamic Center Education.</p>
+                </div>
+                <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-indigo-500/20 p-3 rounded-full w-max mb-4 border border-indigo-500/30"><i data-feather="award" class="text-indigo-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Juara Harapan 2 Orator</h3>
+                    <p class="text-gray-400">Pada kompetisi di Universitas Dr. Soetomo.</p>
+                </div>
+                 <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-pink-500/20 p-3 rounded-full w-max mb-4 border border-pink-500/30"><i data-feather="award" class="text-pink-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Juara Harapan 1 Video Edukasi</h3>
+                    <p class="text-gray-400">Diselenggarakan oleh Kemenpora Pamekasan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kontak -->
+        <section id="kontak" class="mb-12">
+            <h2 class="section-title" data-aos="fade-up">Hubungi Saya</h2>
+            <div class="glass-card max-w-4xl mx-auto text-center p-8 md:p-12" data-aos="fade-up" data-aos-delay="100">
+                <p class="text-lg text-gray-300 mb-8">Saya terbuka untuk diskusi, kolaborasi, atau peluang baru. Jangan ragu untuk menghubungi saya.</p>
+                <div class="flex justify-center items-center space-x-6 md:space-x-10 mb-8">
+                    <a href="https://wa.me/6285190002348" target="_blank" class="contact-icon" title="WhatsApp"><i data-feather="message-circle" class="w-9 h-9"></i></a>
+                    <a href="mailto:reokurniawan343@gmail.com" class="contact-icon" title="Email"><i data-feather="mail" class="w-9 h-9"></i></a>
+                    <a href="https://www.linkedin.com/in/reo-kurniawan-i-p-9b1a4a1b0/" target="_blank" class="contact-icon" title="LinkedIn"><i data-feather="linkedin" class="w-9 h-9"></i></a>
+                    <a href="https://instagram.com/rxyndx_wb" target="_blank" class="contact-icon" title="Instagram"><i data-feather="instagram" class="w-9 h-9"></i></a>
+                    <a href="https://www.tiktok.com/@rxyndx_wb" target="_blank" class="contact-icon" title="TikTok"><i data-feather="play-circle" class="w-9 h-9"></i></a>
+                    <a href="https://zhedvagency.my.canva.site/kompleksuara" target="_blank" class="contact-icon" title="Blog"><i data-feather="link" class="w-9 h-9"></i></a>
+                </div>
+                <div class="text-gray-400 border-t border-white/10 pt-6 mt-6">
+                    <p><i data-feather="map-pin" class="inline-block w-4 h-4 mr-2"></i>Pamekasan, Jawa Timur, Indonesia</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-transparent text-gray-500 py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 Reo Kurniawan Iriandito P. Didesain & Dikembangkan dengan antusias.</p>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inisialisasi Feather Icons
+        feather.replace();
+
+        // Inisialisasi AOS
+        AOS.init({
+            duration: 800, // durasi animasi
+            once: true, // animasi hanya terjadi sekali
+        });
+
+        // Logika untuk menu mobile
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Logika untuk efek mengetik
+        const typingElement = document.getElementById('typing-effect');
+        const words = [
+            "HR Professional",
+            "Brand Analyst",
+            "Content Creative",
+            "Manager",
+            "Recruiter",
+            "Fraud Analyst"
+        ];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                typingElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+            
+            const typingSpeed = isDeleting ? 100 : 200;
+            setTimeout(type, typingSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', type);
+    </script>
+</body>
+</html>
