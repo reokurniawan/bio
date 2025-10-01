@@ -117,6 +117,11 @@
             border: 1px solid rgba(59, 130, 246, 0.3);
         }
 
+        /* Custom style for profile picture position */
+        .profile-image {
+            object-position: center 20%; /* Pushes the image down to show more of the top */
+        }
+
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -127,17 +132,23 @@
             <div class="text-xl font-bold text-white tracking-widest">
                 PORTOFOLIO
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#pengalaman" class="text-gray-300 hover:text-white font-medium">Pengalaman</a>
-                <a href="#pendidikan" class="text-gray-300 hover:text-white font-medium">Pendidikan</a>
-                <a href="#keahlian" class="text-gray-300 hover:text-white font-medium">Keahlian</a>
-                <a href="#proyek" class="text-gray-300 hover:text-white font-medium">Proyek</a>
-                <a href="#kontak" class="text-gray-300 hover:text-white font-medium">Kontak</a>
-            </div>
-            <div class="md:hidden">
-                <button id="menu-btn" class="text-gray-300 focus:outline-none">
-                    <i data-feather="menu" class="w-6 h-6"></i>
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex space-x-8">
+                    <a href="#pengalaman" class="text-gray-300 hover:text-white font-medium">Pengalaman</a>
+                    <a href="#pendidikan" class="text-gray-300 hover:text-white font-medium">Pendidikan</a>
+                    <a href="#keahlian" class="text-gray-300 hover:text-white font-medium">Keahlian</a>
+                    <a href="#proyek" class="text-gray-300 hover:text-white font-medium">Proyek</a>
+                    <a href="#kontak" class="text-gray-300 hover:text-white font-medium">Kontak</a>
+                </div>
+                <!-- Tombol Bintang Verifikasi -->
+                <button id="verification-btn" class="text-yellow-400 hover:text-yellow-300 transition-colors" title="Verifikasi">
+                    <i data-feather="star" class="w-6 h-6 fill-current text-yellow-400"></i>
                 </button>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-300 focus:outline-none">
+                        <i data-feather="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
             </div>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden bg-black/50">
@@ -172,7 +183,7 @@
                         <div class="absolute inset-0 animated-gradient rounded-full"></div>
                         <!-- Gambar profil -->
                         <div class="relative rounded-full w-full h-full p-2 bg-black/20">
-                           <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgnIVZuoeWoL1_B2ovt6tFbxgg_piqC9kKmkhPILkyOc1d1osSgtKXRAch94YbDHxwckSvwlOY2xTnOhR-8FNVTn-QKsjulTvdAJx48Hl-Yp4lpE6gFjjUB2kI2zx-tgbzeCunxrj5giuYat9imVGMOV_DpAiZ20M5w6L7KpytIjDDThVg3SEyzCRyG8mG9/s5184/IMG_7868-01.jpeg" alt="Foto Profil Reo Kurniawan" class="rounded-full w-full h-full object-cover">
+                           <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKcYLfBQi55Ot2CIUYqRJeUR4rtnjFzLvCf4uop3I3TJ34aYgsXcSOwZPMtMqLg0v41k5bERbmNZS_H7OFFUoLGXFD6FP3twgJ5RCr8MntqAQ4lRXBLnhOYZsqOKtMPURP8HR_iti7Pps4RhUD_1E8LBFBTMcS9S36DD9p-8-Yq4h0-8WBbuw9xYUTb0w-/s1024/IMG_2374.png" alt="Foto Profil Reo Kurniawan" class="rounded-full w-full h-full object-cover profile-image">
                         </div>
                     </div>
                 </div>
@@ -384,6 +395,21 @@
             </div>
         </section>
     </main>
+    
+    <!-- Modal Verifikasi -->
+    <div id="verification-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100]">
+      <div id="modal-content" class="bg-gray-900 border border-gray-700 p-8 rounded-lg shadow-xl w-full max-w-sm" data-aos="zoom-in">
+        <h3 class="text-xl font-bold text-white mb-4">Verifikasi</h3>
+        <p class="text-gray-400 mb-4">Masukkan kode untuk melanjutkan.</p>
+        <input id="code-input" type="password" class="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="•••••••••">
+        <p id="error-message" class="text-red-400 text-sm mt-2 hidden">Kode verifikasi salah.</p>
+        <div class="mt-6 flex justify-end space-x-4">
+          <button id="cancel-btn" class="text-gray-400 hover:text-white px-4 py-2 rounded-md">Batal</button>
+          <button id="submit-btn" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-md hover:bg-blue-700">Submit</button>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Footer -->
     <footer class="bg-transparent text-gray-500 py-6">
@@ -447,7 +473,76 @@
         }
 
         document.addEventListener('DOMContentLoaded', type);
+
+        // Logika untuk Modal Verifikasi
+        const verificationBtn = document.getElementById('verification-btn');
+        const verificationModal = document.getElementById('verification-modal');
+        const modalContent = document.getElementById('modal-content');
+        const codeInput = document.getElementById('code-input');
+        const submitBtn = document.getElementById('submit-btn');
+        const cancelBtn = document.getElementById('cancel-btn');
+        const errorMessage = document.getElementById('error-message');
+        const correctCode = '011712160';
+        const redirectUrl = 'https://reokurniawan.github.io/Kuliah/';
+
+        function openModal() {
+            verificationModal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            verificationModal.classList.add('hidden');
+            codeInput.value = '';
+            errorMessage.classList.add('hidden');
+        }
+
+        verificationBtn.addEventListener('click', openModal);
+        cancelBtn.addEventListener('click', closeModal);
+
+        // Tutup modal jika klik di luar konten modal
+        verificationModal.addEventListener('click', (event) => {
+            if (event.target === verificationModal) {
+                closeModal();
+            }
+        });
+
+        submitBtn.addEventListener('click', () => {
+            if (codeInput.value === correctCode) {
+                // Mengarahkan ke URL di tab baru
+                window.open(redirectUrl, '_blank');
+                closeModal(); // Menutup modal setelah berhasil
+            } else {
+                errorMessage.classList.remove('hidden');
+                modalContent.classList.add('animate-shake');
+                setTimeout(() => {
+                    modalContent.classList.remove('animate-shake');
+                }, 500)
+            }
+        });
+        
+        // Sembunyikan pesan error saat mulai mengetik lagi
+        codeInput.addEventListener('input', () => {
+            if (!errorMessage.classList.contains('hidden')) {
+                errorMessage.classList.add('hidden');
+            }
+        });
+        
+        // Tambahkan animasi shake sederhana
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes shake {
+                10%, 90% { transform: translate3d(-1px, 0, 0); }
+                20%, 80% { transform: translate3d(2px, 0, 0); }
+                30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+                40%, 60% { transform: translate3d(4px, 0, 0); }
+            }
+            .animate-shake {
+                animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+            }
+        `;
+        document.head.appendChild(style);
+
     </script>
 </body>
 </html>
+
 
