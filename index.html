@@ -62,7 +62,9 @@
             width: 3px;
             height: 1.5rem;
             background-color: #3b82f6;
+            margin-left: 5px;
             animation: blink 1s infinite;
+            vertical-align: middle;
         }
         @keyframes blink {
             0%, 100% { opacity: 1; }
@@ -119,7 +121,7 @@
 
         /* Custom style for profile picture position */
         .profile-image {
-            object-position: center 20%; /* Pushes the image down to show more of the top */
+            object-position: center 20%; 
         }
 
     </style>
@@ -151,12 +153,12 @@
                 </div>
             </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-black/50">
-            <a href="#pengalaman" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Pengalaman</a>
-            <a href="#pendidikan" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Pendidikan</a>
-            <a href="#keahlian" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Keahlian</a>
-            <a href="#proyek" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Proyek</a>
-            <a href="#kontak" class="block py-2 px-6 text-sm text-gray-300 hover:bg-gray-800">Kontak</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-md absolute w-full left-0 top-full border-b border-gray-800">
+            <a href="#pengalaman" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Pengalaman</a>
+            <a href="#pendidikan" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Pendidikan</a>
+            <a href="#keahlian" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Keahlian</a>
+            <a href="#proyek" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Proyek</a>
+            <a href="#kontak" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800">Kontak</a>
         </div>
     </header>
 
@@ -170,20 +172,22 @@
                     <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4">
                         Reo Kurniawan I.P C.MTr
                     </h1>
-                    <h2 class="text-2xl md:text-3xl font-semibold text-blue-400 mb-6 h-10">
+                    <!-- UPDATED TYPING EFFECT SECTION -->
+                    <h2 class="text-2xl md:text-3xl font-semibold text-blue-400 mb-6 min-h-[40px] flex items-center justify-center md:justify-start">
                         <span id="typing-effect"></span><span class="typing-cursor"></span>
                     </h2>
+                    
                     <p class="text-lg text-gray-400 max-w-xl mx-auto md:mx-0 mb-8">
                         Analisis mendalam yang dipadukan dengan keahlian praktis di lapangan dan keterampilan komunikasi yang kuat untuk memberikan kontribusi nyata, dengan memprioritaskan kepuasan dan keberhasilan bersama.
                     </p>
-                    <a href="#kontak" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300">Hubungi Saya</a>
+                    <a href="#kontak" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300 shadow-lg shadow-blue-500/30">Hubungi Saya</a>
                 </div>
                 <div class="md:w-2/5 flex justify-center md:justify-end" data-aos="fade-left" data-aos-delay="200">
                     <div class="relative w-72 h-72 md:w-96 md:h-96">
-                        <div class="absolute inset-0 animated-gradient rounded-full"></div>
+                        <div class="absolute inset-0 animated-gradient rounded-full blur-md"></div>
                         <!-- Gambar profil -->
-                        <div class="relative rounded-full w-full h-full p-2 bg-black/20">
-                           <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKcYLfBQi55Ot2CIUYqRJeUR4rtnjFzLvCf4uop3I3TJ34aYgsXcSOwZPMtMqLg0v41k5bERbmNZS_H7OFFUoLGXFD6FP3twgJ5RCr8MntqAQ4lRXBLnhOYZsqOKtMPURP8HR_iti7Pps4RhUD_1E8LBFBTMcS9S36DD9p-8-Yq4h0-8WBbuw9xYUTb0w-/s1024/IMG_2374.png" alt="Foto Profil Reo Kurniawan" class="rounded-full w-full h-full object-cover profile-image">
+                        <div class="relative rounded-full w-full h-full p-1 bg-black/20 overflow-hidden border-2 border-white/10">
+                           <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKcYLfBQi55Ot2CIUYqRJeUR4rtnjFzLvCf4uop3I3TJ34aYgsXcSOwZPMtMqLg0v41k5bERbmNZS_H7OFFUoLGXFD6FP3twgJ5RCr8MntqAQ4lRXBLnhOYZsqOKtMPURP8HR_iti7Pps4RhUD_1E8LBFBTMcS9S36DD9p-8-Yq4h0-8WBbuw9xYUTb0w-/s1024/IMG_2374.png" alt="Foto Profil Reo Kurniawan" class="w-full h-full object-cover profile-image hover:scale-105 transition-transform duration-500">
                         </div>
                     </div>
                 </div>
@@ -350,204 +354,141 @@
                 <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="bg-green-500/20 p-3 rounded-full w-max mb-4 border border-green-500/30"><i data-feather="edit-3" class="text-green-400"></i></div>
                     <h3 class="text-xl font-bold text-white mb-2">Editing Kreatif</h3>
-                    <p class="text-gray-400">Bertanggung jawab atas editing kreatif di MA. Insan Generasi Islami.</p>
+                    <p class="text-gray-400">Bertanggung jawab atas editing kreatif di MA. Insan Generasi Islami untuk berbagai acara sekolah.</p>
                 </div>
                 <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="bg-purple-500/20 p-3 rounded-full w-max mb-4 border border-purple-500/30"><i data-feather="users" class="text-purple-400"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Manajer Media Sosial</h3>
-                    <p class="text-gray-400">Mengelola media sosial untuk Group Boarding School.</p>
+                    <h3 class="text-xl font-bold text-white mb-2">Tim Manajemen Acara</h3>
+                    <p class="text-gray-400">Sukses mengelola event tahunan pondok dengan partisipasi lebih dari 500 peserta.</p>
                 </div>
                 <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="bg-yellow-500/20 p-3 rounded-full w-max mb-4 border border-yellow-500/30"><i data-feather="pen-tool" class="text-yellow-400"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Copywriter & PIC</h3>
-                    <p class="text-gray-400">Penulis konten dan penanggung jawab untuk Distrik Berisik di area Pamekasan.</p>
-                </div>
-                <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-red-500/20 p-3 rounded-full w-max mb-4 border border-red-500/30"><i data-feather="award" class="text-red-400"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Juara Harapan 1 Dai</h3>
-                    <p class="text-gray-400">Pada acara Milad Islamic Center Education.</p>
-                </div>
-                <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-indigo-500/20 p-3 rounded-full w-max mb-4 border border-indigo-500/30"><i data-feather="award" class="text-indigo-400"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Juara Harapan 2 Orator</h3>
-                    <p class="text-gray-400">Pada kompetisi di Universitas Dr. Soetomo.</p>
-                </div>
-                 <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="bg-pink-500/20 p-3 rounded-full w-max mb-4 border border-pink-500/30"><i data-feather="award" class="text-pink-400"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Juara Harapan 1 Video Edukasi</h3>
-                    <p class="text-gray-400">Diselenggarakan oleh Kemenpora Pamekasan.</p>
+                    <div class="bg-blue-500/20 p-3 rounded-full w-max mb-4 border border-blue-500/30"><i data-feather="bar-chart" class="text-blue-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Analisis Fraud</h3>
+                    <p class="text-gray-400">Mengembangkan sistem monitoring manual yang efektif untuk mendeteksi pola penipuan di platform kerja.</p>
                 </div>
             </div>
         </section>
 
         <!-- Kontak -->
-        <section id="kontak" class="mb-12">
+        <section id="kontak" class="mb-20">
             <h2 class="section-title" data-aos="fade-up">Hubungi Saya</h2>
-            <!-- Lebar maksimum diatur di sini -->
-            <div class="max-w-3xl mx-auto glass-card text-center p-8 md:p-12" data-aos="fade-up" data-aos-delay="100">
-                <p class="text-lg text-gray-300 mb-8">Saya terbuka untuk diskusi, kolaborasi, atau peluang baru. Jangan ragu untuk menghubungi saya.</p>
-                <div class="flex justify-center items-center space-x-6 md:space-x-10 mb-8">
-                    <a href="https://wa.me/6285190002348" target="_blank" class="contact-icon" title="WhatsApp"><i data-feather="message-circle" class="w-9 h-9"></i></a>
-                    <a href="mailto:reokurniawan343@gmail.com" class="contact-icon" title="Email"><i data-feather="mail" class="w-9 h-9"></i></a>
-                    <a href="https://www.linkedin.com/in/reo-kurniawan-i-p-9b1a4a1b0/" target="_blank" class="contact-icon" title="LinkedIn"><i data-feather="linkedin" class="w-9 h-9"></i></a>
-                    <a href="https://instagram.com/rxyndx_wb" target="_blank" class="contact-icon" title="Instagram"><i data-feather="instagram" class="w-9 h-9"></i></a>
-                    <a href="https://www.tiktok.com/@rxyndx_wb" target="_blank" class="contact-icon" title="TikTok"><i data-feather="play-circle" class="w-9 h-9"></i></a>
-                    <a href="https://kompleksuara.com" target="_blank" class="contact-icon" title="Blog"><i data-feather="link" class="w-9 h-9"></i></a>
+            <div class="max-w-4xl mx-auto glass-card p-8 md:p-12 text-center" data-aos="zoom-in">
+                <p class="text-xl text-gray-300 mb-8">Tertarik untuk berkolaborasi atau memiliki pertanyaan? Jangan ragu untuk menghubungi saya.</p>
+                
+                <div class="flex justify-center items-center space-x-8 mb-8">
+                    <a href="mailto:reokurniawan@example.com" class="contact-icon group relative">
+                        <i data-feather="mail" class="w-10 h-10"></i>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">Email</span>
+                    </a>
+                    <a href="#" class="contact-icon group relative">
+                        <i data-feather="linkedin" class="w-10 h-10"></i>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">LinkedIn</span>
+                    </a>
+                    <a href="#" class="contact-icon group relative">
+                        <i data-feather="instagram" class="w-10 h-10"></i>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">Instagram</span>
+                    </a>
+                    <a href="#" class="contact-icon group relative">
+                        <i data-feather="phone" class="w-10 h-10"></i>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">WhatsApp</span>
+                    </a>
                 </div>
-                <div class="text-gray-400 border-t border-white/10 pt-6 mt-6">
-                    <p><i data-feather="map-pin" class="inline-block w-4 h-4 mr-2"></i>Pamekasan, Jawa Timur, Indonesia</p>
-                </div>
+                
+                <a href="mailto:email@contoh.com" class="inline-block bg-white text-black font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition-colors">
+                    Kirim Pesan
+                </a>
             </div>
         </section>
+
     </main>
-    
-    <!-- Modal Verifikasi -->
-    <div id="verification-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100]">
-      <div id="modal-content" class="bg-gray-900 border border-gray-700 p-8 rounded-lg shadow-xl w-full max-w-sm" data-aos="zoom-in">
-        <h3 class="text-xl font-bold text-white mb-4">Verifikasi</h3>
-        <p class="text-gray-400 mb-4">Masukkan kode untuk melanjutkan.</p>
-        <input id="code-input" type="password" class="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="•••••••••">
-        <p id="error-message" class="text-red-400 text-sm mt-2 hidden">Kode verifikasi salah.</p>
-        <div class="mt-6 flex justify-end space-x-4">
-          <button id="cancel-btn" class="text-gray-400 hover:text-white px-4 py-2 rounded-md">Batal</button>
-          <button id="submit-btn" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-md hover:bg-blue-700">Submit</button>
-        </div>
-      </div>
-    </div>
 
-
-    <!-- Footer -->
-    <footer class="bg-transparent text-gray-500 py-6">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2024 Reo Kurniawan Iriandito P. Didesain & Dikembangkan dengan antusias.</p>
+    <footer class="bg-black/80 py-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2024 Reo Kurniawan I.P. All rights reserved.</p>
         </div>
     </footer>
-    
+
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Inisialisasi Feather Icons
+        // Initialize Feather Icons
         feather.replace();
 
-        // Inisialisasi AOS
+        // Initialize AOS
         AOS.init({
-            duration: 800, // durasi animasi
-            once: true, // animasi hanya terjadi sekali
+            duration: 1000,
+            once: true,
+            offset: 100
         });
 
-        // Logika untuk menu mobile
+        // Mobile Menu Toggle
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
         
-        // Logika untuk efek mengetik
-        const typingElement = document.getElementById('typing-effect');
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Verification Button Alert
+        document.getElementById('verification-btn').addEventListener('click', () => {
+            alert("Profil ini telah diverifikasi sebagai Reo Kurniawan I.P");
+        });
+
+        // Typing Effect Logic - UPDATED
         const words = [
-            "HR Professional",
-            "Brand Analyst",
-            "Content Creative",
-            "Manager",
-            "Recruiter",
-            "Fraud Analyst"
+            "CONTENT WRITER", 
+            "MANAGER", 
+            "BRAND ANALYST", 
+            "RECRUITER & FRAUD ANALYST"
         ];
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function type() {
-            const currentWord = words[wordIndex];
-            if (isDeleting) {
-                typingElement.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            if (!isDeleting && charIndex === currentWord.length) {
-                setTimeout(() => isDeleting = true, 2000);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                wordIndex = (wordIndex + 1) % words.length;
-            }
-            
-            const typingSpeed = isDeleting ? 100 : 200;
-            setTimeout(type, typingSpeed);
-        }
-
-        document.addEventListener('DOMContentLoaded', type);
-
-        // Logika untuk Modal Verifikasi
-        const verificationBtn = document.getElementById('verification-btn');
-        const verificationModal = document.getElementById('verification-modal');
-        const modalContent = document.getElementById('modal-content');
-        const codeInput = document.getElementById('code-input');
-        const submitBtn = document.getElementById('submit-btn');
-        const cancelBtn = document.getElementById('cancel-btn');
-        const errorMessage = document.getElementById('error-message');
-        const correctCode = '011712160';
-        const redirectUrl = 'https://reokurniawan.github.io/Kuliah/';
-
-        function openModal() {
-            verificationModal.classList.remove('hidden');
-        }
-
-        function closeModal() {
-            verificationModal.classList.add('hidden');
-            codeInput.value = '';
-            errorMessage.classList.add('hidden');
-        }
-
-        verificationBtn.addEventListener('click', openModal);
-        cancelBtn.addEventListener('click', closeModal);
-
-        // Tutup modal jika klik di luar konten modal
-        verificationModal.addEventListener('click', (event) => {
-            if (event.target === verificationModal) {
-                closeModal();
-            }
-        });
-
-        submitBtn.addEventListener('click', () => {
-            if (codeInput.value === correctCode) {
-                // Mengarahkan ke URL di tab baru
-                window.open(redirectUrl, '_blank');
-                closeModal(); // Menutup modal setelah berhasil
-            } else {
-                errorMessage.classList.remove('hidden');
-                modalContent.classList.add('animate-shake');
-                setTimeout(() => {
-                    modalContent.classList.remove('animate-shake');
-                }, 500)
-            }
-        });
         
-        // Sembunyikan pesan error saat mulai mengetik lagi
-        codeInput.addEventListener('input', () => {
-            if (!errorMessage.classList.contains('hidden')) {
-                errorMessage.classList.add('hidden');
-            }
-        });
-        
-        // Tambahkan animasi shake sederhana
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes shake {
-                10%, 90% { transform: translate3d(-1px, 0, 0); }
-                20%, 80% { transform: translate3d(2px, 0, 0); }
-                30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-                40%, 60% { transform: translate3d(4px, 0, 0); }
-            }
-            .animate-shake {
-                animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
-            }
-        `;
-        document.head.appendChild(style);
+        let i = 0;
+        let timer;
 
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('typing-effect').innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000); // Wait 2 seconds before deleting
+                    return false;
+                }
+                timer = setTimeout(loopTyping, 100); // Typing speed
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let word = words[i].split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    document.getElementById('typing-effect').innerHTML = word.join("");
+                } else {
+                    if (words.length > (i + 1)) {
+                        i++;
+                    } else {
+                        i = 0;
+                    }
+                    typingEffect();
+                    return false;
+                }
+                timer = setTimeout(loopDeleting, 50); // Deleting speed
+            };
+            loopDeleting();
+        }
+
+        // Start the typing effect
+        typingEffect();
     </script>
 </body>
 </html>
-
 
