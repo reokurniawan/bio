@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
@@ -160,6 +161,16 @@
 
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
         @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .scrollbar-none {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
 
     </style>
 </head>
@@ -415,49 +426,33 @@
             </div>
         </section>
 
-        <!-- Sertifikasi Section -->
+        <!-- Sertifikasi Section (Diperbarui dengan Slider Dinamis 30 Sertifikat) -->
         <section id="sertifikasi" class="mb-20 md:mb-32">
-            <h2 class="section-title" data-aos="fade-up">Sertifikasi</h2>
-            <div class="max-w-4xl mx-auto" data-aos="zoom-in">
+            <h2 class="section-title" data-aos="fade-up">Sertifikasi & Lisensi</h2>
+            <div class="relative max-w-6xl mx-auto px-4" data-aos="zoom-in">
                 
-                <!-- Sertifikat Pertama (Asli) -->
-                <div class="glass-card overflow-hidden">
-                    <div class="p-4 bg-white/5 border-b border-white/10 flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <div class="p-2 bg-yellow-500/20 rounded-lg">
-                                <i data-feather="award" class="text-yellow-400 w-5 h-5"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-white">Sertifikat Keahlian</h3>
-                        </div>
-                        <span class="text-xs text-gray-400 px-3 py-1 rounded-full border border-white/10">Terverifikasi</span>
-                    </div>
-                    <div class="p-4 flex justify-center">
-                        <img 
-                            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9QQk5ubPhCOS2nY4nDBPxgbCEC0_i4yy9_g8O68GVBegMTPX1NYZvvm5fjJdB3ZLfDHtgNeJJ5EdfAwuPS3udOb7AT92kdG_XP-qMaZCyMg1V-FpFlwrOrHyfolwSL1x_1HUz4dr6AWiQ1GkaK6-J60vK5l02mgMWr1V790SRBkms1vcjMZewkUujnSFu/s1746/1000066702.png" 
-                            alt="Sertifikat Reo Kurniawan" 
-                            class="rounded-lg max-w-full h-auto shadow-2xl hover:scale-[1.02] transition-transform duration-500"
-                        >
-                    </div>
+                <!-- Petunjuk Swipe untuk HP -->
+                <div class="flex justify-between items-center mb-4 text-gray-400 text-sm md:hidden">
+                    <span class="flex items-center gap-1"><i data-feather="arrow-left-right" class="w-4 h-4"></i> Geser untuk melihat lainnya</span>
+                    <span id="slide-indicator" class="font-semibold text-blue-400">1 / 30</span>
                 </div>
 
-                <!-- Sertifikat Kedua (Baru Ditambahkan) -->
-                <div class="glass-card overflow-hidden mt-8">
-                    <div class="p-4 bg-white/5 border-b border-white/10 flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <div class="p-2 bg-yellow-500/20 rounded-lg">
-                                <i data-feather="award" class="text-yellow-400 w-5 h-5"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-white">Sertifikat Tambahan</h3>
-                        </div>
-                        <span class="text-xs text-gray-400 px-3 py-1 rounded-full border border-white/10">Terverifikasi</span>
-                    </div>
-                    <div class="p-4 flex justify-center">
-                        <img 
-                            src="https://blogger.googleusercontent.com/img/a/AVvXsEipZqPTIvxoIdVWMtK9iH4u9apmzyV3UcfG2SwkPe6wRg3qxyznC0TB2F_jnFbC4rz-GNwzz5Rg9PHkFiNmRcGsYXIaSNflk5PGNTNiy8foUawxcGbEmucYESZW9-hj6U5AbVWrdpDQ0ZAj1pNk6E61GixLEG3Y95_tOePtQlwyVQYA_klND0KjBEFF8ZSP" 
-                            alt="Sertifikat Reo Kurniawan Tambahan" 
-                            class="rounded-lg max-w-full h-auto shadow-2xl hover:scale-[1.02] transition-transform duration-500"
-                        >
-                    </div>
+                <!-- Tombol Navigasi Desktop (Chevron) -->
+                <button id="prev-cert" class="absolute -left-4 md:-left-12 top-[45%] -translate-y-1/2 z-20 bg-white/5 hover:bg-blue-600/90 text-white p-3 rounded-full border border-white/10 hover:border-blue-500 transition-all focus:outline-none hidden md:flex items-center justify-center shadow-lg shadow-black/50" aria-label="Sertifikat Sebelumnya">
+                    <i data-feather="chevron-left" class="w-6 h-6"></i>
+                </button>
+                <button id="next-cert" class="absolute -right-4 md:-right-12 top-[45%] -translate-y-1/2 z-20 bg-white/5 hover:bg-blue-600/90 text-white p-3 rounded-full border border-white/10 hover:border-blue-500 transition-all focus:outline-none hidden md:flex items-center justify-center shadow-lg shadow-black/50" aria-label="Sertifikat Selanjutnya">
+                    <i data-feather="chevron-right" class="w-6 h-6"></i>
+                </button>
+                
+                <!-- Slider Wrapper (Scrollable Horizontally - populated dynamically via JS) -->
+                <div id="cert-slider" class="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-6 pb-8 px-1 scroll-smooth">
+                    <!-- Cards are injected dynamically by JavaScript -->
+                </div>
+
+                <!-- Indikator Slide Desktop (Dots - populated dynamically via JS) -->
+                <div id="dots-container" class="hidden md:flex justify-center flex-wrap gap-2 mt-6 max-w-4xl mx-auto">
+                    <!-- Dots are injected dynamically by JavaScript -->
                 </div>
 
             </div>
@@ -525,6 +520,33 @@
             <p>&copy; 2024 Reo Kurniawan I.P. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Lightbox Modal untuk Pratinjau Sertifikat -->
+    <div id="lightbox-modal" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md hidden flex-col items-center justify-center p-4">
+        <!-- Close Button -->
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-red-500 transition-colors bg-white/10 p-2.5 rounded-full focus:outline-none" aria-label="Tutup Pratinjau">
+            <i data-feather="x" class="w-6 h-6"></i>
+        </button>
+        
+        <!-- Navigation Buttons -->
+        <button onclick="prevLightbox()" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white hover:text-blue-400 transition-colors bg-white/5 hover:bg-white/10 p-3 rounded-full focus:outline-none" aria-label="Sebelumnya">
+            <i data-feather="arrow-left" class="w-6 h-6"></i>
+        </button>
+        <button onclick="nextLightbox()" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white hover:text-blue-400 transition-colors bg-white/5 hover:bg-white/10 p-3 rounded-full focus:outline-none" aria-label="Berikutnya">
+            <i data-feather="arrow-right" class="w-6 h-6"></i>
+        </button>
+
+        <!-- Image Content -->
+        <div class="max-w-4xl max-h-[75vh] flex items-center justify-center relative px-8">
+            <img id="lightbox-img" src="" alt="Pratinjau Sertifikat" class="max-h-[70vh] max-w-full rounded-lg object-contain shadow-2xl border border-white/10">
+        </div>
+
+        <!-- Caption/Title -->
+        <div class="text-center mt-6 px-4">
+            <p id="lightbox-caption" class="text-white text-lg font-bold mb-1"></p>
+            <p id="lightbox-sub" class="text-blue-400 text-sm font-semibold tracking-wider"></p>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -607,6 +629,347 @@
 
         // Start the typing effect
         typingEffect();
+
+
+        // =========================================================================
+        // === DATA 30 SERTIFIKAT (Edit tautan gambar/link Anda di daftar ini!) ===
+        // =========================================================================
+        const certificates = [
+            {
+                title: "Sertifikat Keahlian",
+                issuer: "ZHEDVANOIS AGENCY",
+                url: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9QQk5ubPhCOS2nY4nDBPxgbCEC0_i4yy9_g8O68GVBegMTPX1NYZvvm5fjJdB3ZLfDHtgNeJJ5EdfAwuPS3udOb7AT92kdG_XP-qMaZCyMg1V-FpFlwrOrHyfolwSL1x_1HUz4dr6AWiQ1GkaK6-J60vK5l02mgMWr1V790SRBkms1vcjMZewkUujnSFu/s1746/1000066702.png"
+            },
+            {
+                title: "Sertifikat Tambahan",
+                issuer: "ZHEDVANOIS AGENCY",
+                url: "https://blogger.googleusercontent.com/img/a/AVvXsEipZqPTIvxoIdVWMtK9iH4u9apmzyV3UcfG2SwkPe6wRg3qxyznC0TB2F_jnFbC4rz-GNwzz5Rg9PHkFiNmRcGsYXIaSNflk5PGNTNiy8foUawxcGbEmucYESZW9-hj6U5AbVWrdpDQ0ZAj1pNk6E61GixLEG3Y95_tOePtQlwyVQYA_klND0KjBEFF8ZSP"
+            },
+            {
+                title: "Sertifikat Prestasi",
+                issuer: "KOMPLEK SUARA",
+                url: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5k8zK8Dd7vorxg875w68w7wSW88WpUhwdUhxyfHXqDlVH9Zc0_ZBWWqLE51_2grqDFeiJsKK0gT"
+            },
+            {
+                title: "Sertifikat Kompetensi",
+                issuer: "REXER PARFUME",
+                url: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgZLjS5xIyvLBhCgrb0nAt_3jM4KlwI0vqgWPJOAxH_KQC8_Pe_1e09-8HKdFaks2ty"
+            },
+            {
+                title: "Sertifikat Kehormatan",
+                issuer: "MYROBIN.ID",
+                url: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPuV1HPlLrdokB_5SWTY8wmWkH34hFonVOgc7z3zZIHfB1zohDk6By_I6fajDeMqLXGR"
+            },
+            
+            // --- Sisa Sertifikat Sementara (Total 30) - Silakan ganti tautan dan nama nanti ---
+            {
+                title: "Sertifikat Digital Marketing",
+                issuer: "ZHEDVANOIS AGENCY",
+                url: "https://picsum.photos/seed/cert6/800/600"
+            },
+            {
+                title: "Sertifikat Keahlian Copywriting",
+                issuer: "KOMPLEK SUARA",
+                url: "https://picsum.photos/seed/cert7/800/600"
+            },
+            {
+                title: "Sertifikat Analisis Strategis",
+                issuer: "REXER PARFUME",
+                url: "https://picsum.photos/seed/cert8/800/600"
+            },
+            {
+                title: "Sertifikat Fraud Investigation",
+                issuer: "MYROBIN.ID",
+                url: "https://picsum.photos/seed/cert9/800/600"
+            },
+            {
+                title: "Sertifikat Kepemimpinan Tim",
+                issuer: "ZHEDVANOIS AGENCY",
+                url: "https://picsum.photos/seed/cert10/800/600"
+            },
+            {
+                title: "Sertifikat Pengelolaan Data",
+                issuer: "KOMPLEK SUARA",
+                url: "https://picsum.photos/seed/cert11/800/600"
+            },
+            {
+                title: "Sertifikat Analis Kampanye Merek",
+                issuer: "REXER PARFUME",
+                url: "https://picsum.photos/seed/cert12/800/600"
+            },
+            {
+                title: "Sertifikat Rekrutmen & ATS",
+                issuer: "MYROBIN.ID",
+                url: "https://picsum.photos/seed/cert13/800/600"
+            },
+            {
+                title: "Sertifikat Kreator Video",
+                issuer: "ZHEDVANOIS AGENCY",
+                url: "https://picsum.photos/seed/cert14/800/600"
+            },
+            {
+                title: "Sertifikat SEO Advance",
+                issuer: "KOMPLEK SUARA",
+                url: "https://picsum.photos/seed/cert15/800/600"
+            },
+            {
+                title: "Sertifikat Pengembangan Bisnis",
+                issuer: "REXER PARFUME",
+                url: "https://picsum.photos/seed/cert16/800/600"
+            },
+            {
+                title: "Sertifikat Keamanan Informasi",
+                issuer: "MYROBIN.ID",
+                url: "https://picsum.photos/seed/cert17/800/600"
+            },
+            {
+                title: "Sertifikat Optimasi Media Sosial",
+                issuer: "ZHEDVANOIS AGENCY",
+                url: "https://picsum.photos/seed/cert18/800/600"
+            },
+            {
+                title: "Sertifikat Jurnalisme Online",
+                issuer: "KOMPLEK SUARA",
+                url: "https://picsum.photos/seed/cert19/800/600"
+            },
+            {
+                title: "Sertifikat Manajemen Produk",
+                issuer: "REXER PARFUME",
+                url: "https://picsum.photos/seed/cert20/800/600"
+            },
+            {
+                title: "Sertifikat Kepatuhan & Regulasi",
+                issuer: "MYROBIN.ID",
+                url: "https://picsum.photos/seed/cert21/800/600"
+            },
+            {
+                title: "Sertifikat Desain Kreatif",
+                issuer: "ZHEDVANOIS AGENCY",
+                url: "https://picsum.photos/seed/cert22/800/600"
+            },
+            {
+                title: "Sertifikat Copywriting Berorientasi Konversi",
+                issuer: "KOMPLEK SUARA",
+                url: "https://picsum.photos/seed/cert23/800/600"
+            },
+            {
+                title: "Sertifikat Riset Konsumen",
+                issuer: "REXER PARFUME",
+                url: "https://picsum.photos/seed/cert24/800/600"
+            },
+            {
+                title: "Sertifikat Penilaian Kepatuhan Mitra",
+                issuer: "MYROBIN.ID",
+                url: "https://picsum.photos/seed/cert25/800/600"
+            },
+            {
+                title: "Sertifikat Kewirausahaan Kreatif",
+                issuer: "ZHEDVANOIS AGENCY",
+                url: "https://picsum.photos/seed/cert26/800/600"
+            },
+            {
+                title: "Sertifikat Strategi Pengoptimalan Konten",
+                issuer: "KOMPLEK SUARA",
+                url: "https://picsum.photos/seed/cert27/800/600"
+            },
+            {
+                title: "Sertifikat Evaluasi Kinerja Merek",
+                issuer: "REXER PARFUME",
+                url: "https://picsum.photos/seed/cert28/800/600"
+            },
+            {
+                title: "Sertifikat Audit Integritas Data",
+                issuer: "MYROBIN.ID",
+                url: "https://picsum.photos/seed/cert29/800/600"
+            },
+            {
+                title: "Sertifikat Kolaborasi Korporasi",
+                issuer: "ZHEDVANOIS AGENCY",
+                url: "https://picsum.photos/seed/cert30/800/600"
+            }
+        ];
+
+        // =========================================================================
+        // === CODE LOGIC UNTUK MERENDER DAN MENGATUR SISTEM SLIDER DAN LIGHTBOX ===
+        // =========================================================================
+        const slider = document.getElementById('cert-slider');
+        const dotsContainer = document.getElementById('dots-container');
+        const prevBtn = document.getElementById('prev-cert');
+        const nextBtn = document.getElementById('next-cert');
+        const slideIndicator = document.getElementById('slide-indicator');
+
+        // Fungsi Render Dinamis Seluruh Sertifikat ke HTML
+        function renderCertificates() {
+            slider.innerHTML = '';
+            dotsContainer.innerHTML = '';
+
+            certificates.forEach((cert, index) => {
+                // 1. Render Card Slider
+                const card = document.createElement('div');
+                card.className = `glass-card overflow-hidden w-[280px] sm:w-[320px] md:w-[380px] flex-shrink-0 snap-center cursor-pointer group flex flex-col justify-between`;
+                card.setAttribute('onclick', `openLightbox(${index})`);
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="p-4 bg-white/5 border-b border-white/10 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="p-2 bg-yellow-500/20 rounded-lg">
+                                    <i data-feather="award" class="text-yellow-400 w-5 h-5"></i>
+                                </div>
+                                <h3 class="text-sm md:text-base font-bold text-white truncate max-w-[150px] sm:max-w-[200px]">${cert.title}</h3>
+                            </div>
+                            <span class="text-[10px] text-gray-400 px-2 py-0.5 rounded-full border border-white/10 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>Verif
+                            </span>
+                        </div>
+                        <div class="p-4 flex justify-center bg-black/40 relative overflow-hidden aspect-[4/3]">
+                            <img 
+                                src="${cert.url}" 
+                                alt="${cert.title}" 
+                                class="rounded-lg max-h-full max-w-full object-contain shadow-md group-hover:scale-105 transition-transform duration-500"
+                                loading="lazy"
+                            >
+                            <div class="absolute inset-0 bg-blue-900/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="bg-black/60 text-white text-xs px-3 py-1.5 rounded-full border border-white/10 flex items-center gap-1">
+                                    <i data-feather="zoom-in" class="w-3.5 h-3.5"></i> Perbesar
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white/5">
+                        <p class="text-xs text-blue-400 font-bold uppercase tracking-wider mb-1">${cert.issuer}</p>
+                        <p class="text-sm text-gray-200 font-medium line-clamp-1">${cert.title}</p>
+                    </div>
+                `;
+                slider.appendChild(card);
+
+                // 2. Render Dot Indicator (Hanya untuk Desktop)
+                const dot = document.createElement('button');
+                dot.className = `w-2.5 h-2.5 rounded-full bg-gray-600 hover:bg-gray-400 transition-all dot-indicator`;
+                dot.setAttribute('onclick', `scrollToSlide(${index})`);
+                dot.setAttribute('aria-label', `Sertifikat slide ke-${index + 1}`);
+                dotsContainer.appendChild(dot);
+            });
+
+            // Ganti placeholder SVG Feather pada elemen yang baru di-render
+            feather.replace();
+        }
+
+        // Jalankan Fungsi Render Terlebih Dahulu
+        renderCertificates();
+
+        // Navigasi Slider Menggunakan Tombol Chevron
+        const indicators = document.querySelectorAll('.dot-indicator');
+        
+        function getScrollStep() {
+            if (slider.children.length === 0) return 300;
+            return slider.children[0].offsetWidth + 24; // Lebar card + Gap 24px
+        }
+
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
+        });
+
+        // Deteksi scroll untuk memperbarui indikator titik (dots) dan teks di HP
+        slider.addEventListener('scroll', () => {
+            const index = Math.round(slider.scrollLeft / getScrollStep());
+            updateIndicators(index);
+        });
+
+        function updateIndicators(activeIndex) {
+            const index = Math.max(0, Math.min(activeIndex, certificates.length - 1));
+            
+            // Perbarui Dots (Desktop)
+            indicators.forEach((dot, idx) => {
+                if (idx === index) {
+                    dot.classList.remove('bg-gray-600', 'w-2.5');
+                    dot.classList.add('bg-blue-600', 'w-6');
+                } else {
+                    dot.classList.remove('bg-blue-600', 'w-6');
+                    dot.classList.add('bg-gray-600', 'w-2.5');
+                }
+            });
+
+            // Perbarui Slide Indikator Teks (Mobile)
+            if (slideIndicator) {
+                slideIndicator.textContent = `${index + 1} / ${certificates.length}`;
+            }
+        }
+
+        function scrollToSlide(index) {
+            slider.scrollTo({
+                left: index * getScrollStep(),
+                behavior: 'smooth'
+            });
+        }
+
+        // --- SISTEM LIGHTBOX PREVIEW ---
+        let currentLightboxIndex = 0;
+
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            updateLightboxContent();
+            
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // Kunci scroll halaman utama
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = ''; // Aktifkan kembali scroll
+        }
+
+        function updateLightboxContent() {
+            const cert = certificates[currentLightboxIndex];
+            const img = document.getElementById('lightbox-img');
+            const caption = document.getElementById('lightbox-caption');
+            const sub = document.getElementById('lightbox-sub');
+
+            // Animasi transisi pergantian gambar
+            img.style.opacity = '0.3';
+            
+            setTimeout(() => {
+                img.src = cert.url;
+                caption.textContent = cert.title;
+                sub.textContent = cert.issuer;
+                img.style.opacity = '1';
+                feather.replace(); // Refresh icon
+            }, 100);
+        }
+
+        function prevLightbox() {
+            currentLightboxIndex = (currentLightboxIndex - 1 + certificates.length) % certificates.length;
+            updateLightboxContent();
+        }
+
+        function nextLightbox() {
+            currentLightboxIndex = (currentLightboxIndex + 1) % certificates.length;
+            updateLightboxContent();
+        }
+
+        // Navigasi Keyboard untuk Lightbox (Esc, Panah Kiri, Panah Kanan)
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('lightbox-modal');
+            if (modal.classList.contains('flex')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') nextLightbox();
+                if (e.key === 'ArrowLeft') prevLightbox();
+            }
+        });
+
+        // Set state awal dots indikator
+        updateIndicators(0);
+
     </script>
 </body>
 </html>
+
+```
