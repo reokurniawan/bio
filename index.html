@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Lucide Icons untuk Ikon Katalog -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <!-- AOS (Animate On Scroll) Library for animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
@@ -169,6 +171,55 @@
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
         }
+
+        /* Modal transitions */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-backdrop {
+            animation: fadeIn 0.2s ease-out;
+        }
+        .modal-content {
+            animation: slideUp 0.3s ease-out;
+        }
+        .product-image-container {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .group:hover .product-image-container img {
+            transform: scale(1.05);
+        }
+
+        /* Custom Toast Notification styling for Dark Theme */
+        .toast-notification {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 24px;
+            border-radius: 12px;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.3s ease-out;
+            max-width: calc(100vw - 48px);
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -192,11 +243,18 @@
                     <a href="#store" class="text-gray-300 hover:text-white font-medium">Store</a>
                     <a href="#kontak" class="text-gray-300 hover:text-white font-medium">Kontak</a>
                 </div>
+
+                <!-- Tombol Keranjang Belanja -->
+                <button onclick="openCartModal()" class="relative p-2 text-gray-300 hover:text-blue-400 transition-colors focus:outline-none" aria-label="Keranjang Belanja" title="Keranjang Belanja">
+                    <i class="w-6 h-6" data-lucide="shopping-cart"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 inline-flex items-center justify-center px-2 py-0.5 text-[10px] font-bold leading-none text-white transform bg-blue-600 rounded-full hidden">0</span>
+                </button>
+
                 <!-- Tombol Bintang Verifikasi -->
                 <button id="verification-btn" class="text-yellow-400 hover:text-yellow-300 transition-colors" title="Verifikasi">
                     <i data-feather="star" class="w-6 h-6 fill-current text-yellow-400"></i>
                 </button>
-                <!-- Tombol Donate Baru -->
+                <!-- Tombol Donate -->
                 <a href="https://sibagi.com/reokurniawan" target="_blank" class="text-red-500 hover:text-red-400 transition-colors" title="Donate">
                     <i data-feather="heart" class="w-6 h-6 fill-current"></i>
                 </a>
@@ -228,7 +286,7 @@
                     <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4">
                         Reo Kurniawan I.P C.MTr.
                     </h1>
-                    <!-- UPDATED TYPING EFFECT SECTION -->
+                    <!-- TYPING EFFECT SECTION -->
                     <h2 class="text-2xl md:text-3xl font-semibold text-blue-400 mb-6 min-h-[40px] flex items-center justify-center md:justify-start">
                         <span id="typing-effect"></span><span class="typing-cursor"></span>
                     </h2>
@@ -354,7 +412,6 @@
         <!-- Riwayat Pendidikan -->
         <section id="pendidikan" class="mb-20 md:mb-32">
             <h2 class="section-title" data-aos="fade-up">Riwayat Pendidikan</h2>
-            <!-- Lebar maksimum diatur di sini -->
             <div class="max-w-3xl mx-auto glass-card p-8" data-aos="fade-up" data-aos-delay="100">
                 <div class="relative">
                     <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
@@ -473,7 +530,7 @@
                 </div>
             </div>
 
-            <!-- BAGIAN BARU: Sertifikat Lainnya (Scroll Samping) -->
+            <!-- Galeri Sertifikat & Karya -->
             <div class="max-w-6xl mx-auto" data-aos="fade-up">
                 <div class="flex items-center justify-between mb-6">
                     <h3 class="text-2xl font-bold text-white flex items-center gap-2">
@@ -491,7 +548,7 @@
 
                 <!-- Slider Container -->
                 <div id="cert-slider" class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide pb-6">
-                    <!-- Slide 1 (sertifikat2.png) -->
+                    <!-- Slide 1 -->
                     <div class="flex-none w-72 md:w-80 snap-start">
                         <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
                             <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
@@ -503,7 +560,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Slide 2 (sertifikat3.png) -->
+                    <!-- Slide 2 -->
                     <div class="flex-none w-72 md:w-80 snap-start">
                         <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
                             <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
@@ -515,7 +572,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Slide 3 (sertifikat4.png) -->
+                    <!-- Slide 3 -->
                     <div class="flex-none w-72 md:w-80 snap-start">
                         <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
                             <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
@@ -527,7 +584,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Slide 4 (sertifikat5.png) -->
+                    <!-- Slide 4 -->
                     <div class="flex-none w-72 md:w-80 snap-start">
                         <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
                             <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
@@ -539,7 +596,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Slide 5 (sertifikat6.png) -->
+                    <!-- Slide 5 -->
                     <div class="flex-none w-72 md:w-80 snap-start">
                         <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
                             <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
@@ -551,7 +608,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Slide 6 (sertifikat7.png) -->
+                    <!-- Slide 6 -->
                     <div class="flex-none w-72 md:w-80 snap-start">
                         <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
                             <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
@@ -563,7 +620,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Slide 7 (sertifikat8.png) -->
+                    <!-- Slide 7 -->
                     <div class="flex-none w-72 md:w-80 snap-start">
                         <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
                             <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
@@ -575,7 +632,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Slide 8 (sertifikat9.png) -->
+                    <!-- Slide 8 -->
                     <div class="flex-none w-72 md:w-80 snap-start">
                         <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
                             <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
@@ -587,7 +644,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Slide 9 (sertifikat10.png) -->
+                    <!-- Slide 9 -->
                     <div class="flex-none w-72 md:w-80 snap-start">
                         <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
                             <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
@@ -603,104 +660,16 @@
             </div>
         </section>
 
-        <!-- BAGIAN BARU: Zhedvanois Store Section -->
+        <!-- Zhedvanois Store Section (UPDATED) -->
         <section id="store" class="mb-20 md:mb-32">
             <h2 class="section-title" data-aos="fade-up">Zhedvanois Store</h2>
-            <div class="max-w-5xl mx-auto glass-card p-8 md:p-12 relative overflow-hidden" data-aos="zoom-in">
-                <!-- Decorative animated glows -->
-                <div class="absolute -right-24 -bottom-24 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl"></div>
-                <div class="absolute -left-24 -top-24 w-72 h-72 bg-purple-600/10 rounded-full blur-3xl"></div>
+            <div class="mb-8 text-center" data-aos="fade-up">
+                <p class="text-gray-400 mt-1 max-w-xl mx-auto">Temukan berbagai produk digital premium dan produk kreatif terbaik pilihan Anda.</p>
+            </div>
 
-                <div class="relative z-10 flex flex-col lg:flex-row items-center gap-10">
-                    <!-- Left Content: Description & CTA -->
-                    <div class="lg:w-1/2 text-left">
-                        <span class="inline-block bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs px-3 py-1.5 rounded-full font-bold uppercase tracking-wider mb-4">Official Store</span>
-                        <h3 class="text-3xl font-extrabold text-white mb-4">Layanan Digital & Produk Kreatif Premium</h3>
-                        <p class="text-gray-400 mb-6 leading-relaxed">
-                            Temukan berbagai produk digital berkualitas tinggi, aset kreatif, dan layanan profesional langsung dari PT ZHEDVANOIS CREATIVE AGENCY. Kami menghadirkan solusi kreatif terbaik untuk membantu meningkatkan kehadiran digital bisnis Anda.
-                        </p>
-                        
-                        <!-- Features list with icons -->
-                        <div class="space-y-4 mb-8">
-                            <div class="flex items-center gap-3">
-                                <div class="bg-blue-500/10 p-2 rounded-full border border-blue-500/20 text-blue-400">
-                                    <i data-feather="check" class="w-4 h-4"></i>
-                                </div>
-                                <span class="text-gray-300 text-sm font-medium">Layanan Jasa & Produk Terpercaya</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="bg-blue-500/10 p-2 rounded-full border border-blue-500/20 text-blue-400">
-                                    <i data-feather="check" class="w-4 h-4"></i>
-                                </div>
-                                <span class="text-gray-300 text-sm font-medium">Proses Cepat & Hasil Profesional Bergaransi</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="bg-blue-500/10 p-2 rounded-full border border-blue-500/20 text-blue-400">
-                                    <i data-feather="check" class="w-4 h-4"></i>
-                                </div>
-                                <span class="text-gray-300 text-sm font-medium">Dukungan Konsultasi Interaktif 24/7</span>
-                            </div>
-                        </div>
-
-                        <!-- CTA Button -->
-                        <a href="https://store.zhedvanois.id" target="_blank" class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-3.5 px-8 rounded-full hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg shadow-blue-500/20 group">
-                            Kunjungi store.zhedvanois.id
-                            <i data-feather="external-link" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-
-                    <!-- Right Content: Interactive Browser Mockup -->
-                    <div class="lg:w-1/2 w-full">
-                        <div class="border border-white/10 rounded-2xl bg-black/40 overflow-hidden shadow-2xl relative">
-                            <!-- Browser Top Bar Mockup -->
-                            <div class="bg-white/5 border-b border-white/10 px-4 py-3 flex items-center gap-2">
-                                <div class="flex gap-1.5">
-                                    <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-                                    <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
-                                    <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
-                                </div>
-                                <div class="bg-black/40 text-[11px] text-gray-400 px-4 py-1 rounded-md mx-auto w-2/3 truncate text-center border border-white/5 font-mono">
-                                    store.zhedvanois.id
-                                </div>
-                            </div>
-                            <!-- Mockup Content Area -->
-                            <div class="p-6 space-y-6">
-                                <div class="flex justify-between items-center border-b border-white/5 pb-4">
-                                    <div class="text-white font-bold text-sm tracking-widest">ZHEDVANOIS STORE</div>
-                                    <span class="text-xs text-green-400 font-semibold bg-green-500/10 px-2.5 py-1 rounded-full border border-green-500/20 flex items-center gap-1.5">
-                                        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> Online
-                                    </span>
-                                </div>
-                                
-                                <!-- Mock Products Showcase -->
-                                <div class="grid grid-cols-2 gap-4">
-                                    <!-- Card 1 -->
-                                    <div class="bg-white/5 border border-white/10 rounded-xl p-3 hover:bg-white/10 transition-colors">
-                                        <div class="aspect-video bg-indigo-600/20 rounded-lg border border-indigo-500/20 flex items-center justify-center mb-2">
-                                            <i data-feather="layout" class="text-indigo-400 w-6 h-6"></i>
-                                        </div>
-                                        <div class="text-xs font-bold text-white mb-1">Digital Produk</div>
-                                        <div class="text-[10px] text-gray-400">Jasa Website</div>
-                                    </div>
-                                    <!-- Card 2 -->
-                                    <div class="bg-white/5 border border-white/10 rounded-xl p-3 hover:bg-white/10 transition-colors">
-                                        <div class="aspect-video bg-purple-600/20 rounded-lg border border-purple-500/20 flex items-center justify-center mb-2">
-                                            <i data-feather="image" class="text-purple-400 w-6 h-6"></i>
-                                        </div>
-                                        <div class="text-xs font-bold text-white mb-1">Creative Design</div>
-                                        <div class="text-[10px] text-gray-400">Branding & Desain Grafis</div>
-                                    </div>
-                                </div>
-
-                                <!-- Trust Badges -->
-                                <div class="flex justify-around items-center pt-2 text-[10px] text-gray-400 border-t border-white/5">
-                                    <span class="flex items-center gap-1"><i data-feather="shield" class="w-3.5 h-3.5 text-blue-400"></i> Aman & Legal</span>
-                                    <span class="flex items-center gap-1"><i data-feather="zap" class="w-3.5 h-3.5 text-yellow-400"></i> Proses Cepat</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Product Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6" id="product-grid" data-aos="fade-up">
+                <!-- Produk akan dirender di sini oleh JavaScript -->
             </div>
         </section>
 
@@ -761,6 +730,141 @@
 
     </main>
 
+    <!-- Modal Keranjang Belanja (UPDATED PREMIUM DARK) -->
+    <div class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-0" id="cart-modal">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm modal-backdrop" onclick="closeCartModal()"></div>
+        
+        <!-- Modal Container -->
+        <div class="bg-zinc-950/95 border border-white/10 rounded-2xl shadow-2xl w-full max-w-md relative z-10 modal-content overflow-hidden flex flex-col max-h-[90vh]">
+            
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-white/10 flex justify-between items-center bg-white/5">
+                <div class="flex items-center gap-2">
+                    <i class="text-blue-400 w-5 h-5" data-lucide="shopping-cart"></i>
+                    <h3 class="text-lg font-bold text-white">Keranjang Belanja</h3>
+                </div>
+                <button class="text-gray-400 hover:text-white p-1 rounded-full hover:bg-white/10 transition" onclick="closeCartModal()">
+                    <i class="w-5 h-5" data-lucide="x"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="px-6 py-4 overflow-y-auto flex-grow" id="cart-items-container">
+                <!-- Item Keranjang dinamis di sini -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 border-t border-white/10 bg-zinc-900/50">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-sm font-medium text-gray-400">Total Belanja:</span>
+                    <span class="text-xl font-extrabold text-blue-400" id="cart-total-price">Rp.0</span>
+                </div>
+                <div class="flex gap-3">
+                    <button onclick="closeCartModal()" class="flex-1 border border-white/10 hover:bg-white/5 text-gray-300 font-semibold py-3 rounded-xl transition text-sm">
+                        Tambah Barang
+                    </button>
+                    <button onclick="proceedToCheckout()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-blue-500/20 transition text-sm flex items-center justify-center gap-2">
+                        Lanjut ke CO <i class="w-4 h-4" data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Pembayaran / Checkout (UPDATED PREMIUM DARK) -->
+    <div class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-0" id="checkout-modal">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm modal-backdrop" onclick="closeModal()"></div>
+        
+        <!-- Modal Container -->
+        <div class="bg-zinc-950/95 border border-white/10 rounded-2xl shadow-2xl w-full max-w-md relative z-10 modal-content overflow-hidden flex flex-col max-h-[90vh]">
+            
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-white/10 flex justify-between items-center bg-white/5">
+                <h3 class="text-lg font-bold text-white">Selesaikan Pembayaran</h3>
+                <button class="text-gray-400 hover:text-white p-1 rounded-full hover:bg-white/10 transition" onclick="closeModal()">
+                    <i class="w-5 h-5" data-lucide="x"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="px-6 py-4 overflow-y-auto flex-grow text-gray-300">
+                <!-- Ringkasan Produk dalam Keranjang -->
+                <div class="bg-blue-950/30 rounded-xl p-4 mb-5 border border-blue-500/20">
+                    <p class="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-2">Ringkasan Pesanan</p>
+                    <div class="max-h-40 overflow-y-auto space-y-3 pr-1" id="checkout-items-list">
+                        <!-- List barang dinamis -->
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-blue-500/20 flex justify-between items-center">
+                        <span class="text-sm font-semibold text-gray-300">Total Pembayaran:</span>
+                        <span class="text-lg font-bold text-blue-400" id="checkout-total-price">Rp.0</span>
+                    </div>
+                </div>
+
+                <form class="space-y-4" id="checkout-form" onsubmit="event.preventDefault();">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1" for="buyer-name">Nama Lengkap <span class="text-red-500">*</span></label>
+                        <input class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm" id="buyer-name" placeholder="Masukkan nama Anda" required type="text" />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1" for="buyer-phone">Nomor WhatsApp <span class="text-red-500">*</span></label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 text-sm">+62</span>
+                            <input class="w-full bg-white/5 border border-white/10 pl-12 pr-4 py-2 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm" id="buyer-phone" placeholder="8123456789" required type="tel" />
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Gunakan angka setelah 0 (contoh: 812...)</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1" for="buyer-address">Alamat Pengiriman <span class="text-red-500">*</span></label>
+                        <textarea class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm resize-none" id="buyer-address" placeholder="Masukkan alamat lengkap (Jalan, RT/RW, Kelurahan, Kecamatan, Kota)" required rows="3"></textarea>
+                    </div>
+
+                    <!-- Pilihan Metode Pembayaran -->
+                    <div class="pt-2">
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Metode Pembayaran <span class="text-red-500">*</span></label>
+                        <div class="grid grid-cols-2 gap-3 mb-3">
+                            <div onclick="selectPaymentMethod('qris')" id="pay-qris-card" class="border-2 border-white/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/50 hover:bg-white/5 transition relative">
+                                <input type="radio" name="payment_method" value="qris" id="pay-qris" class="sr-only" required>
+                                <i data-lucide="qr-code" class="w-6 h-6 text-gray-400 mb-1"></i>
+                                <span class="text-xs font-bold text-gray-300">QRIS</span>
+                                <div class="absolute top-1.5 right-1.5 text-blue-400 hidden" id="qris-check-icon">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <div onclick="selectPaymentMethod('bri')" id="pay-bri-card" class="border-2 border-white/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/50 hover:bg-white/5 transition relative">
+                                <input type="radio" name="payment_method" value="bri" id="pay-bri" class="sr-only">
+                                <span class="text-sm font-extrabold text-blue-400 mb-1">BRI</span>
+                                <span class="text-xs font-bold text-gray-300">Bank Transfer</span>
+                                <div class="absolute top-1.5 right-1.5 text-blue-400 hidden" id="bri-check-icon">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tampilan Informasi Pembayaran Terpilih -->
+                        <div id="payment-details" class="p-4 bg-white/5 border border-white/10 rounded-xl hidden transition-all duration-300">
+                            <!-- Diisi oleh JS -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 border-t border-white/10 bg-zinc-900/50">
+                <button class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-green-900/20 transition flex items-center justify-center gap-2 focus:outline-none" onclick="submitOrder()" type="button">
+                    <i class="w-5 h-5" data-lucide="message-circle"></i>
+                    Beli via WhatsApp
+                </button>
+                <p class="text-center text-[11px] text-gray-500 mt-3">
+                    <i class="w-3 h-3 inline" data-lucide="shield-check"></i> Data Anda aman dan langsung terkirim ke penjual.
+                </p>
+            </div>
+        </div>
+    </div>
+
     <!-- Lightbox Modal untuk Preview Gambar Besar -->
     <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-4 transition-all duration-300 opacity-0" onclick="closeLightbox()">
         <button class="absolute top-6 right-6 text-white hover:text-red-500 transition-colors bg-white/10 p-2.5 rounded-full" onclick="closeLightbox()" title="Tutup">
@@ -773,7 +877,7 @@
 
     <footer class="bg-black/80 py-8 border-t border-gray-800">
         <div class="container mx-auto px-6 text-center text-gray-500">
-            <p>&copy; 2024 Reo Kurniawan I.P. All rights reserved.</p>
+            <p>&copy; 2026 PT ZHEDVANOIS CREATIVE AGENCY. All rights reserved.</p>
         </div>
     </footer>
 
@@ -782,6 +886,9 @@
     <script>
         // Initialize Feather Icons
         feather.replace();
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
         // Initialize AOS
         AOS.init({
@@ -907,6 +1014,500 @@
                 closeLightbox();
             }
         });
+
+        // --- SISTEM E-KATALOG ZHEDVANOIS STORE (JASCRIPT LOGIC) ---
+
+        // Data Produk Asli
+        const products = [
+            {
+                id: 1,
+                image: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7jdOSxS902R0P7PWycFb0khgJ0d2WC6-As_XkC2sWODv0rBp9ncaPDjEYejlthwoAtly6Ge489oJqLIjUf-33hMXk4nSHlA3VYBhLUAZK1l2bKP91pK7sHfLr6fLymbg4rYQSpAwOYpS9lJFKywqXeJ-8aQFjqePH9JKZWookOdrOylF7FpKbFCe3AmB8/s1024/IMG_0255.png',
+                name: 'BUKU TAK PERLU TERANG CUKUP REDUP TAPI TAK PADAM',
+                price: 'Rp.85.000',
+                sold: 1017
+            },
+            {
+                id: 2,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEibRWdEOk6Ssi-qKy2AE1ptCvaXFiq_S2hdJEmzWBVfzPJUC21LiarHEyvvPl3G1jJuP7reX56NjcNLbZAqXQrxnmLWQ2wlbli0jXJAZvnJYm49DOihzZw4mn7G8Oi6wOys74EwZfJojyhIMzjIEJi4Pf47diFWNhZkxbFF3FsEJoHljyPnib98upgePC8f',
+                name: 'BUKU KETIKA AKU TERBANG TINGGI SETINGGI ANGKASA',
+                price: 'Rp.75.000',
+                sold: 3641
+            },
+            {
+                id: 3,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEhd6QHOYfR6qpQ7LnD4ZHgOxqcYq7ekUTcj3TNVYtlmq493hUto9Z5atsKkGOc72tHsBthc-T3Ja2fbhujnJIlzLKPAqbppYwypRmNX8RBD7s3_v5nVJRaDKolRiMQPhmTfItib_aXtaU423w4KnOpzLDz8-5lk02BYGoQToVvvke5ipeuKbvg99s4KIbFS',
+                name: 'BUKU QOF',
+                price: 'Rp.80.000',
+                sold: 6001
+            },
+            {
+                id: 4,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEinVUk1B6BcqtWIBymrnLdYt3FfrlOne6T8Q64HucEzkKkKN2WrRCxBZWzRvRkDInW845KlxcXlFITXacBqSPB5kzKzSFb3iCtIYfeHgGePxLKex7efEDuwOBAXgDy2EW893llO_yYHz_xynTffawqmz4UgLwPrWf70dylZ-cT3VdZvBdtQZ8Wqq1oqtpER',
+                name: 'BUKU AVICENNA',
+                price: 'Rp.80.500',
+                sold: 4893
+            },
+            {
+                id: 5,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEiHiNXe3PSSrlUO1HVjJFhLOReuLpNE_pa4xk6dpQA0ckNhAZF9MqO-uqsRKVqJaiMbnRvs41Y-KOBX2yOJrg_YNbrt4LKX32NWrnCU1qcGSW1I20qTo4QzB82RtUluqh1ybjp0kTxEZISInA_Tkp0lkgytLwHx_tgiHCvVkdJSWpxcoZKY78r7XIjIFyl3',
+                name: 'BUKU AMBIGU',
+                price: 'Rp.99.500',
+                sold: 1151
+            },
+            {
+                id: 6,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEgOc-UgTewhgCjhOCorQYy3OnxJ-ZMu51X6xHHSbG6kqQakvb6iw0d2yvoH6-uJozYLo6GTZaKeCJriOq-i3p53xdwIrV8vpLDeuOayUMWuH2tIrO86gZHzyMMVCLeT26zjv4y-QNid2PG6Dv4HZ_K9srn5F4AO9xIoEOpzl8bDonCWJd9MeKlA0iG_IvTX',
+                name: 'BUKU LO GAK SENDIRIAN SUMPAH !!!',
+                price: 'Rp.89.999',
+                sold: 3641
+            },
+            {
+                id: 7,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEh2dJv4DnXT0jjH72lP8_bm9OeLPAVZrRL_2ESpWHAVeaY01nCzakyVgur_2AWIzeYQd0BDncmonMi1RKiMn5YCdYzdIry6cfMo0jlB3-7p_B6k2DxUT7kRn8hf3CXXbytlB-oBLWKvymqtgKo4XgN3vPYQpMk5gBQEx0tp8XxwDeQCkNQ6l6yyph6PA7UK',
+                name: 'REXER PARFUME PAKET BUNDLING',
+                price: 'Rp.99.999',
+                sold: 12832
+            },
+            {
+                id: 8,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEhEVGQDEMAxc04CaPMpx_nbEtw-znupBD0EZ6mhIVp1466B3EjNVDAbnB1kZygQmB9lRNRTG2OVP3t8OIIoSezQpo0oqyX3y9wuKZlkt_N2un5f9RWM7let9El0e18dxYBAYyG-gFtvmY_59tyiqnP9x3UO67I5TaeeRw8j-vI_oThQYmg5A9r7D-v0Ix9G',
+                name: 'REXER PARFUME MOON LIGHY X',
+                price: 'Rp.39.000',
+                sold: 17900
+            },
+            {
+                id: 9,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEiWWmuUSKIV1QlzMawI110g4fzknpFNRNmjz3MqfBrTvKOS531s3NpwBoKCVqADXL6xIYvFgGd3_4yC3zxvpep5qmhnQ7YAFnJPcDbFMziR4QcO0cC7MnVsaF5wtTF6Eyzkfxo0t9RvnKmxZK8gfNpxmkXfNCmYCjK_pPKyPykq3kXI0OvNjw9F3NDOv7Ly',
+                name: 'REXER PARFUME LOOK MAN',
+                price: 'Rp.39.000',
+                sold: 21336
+            },
+            {
+                id: 10,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEiTASGw-ZV-0lcyW0kc_FMAxF9NiX8r2rx0vOnvXn7BDz7zG9zSo1iZu83guRxqQgxVSxJqJtuMtUX5u1e1447q4z8aBe-Sb0qE7rtZrTsHhBbIp8PN11NyYsu690y1hxioCqlsogR3K7_pSYClnCoVvAblrKXeLLf7_lMgWjVR-Ig1Ey_UmQccM4lPYrz-',
+                name: 'REXER PARFUME HYPARE X',
+                price: 'Rp.39.000',
+                sold: 20251
+            }
+        ];
+
+        // State Utama Keranjang Belanja
+        let cart = [];
+        let selectedPayment = '';
+
+        // Memuat keranjang dari localStorage jika ada
+        try {
+            const savedCart = localStorage.getItem('tokopedia_cart_data');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+            }
+        } catch (e) {
+            console.error("Gagal memuat data keranjang", e);
+        }
+
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        function parsePrice(priceStr) {
+            return parseInt(priceStr.replace(/[^0-9]/g, ''), 10);
+        }
+
+        function formatRupiah(num) {
+            return "Rp." + formatNumber(num);
+        }
+
+        // Render Product Grid ke Dark Glass-Card
+        const grid = document.getElementById('product-grid');
+        
+        products.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'group glass-card overflow-hidden flex flex-col hover:border-blue-500/50 transition-all duration-300';
+            
+            card.innerHTML = `
+                <div class="product-image-container relative">
+                    <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='https://placehold.co/400?text=Gambar+Tidak+Tersedia'">
+                    <div class="absolute top-2 right-2 bg-black/80 backdrop-blur text-[11px] font-semibold px-2 py-1 rounded-full shadow-sm flex items-center gap-1 text-gray-300">
+                        <i data-lucide="star" class="w-3 h-3 text-yellow-400 fill-yellow-400"></i> ${formatNumber(product.sold)} Terjual
+                    </div>
+                </div>
+                <div class="p-4 flex flex-col flex-grow">
+                    <h3 class="text-xs font-semibold text-gray-200 line-clamp-2 leading-tight mb-2 group-hover:text-blue-400 transition-colors" title="${product.name}">${product.name}</h3>
+                    <div class="mt-auto">
+                        <p class="text-base font-extrabold text-blue-400 mb-3">${product.price}</p>
+                        <div class="flex gap-2">
+                            <!-- Tombol Tambah ke Keranjang -->
+                            <button onclick="addToCart(${product.id})" class="flex-1 bg-blue-500/10 text-blue-400 hover:bg-blue-600 hover:text-white font-medium py-2 rounded-lg transition-colors flex items-center justify-center gap-1 text-[11px] border border-blue-500/30 hover:border-blue-600" title="Tambahkan ke Keranjang">
+                                <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i> +Keranjang
+                            </button>
+                            <!-- Tombol Langsung Beli -->
+                            <button onclick="buyNow(${product.id})" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition-colors flex items-center justify-center gap-1 text-[11px] shadow-sm shadow-blue-500/20">
+                                Beli
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+        
+        // Render ikon lucide awal & update badge
+        lucide.createIcons();
+        updateCartBadge();
+
+        // --- SISTEM KERANJANG (CART SYSTEM) ---
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cart-badge');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (totalItems > 0) {
+                badge.textContent = totalItems;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function saveCart() {
+            try {
+                localStorage.setItem('tokopedia_cart_data', JSON.stringify(cart));
+            } catch (e) {
+                console.error("Gagal menyimpan data keranjang", e);
+            }
+            updateCartBadge();
+        }
+
+        function addToCart(productId, showConfirm = true) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            saveCart();
+            if (showConfirm) {
+                showToast(`"${product.name}" berhasil ditambahkan ke keranjang!`);
+            }
+        }
+
+        function buyNow(productId) {
+            const existingItem = cart.find(item => item.id === productId);
+            if (!existingItem) {
+                addToCart(productId, false);
+            }
+            proceedToCheckout();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            renderCartItems();
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (!item) return;
+
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                removeFromCart(productId);
+            } else {
+                saveCart();
+                renderCartItems();
+            }
+        }
+
+        function getCartTotal() {
+            return cart.reduce((total, item) => {
+                return total + (parsePrice(item.price) * item.quantity);
+            }, 0);
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            const totalPriceEl = document.getElementById('cart-total-price');
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="flex flex-col items-center justify-center py-12 text-center">
+                        <i class="w-16 h-16 text-gray-600 mb-4" data-lucide="shopping-cart"></i>
+                        <p class="text-gray-400 font-medium">Keranjang Anda Kosong</p>
+                        <p class="text-xs text-gray-500 mt-1">Silakan pilih beberapa produk di etalase kami.</p>
+                    </div>
+                `;
+                totalPriceEl.textContent = 'Rp.0';
+                lucide.createIcons();
+                return;
+            }
+
+            let html = '<div class="space-y-4">';
+            cart.forEach(item => {
+                const itemTotal = parsePrice(item.price) * item.quantity;
+                html += `
+                    <div class="flex items-center gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-lg object-cover border border-white/10">
+                        <div class="flex-grow min-w-0">
+                            <p class="text-xs font-semibold text-white line-clamp-1 leading-snug">${item.name}</p>
+                            <p class="text-xs font-bold text-blue-400 mt-0.5">${item.price}</p>
+                            
+                            <div class="flex items-center justify-between mt-2">
+                                <div class="flex items-center border border-white/10 bg-black/40 rounded-lg overflow-hidden">
+                                    <button onclick="updateQuantity(${item.id}, -1)" class="px-2 py-1 text-gray-400 hover:bg-white/10 transition focus:outline-none">
+                                        <i class="w-3 h-3" data-lucide="minus"></i>
+                                    </button>
+                                    <span class="px-3 py-0.5 text-xs font-bold text-white border-x border-white/10 bg-white/5">${item.quantity}</span>
+                                    <button onclick="updateQuantity(${item.id}, 1)" class="px-2 py-1 text-gray-400 hover:bg-white/10 transition focus:outline-none">
+                                        <i class="w-3 h-3" data-lucide="plus"></i>
+                                    </button>
+                                </div>
+                                
+                                <button onclick="removeFromCart(${item.id})" class="text-red-400 hover:text-red-500 p-1 rounded-full hover:bg-red-500/10 transition focus:outline-none">
+                                    <i class="w-4 h-4" data-lucide="trash-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            container.innerHTML = html;
+            totalPriceEl.textContent = formatRupiah(getCartTotal());
+            lucide.createIcons();
+        }
+
+        function openCartModal() {
+            renderCartItems();
+            const cartModal = document.getElementById('cart-modal');
+            cartModal.classList.remove('hidden');
+            cartModal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCartModal() {
+            const cartModal = document.getElementById('cart-modal');
+            cartModal.classList.add('hidden');
+            cartModal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // --- SISTEM CHECKOUT & METODE PEMBAYARAN ---
+
+        const modal = document.getElementById('checkout-modal');
+        const form = document.getElementById('checkout-form');
+
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                showToast("Keranjang belanja Anda masih kosong!", "error");
+                return;
+            }
+
+            closeCartModal();
+
+            // Rancang Ringkasan Pemesanan Dinamis
+            const checkoutItemsList = document.getElementById('checkout-items-list');
+            const checkoutTotalPrice = document.getElementById('checkout-total-price');
+
+            let listHtml = '';
+            cart.forEach(item => {
+                const subtotal = parsePrice(item.price) * item.quantity;
+                listHtml += `
+                    <div class="flex gap-3 items-center py-2 border-b border-white/5 last:border-0">
+                        <img src="${item.image}" alt="${item.name}" class="w-10 h-10 rounded-lg object-cover border border-white/10">
+                        <div class="flex-grow min-w-0">
+                            <p class="text-[11px] font-bold text-gray-200 leading-tight line-clamp-1">${item.name}</p>
+                            <p class="text-[10px] text-gray-500 mt-0.5">${item.quantity}x @ ${item.price}</p>
+                        </div>
+                        <span class="text-xs font-bold text-blue-400">${formatRupiah(subtotal)}</span>
+                    </div>
+                `;
+            });
+
+            checkoutItemsList.innerHTML = listHtml;
+            checkoutTotalPrice.textContent = formatRupiah(getCartTotal());
+
+            // Reset Form Pilihan Pembayaran
+            selectedPayment = '';
+            document.getElementById('pay-qris').checked = false;
+            document.getElementById('pay-bri').checked = false;
+            document.getElementById('qris-check-icon').classList.add('hidden');
+            document.getElementById('bri-check-icon').classList.add('hidden');
+            document.getElementById('pay-qris-card').className = 'border-2 border-white/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/50 hover:bg-white/5 transition relative';
+            document.getElementById('pay-bri-card').className = 'border-2 border-white/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/50 hover:bg-white/5 transition relative';
+            
+            const paymentDetails = document.getElementById('payment-details');
+            paymentDetails.classList.add('hidden');
+            paymentDetails.innerHTML = '';
+
+            // Tampilkan Modal Checkout
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+            form.reset();
+        }
+
+        // Handle Pemilihan Metode Pembayaran
+        function selectPaymentMethod(method) {
+            selectedPayment = method;
+
+            document.getElementById('pay-qris').checked = (method === 'qris');
+            document.getElementById('pay-bri').checked = (method === 'bri');
+
+            const qrisCard = document.getElementById('pay-qris-card');
+            const briCard = document.getElementById('pay-bri-card');
+            const qrisCheck = document.getElementById('qris-check-icon');
+            const briCheck = document.getElementById('bri-check-icon');
+            const detailsBox = document.getElementById('payment-details');
+
+            if (method === 'qris') {
+                qrisCard.className = 'border-2 border-blue-500 bg-blue-500/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer transition relative';
+                briCard.className = 'border-2 border-white/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/50 hover:bg-white/5 transition relative';
+                qrisCheck.classList.remove('hidden');
+                briCheck.classList.add('hidden');
+
+                const totalNominal = getCartTotal();
+                detailsBox.classList.remove('hidden');
+                detailsBox.innerHTML = `
+                    <div class="text-center space-y-2">
+                        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Pindai QRIS Untuk Membayar</p>
+                        <p class="text-xs font-extrabold text-blue-400">PT ZHEDVANOIS CREATIVE AGENCY</p>
+                        <div class="w-40 h-40 mx-auto border border-white/20 rounded-lg overflow-hidden bg-white p-1 shadow-sm">
+                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnQDck-3LLV0c9g_q0ZwI9YIwzGqUqW5eX8Vgtb7r8wWqoWVo6cxbnGGw8LlBDp07iFuo_Ldw6XNDdOvZLwnU9_Wc8ZvKgy6pFt2m-pyo04e6wiZsW61_Z_F8QjY_TWu3VHLfy0nSgnDRkW1rYLRR5BABlbwtqnrGN88r2fTUMU-8NYyH3Eb3ZfuAffplL/s572/376e4202-8cfe-479d-967b-35fb7cef656f.jpeg" alt="QRIS PT ZHEDVANOIS" class="w-full h-full object-contain">
+                        </div>
+                        <div class="pt-1">
+                            <p class="text-[10px] text-gray-500">Nominal yang harus dibayarkan:</p>
+                            <p class="text-sm font-extrabold text-red-400">${formatRupiah(totalNominal)}</p>
+                        </div>
+                    </div>
+                `;
+            } else if (method === 'bri') {
+                qrisCard.className = 'border-2 border-white/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/50 hover:bg-white/5 transition relative';
+                briCard.className = 'border-2 border-blue-500 bg-blue-500/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer transition relative';
+                qrisCheck.classList.add('hidden');
+                briCheck.classList.remove('hidden');
+
+                detailsBox.classList.remove('hidden');
+                detailsBox.innerHTML = `
+                    <div class="space-y-3 text-xs">
+                        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider text-center">Transfer Bank Mandiri/BRI</p>
+                        <div class="bg-white/5 p-3 rounded-lg border border-white/10 space-y-1">
+                            <p class="text-[9px] text-gray-400 font-medium">Nomor Rekening</p>
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-sm text-white tracking-wider">64680100012569</span>
+                                <button onclick="copyToClipboard('64680100012569')" class="text-blue-400 hover:text-blue-300 text-[10px] font-bold flex items-center gap-1 bg-blue-500/10 border border-blue-500/20 px-2 py-1 rounded focus:outline-none">
+                                    <i data-lucide="copy" class="w-3 h-3"></i> Salin
+                                </button>
+                            </div>
+                        </div>
+                        <div class="bg-white/5 p-3 rounded-lg border border-white/10 space-y-1">
+                            <p class="text-[9px] text-gray-400 font-medium">Nama Bank &amp; Penerima</p>
+                            <p class="font-bold text-white text-[11px]">BRI - PT ZHEDVANOIS CREATIVE AGENCY</p>
+                        </div>
+                    </div>
+                `;
+            }
+            lucide.createIcons();
+        }
+
+        // Fungsi Mengirim Pesan WhatsApp & Validasi Form
+        function submitOrder() {
+            const name = document.getElementById('buyer-name').value.trim();
+            const phone = document.getElementById('buyer-phone').value.trim();
+            const address = document.getElementById('buyer-address').value.trim();
+            
+            if (!name || !phone || !address) {
+                showToast("Mohon lengkapi semua data pengiriman terlebih dahulu.", "error");
+                return;
+            }
+
+            if (!selectedPayment) {
+                showToast("Mohon pilih metode pembayaran Anda.", "error");
+                return;
+            }
+
+            const targetPhone = "6285190002348";
+
+            // Format isi rincian barang untuk chat WhatsApp
+            let itemsMessage = '';
+            cart.forEach((item, idx) => {
+                const subTotal = parsePrice(item.price) * item.quantity;
+                itemsMessage += `${idx + 1}. ${item.name} (${item.quantity}x) = ${formatRupiah(subTotal)}\n`;
+            });
+
+            const totalPayable = formatRupiah(getCartTotal());
+            const paymentText = selectedPayment === 'qris' 
+                ? 'QRIS (PT ZHEDVANOIS CREATIVE AGENCY)' 
+                : 'Transfer Bank (64680100012569 BRI a.n PT ZHEDVANOIS CREATIVE AGENCY)';
+
+            // Template pesan WhatsApp profesional
+            const message = `Halo, saya ingin memesan barang berikut:\n\n*🛍️ DETAIL PESANAN:*\n${itemsMessage}\n💰 *Total Pembayaran:* ${totalPayable}\n💳 *Metode Pembayaran:* ${paymentText}\n\n*🏠 DATA PENGIRIMAN:*\n👤 Nama Lengkap: ${name}\n📞 No. WhatsApp: +62${phone}\n📍 Alamat Lengkap:\n${address}\n\nMohon informasi ketersediaan barang dan konfirmasi pembayarannya. Terima kasih!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const waUrl = `https://wa.me/${targetPhone}?text=${encodedMessage}`;
+
+            // Reset keranjang belanja setelah checkout berhasil diajukan
+            cart = [];
+            saveCart();
+
+            window.open(waUrl, '_blank');
+            closeModal();
+        }
+
+        // --- SISTEM TOAST & SALIN PAPAN KLIP (CLIPBOARD) ---
+
+        function showToast(message, type = 'success') {
+            const existingToast = document.querySelector('.toast-notification');
+            if (existingToast) {
+                existingToast.remove();
+            }
+
+            const toast = document.createElement('div');
+            toast.className = `toast-notification ${type === 'success' ? 'border-l-4 border-l-green-500' : 'border-l-4 border-l-red-500'}`;
+            
+            const icon = type === 'success' ? 'check-circle' : 'alert-circle';
+            const iconColor = type === 'success' ? 'text-green-500' : 'text-red-500';
+
+            toast.innerHTML = `
+                <i data-lucide="${icon}" class="w-5 h-5 ${iconColor}"></i>
+                <span class="text-xs font-semibold text-gray-200">${message}</span>
+            `;
+            
+            document.body.appendChild(toast);
+            lucide.createIcons();
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function copyToClipboard(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast("Nomor rekening berhasil disalin!");
+        }
     </script>
 </body>
 </html>
