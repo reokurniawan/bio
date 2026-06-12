@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reo Kurniawan I.P | Portofolio </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- AOS (Animate On Scroll) Library for animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a; /* Dark background */
+            color: #e5e7eb; /* Light gray text */
+        }
+        
+        /* Animated Gradient Background */
+        .animated-gradient {
+            background: linear-gradient(-45deg, #1e3a8a, #4c1d95, #047857, #7c2d12);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Card Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            height: 100%; /* Make cards in a grid have same height */
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        /* Typing effect */
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.5rem;
+            background-color: #3b82f6;
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .contact-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            color: #9ca3af;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .contact-icon:hover {
+            transform: translateY(-5px);
+            background-color: rgba(59, 130, 246, 0.2);
+            color: #ffffff;
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .skill-tag {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            background-color: rgba(59, 130, 246, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            padding-bottom: 2rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+            padding-bottom: 0;
+        }
+        .timeline-icon {
+            position: absolute;
+            left: -1.2rem;
+            top: 0;
+            width: 2.25rem;
+            height: 2.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background-color: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        /* Custom style for profile picture position */
+        .profile-image {
+            object-position: center 20%; 
+        }
+
+        /* Toast Message */
+        #verification-toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            border: 1px solid #eab308;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        #verification-toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Verification Toast -->
+    <div id="verification-toast">Profil ini telah diverifikasi sebagai Reo Kurniawan I.P</div>
+
+    <!-- Header & Navigasi -->
+    <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-white tracking-widest">
+                PORTOFOLIO
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="hidden lg:flex space-x-8">
+                    <a href="#pengalaman" class="text-gray-300 hover:text-white font-medium">Pengalaman</a>
+                    <a href="#pendidikan" class="text-gray-300 hover:text-white font-medium">Pendidikan</a>
+                    <a href="#keahlian" class="text-gray-300 hover:text-white font-medium">Keahlian</a>
+                    <a href="#proyek" class="text-gray-300 hover:text-white font-medium">Proyek</a>
+                    <a href="#sertifikasi" class="text-gray-300 hover:text-white font-medium">Sertifikasi</a>
+                    <a href="#kontak" class="text-gray-300 hover:text-white font-medium">Kontak</a>
+                </div>
+                <!-- Tombol Bintang Verifikasi -->
+                <button id="verification-btn" class="text-yellow-400 hover:text-yellow-300 transition-colors" title="Verifikasi">
+                    <i data-feather="star" class="w-6 h-6 fill-current text-yellow-400"></i>
+                </button>
+                <!-- Tombol Donate Baru -->
+                <a href="https://sibagi.com/reokurniawan" target="_blank" class="text-red-500 hover:text-red-400 transition-colors" title="Donate">
+                    <i data-feather="heart" class="w-6 h-6 fill-current"></i>
+                </a>
+                <div class="lg:hidden">
+                    <button id="menu-btn" class="text-gray-300 focus:outline-none">
+                        <i data-feather="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden lg:hidden bg-black/90 backdrop-blur-md absolute w-full left-0 top-full border-b border-gray-800">
+            <a href="#pengalaman" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Pengalaman</a>
+            <a href="#pendidikan" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Pendidikan</a>
+            <a href="#keahlian" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Keahlian</a>
+            <a href="#proyek" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Proyek</a>
+            <a href="#sertifikasi" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Sertifikasi</a>
+            <a href="#kontak" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800">Kontak</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-20">
+
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-[80vh] flex items-center mb-20 md:mb-32">
+            <div class="absolute inset-0 animated-gradient opacity-20 blur-3xl"></div>
+            <div class="relative z-10 flex flex-col-reverse md:flex-row items-center w-full">
+                <div class="md:w-3/5 text-center md:text-left mt-10 md:mt-0" data-aos="fade-right">
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4">
+                        Reo Kurniawan I.P C.MTr.
+                    </h1>
+                    <!-- UPDATED TYPING EFFECT SECTION -->
+                    <h2 class="text-2xl md:text-3xl font-semibold text-blue-400 mb-6 min-h-[40px] flex items-center justify-center md:justify-start">
+                        <span id="typing-effect"></span><span class="typing-cursor"></span>
+                    </h2>
+                    
+                    <p class="text-lg text-gray-400 max-w-xl mx-auto md:mx-0 mb-8">
+                        "Founder PT ZHEDVANOIS CREATIVE AGENCY dengan latar belakang analisis mendalam dan eksekusi praktis di lapangan. Berpengalaman dalam memimpin transformasi digital melalui pengelolaan media web dan layanan jasa yang berorientasi pada hasil nyata serta kepuasan mitra bisnis."
+                    </p>
+                    <a href="#kontak" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300 shadow-lg shadow-blue-500/30">Hubungi Saya</a>
+                </div>
+                <div class="md:w-2/5 flex justify-center md:justify-end" data-aos="fade-left" data-aos-delay="200">
+                    <div class="relative w-72 h-72 md:w-96 md:h-96">
+                        <div class="absolute inset-0 animated-gradient rounded-full blur-md"></div>
+                        <!-- Gambar profil -->
+                        <div class="relative rounded-full w-full h-full p-1 bg-black/20 overflow-hidden border-2 border-white/10">
+                           <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKcYLfBQi55Ot2CIUYqRJeUR4rtnjFzLvCf4uop3I3TJ34aYgsXcSOwZPMtMqLg0v41k5bERbmNZS_H7OFFUoLGXFD6FP3twgJ5RCr8MntqAQ4lRXBLnhOYZsqOKtMPURP8HR_iti7Pps4RhUD_1E8LBFBTMcS9S36DD9p-8-Yq4h0-8WBbuw9xYUTb0w-/s1024/IMG_2374.png" alt="Foto Profil Reo Kurniawan" class="w-full h-full object-cover profile-image hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pengalaman Kerja -->
+        <section id="pengalaman" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Pengalaman Kerja</h2>
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
+                <!-- HR -->
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-teal-500/20 p-4 rounded-full border border-teal-500/30"><i data-feather="users" class="text-teal-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">KOMPLEK SUARA</p>
+                            <p class="text-sm text-gray-300">Jun 2022 - Sekarang</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">CONTENT WRITER</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4"></p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Menulis artikel blog yang SEO-friendly dengan struktur H1, H2, H3 yang tepat.</li>
+                                <li>Berhasil meningkatkan organic traffic website sebesar 40% dalam waktu 3 bulan.</li>
+                                <li>Meningkatkan average time on page (durasi baca) dari 1 menit menjadi 3 menit melalui perbaikan struktur konten.</li>
+                                <li>Meningkatkan Conversion Rate (CTR) iklan sebesar 1.5% melalui optimasi copywriting pada headline.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Brand Analyst -->
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-purple-500/20 p-4 rounded-full border border-purple-500/30"><i data-feather="bar-chart-2" class="text-purple-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">REXER PARFUME</p>
+                            <p class="text-sm text-gray-300">June 2025 - Sekarang</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">BRAND ANALYST</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4"></p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Meningkatkan pangsa pasar 5% melalui analisis tren konsumen.</li>
+                                <li>Meningkatkan ROI pemasaran digital sebesar 18% melalui optimalisasi budget.</li>
+                                <li>Mempercepat pengambilan keputusan berbasis data hingga 40% dengan dashboard otomatis.</li>
+                                <li>Meningkatkan sentimen positif merek 25% melalui analisis kompetitif.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content Creative -->
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-pink-500/20 p-4 rounded-full border border-pink-500/30"><i data-feather="camera" class="text-pink-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">RXYNDX_WB</p>
+                            <p class="text-sm text-gray-300">Des 2020 - Sekarang</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">CONTENT CREATOR</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4"></p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Memiliki 500k+ pengikut dalam tiktok pada akun pertama yang telah di band.</li>
+                                <li>Meningkatkan engagement rate media sosial 15K+ pada akun baru dalam waktu 3 bulan.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Manager -->
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-orange-500/20 p-4 rounded-full border border-orange-500/30"><i data-feather="trending-up" class="text-orange-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">ZHEDVANOIS OFFICIAL</p>
+                            <p class="text-sm text-gray-400">Agust 2018 - Okt 2022</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">MANAGER</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4"></p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Memimpin tim dalam mengelola beberapa bidang perlombaan Internal Pondok Pesantren Antar angkatan.</li>
+                                <li>Membimbing beberapa rekan hingga memperoleh beberapa kejuaran.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Recruiter & Fraud Analyst -->
+                <div class="glass-card p-8 md:col-span-2" data-aos="fade-up" data-aos-delay="500">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-blue-500/20 p-4 rounded-full border border-blue-500/30"><i data-feather="briefcase" class="text-blue-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">MYROBIN.ID</p>
+                            <p class="text-sm text-gray-300">Nov 2023 - Sekarang</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">Recruiter & Fraud Analyst</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4"></p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Berhasil menekan angka insiden penipuan di area monitoring sebesar <span class="font-bold text-green-400">80%</span>.</li>
+                                <li>Melampaui target pemenuhan kebutuhan klien hingga <span class="font-bold text-green-400">20%</span>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Riwayat Pendidikan -->
+        <section id="pendidikan" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Riwayat Pendidikan</h2>
+            <!-- Lebar maksimum diatur di sini -->
+            <div class="max-w-3xl mx-auto glass-card p-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="relative">
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
+                        <div class="timeline-icon"><i data-feather="award" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">Universitas Muhammadiyah Malang</h3>
+                        <p class="text-gray-400">Ilmu Hukum</p>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="300">
+                        <div class="timeline-icon"><i data-feather="book-open" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">MA. Insan Generasi Islami</h3>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="400">
+                        <div class="timeline-icon"><i data-feather="book-open" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">MTS TMI Al-Amien Prenduan</h3>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="500">
+                        <div class="timeline-icon"><i data-feather="book" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">SDN Tagangser Daya 01</h3>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="600">
+                        <div class="timeline-icon"><i data-feather="gift" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">TK Al-Amien Jember</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Keahlian -->
+        <section id="keahlian" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Keahlian Utama</h2>
+            <div class="max-w-5xl mx-auto text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="skill-tag">Analisis Data</span>
+                    <span class="skill-tag">Google Spreadsheet & Doc</span>
+                    <span class="skill-tag">AppSheet</span>
+                    <span class="skill-tag">Looker Studio</span>
+                    <span class="skill-tag">Video Editing</span>
+                    <span class="skill-tag">Desain Grafis</span>
+                    <span class="skill-tag">Copywriting</span>
+                    <span class="skill-tag">Penyelesaian Masalah</span>
+                    <span class="skill-tag">Rekrutmen & ATS</span>
+                    <span class="skill-tag">Manajemen Tim</span>
+                    <span class="skill-tag">Analisis Merek</span>
+                    <span class="skill-tag">Strategi Konten</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proyek & Prestasi -->
+        <section id="proyek" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Proyek & Prestasi</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-green-500/20 p-3 rounded-full w-max mb-4 border border-green-500/30"><i data-feather="edit-3" class="text-green-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Editing Kreatif</h3>
+                    <p class="text-gray-400">Bertanggung jawab atas editing kreatif di MA. Insan Generasi Islami untuk berbagai acara sekolah.</p>
+                </div>
+                <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-purple-500/20 p-3 rounded-full w-max mb-4 border border-purple-500/30"><i data-feather="users" class="text-purple-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Tim Manajemen Acara</h3>
+                    <p class="text-gray-400">Sukses mengelola event tahunan pondok dengan partisipasi lebih dari 500 peserta.</p>
+                </div>
+                <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-blue-500/20 p-3 rounded-full w-max mb-4 border border-blue-500/30"><i data-feather="bar-chart" class="text-blue-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Analisis Fraud</h3>
+                    <p class="text-gray-400">Mengembangkan sistem monitoring manual yang efektif untuk mendeteksi pola penipuan di platform kerja.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sertifikasi Section -->
+        <section id="sertifikasi" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Sertifikasi</h2>
+            <div class="max-w-4xl mx-auto" data-aos="zoom-in">
+                
+                <!-- Sertifikat Pertama (Asli) -->
+                <div class="glass-card overflow-hidden">
+                    <div class="p-4 bg-white/5 border-b border-white/10 flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2 bg-yellow-500/20 rounded-lg">
+                                <i data-feather="award" class="text-yellow-400 w-5 h-5"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Sertifikat Keahlian</h3>
+                        </div>
+                        <span class="text-xs text-gray-400 px-3 py-1 rounded-full border border-white/10">Terverifikasi</span>
+                    </div>
+                    <div class="p-4 flex justify-center">
+                        <img 
+                            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9QQk5ubPhCOS2nY4nDBPxgbCEC0_i4yy9_g8O68GVBegMTPX1NYZvvm5fjJdB3ZLfDHtgNeJJ5EdfAwuPS3udOb7AT92kdG_XP-qMaZCyMg1V-FpFlwrOrHyfolwSL1x_1HUz4dr6AWiQ1GkaK6-J60vK5l02mgMWr1V790SRBkms1vcjMZewkUujnSFu/s1746/1000066702.png" 
+                            alt="Sertifikat Reo Kurniawan" 
+                            class="rounded-lg max-w-full h-auto shadow-2xl hover:scale-[1.02] transition-transform duration-500"
+                        >
+                    </div>
+                </div>
+
+                <!-- Sertifikat Kedua (Baru Ditambahkan) -->
+                <div class="glass-card overflow-hidden mt-8">
+                    <div class="p-4 bg-white/5 border-b border-white/10 flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2 bg-yellow-500/20 rounded-lg">
+                                <i data-feather="award" class="text-yellow-400 w-5 h-5"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Sertifikat Tambahan</h3>
+                        </div>
+                        <span class="text-xs text-gray-400 px-3 py-1 rounded-full border border-white/10">Terverifikasi</span>
+                    </div>
+                    <div class="p-4 flex justify-center">
+                        <img 
+                            src="https://blogger.googleusercontent.com/img/a/AVvXsEipZqPTIvxoIdVWMtK9iH4u9apmzyV3UcfG2SwkPe6wRg3qxyznC0TB2F_jnFbC4rz-GNwzz5Rg9PHkFiNmRcGsYXIaSNflk5PGNTNiy8foUawxcGbEmucYESZW9-hj6U5AbVWrdpDQ0ZAj1pNk6E61GixLEG3Y95_tOePtQlwyVQYA_klND0KjBEFF8ZSP" 
+                            alt="Sertifikat Reo Kurniawan Tambahan" 
+                            class="rounded-lg max-w-full h-auto shadow-2xl hover:scale-[1.02] transition-transform duration-500"
+                        >
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Kontak -->
+        <section id="kontak" class="mb-20">
+            <h2 class="section-title" data-aos="fade-up">Hubungi Saya</h2>
+            <div class="max-w-4xl mx-auto glass-card p-8 md:p-12 text-center" data-aos="zoom-in">
+                <p class="text-xl text-gray-300 mb-8">Tertarik untuk berkolaborasi atau memiliki pertanyaan? Jangan ragu untuk menghubungi saya.</p>
+                
+                <div class="flex flex-wrap justify-center items-center gap-6 mb-10">
+                    <!-- Website -->
+                    <a href="https://kompleksuara.com" target="_blank" class="contact-icon group relative" aria-label="Website">
+                        <i data-feather="globe" class="w-8 h-8"></i>
+                        <span class="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[10px] text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">kompleksuara.com</span>
+                    </a>
+
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/6285190002348" target="_blank" class="contact-icon group relative" aria-label="WhatsApp">
+                        <i data-feather="message-circle" class="w-8 h-8"></i>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">WhatsApp</span>
+                    </a>
+                    
+                     <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/reo-kurniawan-iriandito-p-759b5a305?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="contact-icon group relative" aria-label="LinkedIn">
+                        <i data-feather="linkedin" class="w-8 h-8"></i>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">LinkedIn</span>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/rxyndx_wb" target="_blank" class="contact-icon group relative" aria-label="Instagram">
+                        <i data-feather="instagram" class="w-8 h-8"></i>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Instagram</span>
+                    </a>
+
+                    <!-- TikTok -->
+                    <a href="https://www.tiktok.com/@rxyndx_wb" target="_blank" class="contact-icon group relative" aria-label="TikTok">
+                        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">TikTok</span>
+                    </a>
+
+                    <!-- Email -->
+                    <a href="mailto:reokurniawan@example.com" class="contact-icon group relative" aria-label="Email">
+                        <i data-feather="mail" class="w-8 h-8"></i>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Email</span>
+                    </a>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <a href="https://wa.me/62811190396" target="_blank" class="bg-white text-black font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition-colors shadow-lg">
+                        Chat WhatsApp
+                    </a>
+                    <a href="https://kompleksuara.com" target="_blank" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-colors shadow-lg">
+                        Kunjungi Website
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black/80 py-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2024 Reo Kurniawan I.P. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Verification Button Toast
+        const vBtn = document.getElementById('verification-btn');
+        const toast = document.getElementById('verification-toast');
+        vBtn.addEventListener('click', () => {
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
+        });
+
+        // Typing Effect Logic
+        const words = [
+            "CONTENT WRITER", 
+            "MANAGER", 
+            "BRAND ANALYST", 
+            "RECRUITER & FRAUD ANALYST"
+        ];
+        
+        let i = 0;
+        let timer;
+
+        function typingEffect() {
+            let wordText = words[i];
+            let charIndex = 0;
+            
+            var loopTyping = function() {
+                if (charIndex < wordText.length) {
+                    document.getElementById('typing-effect').innerHTML += wordText.charAt(charIndex);
+                    charIndex++;
+                    timer = setTimeout(loopTyping, 100);
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                }
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let wordText = document.getElementById('typing-effect').innerHTML;
+            
+            var loopDeleting = function() {
+                if (wordText.length > 0) {
+                    wordText = wordText.substring(0, wordText.length - 1);
+                    document.getElementById('typing-effect').innerHTML = wordText;
+                    timer = setTimeout(loopDeleting, 50);
+                } else {
+                    i = (i + 1) % words.length;
+                    typingEffect();
+                }
+            };
+            loopDeleting();
+        }
+
+        // Start the typing effect
+        typingEffect();
+    </script>
+</body>
+</html>
