@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reo Kurniawan I.P | Portofolio </title>
+    <title>Reo Kurniawan I.P | Portfolio </title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
-    <!-- Lucide Icons untuk Ikon Katalog -->
+    <!-- Lucide Icons for Catalog Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- AOS (Animate On Scroll) Library for animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -225,36 +225,36 @@
 <body class="overflow-x-hidden">
 
     <!-- Verification Toast -->
-    <div id="verification-toast">Profil ini telah diverifikasi sebagai Reo Kurniawan I.P</div>
+    <div id="verification-toast">This profile has been verified as Reo Kurniawan I.P</div>
 
-    <!-- Header & Navigasi -->
+    <!-- Header & Navigation -->
     <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-xl font-bold text-white tracking-widest">
-                PORTOFOLIO
+                PORTFOLIO
             </div>
             <div class="flex items-center space-x-4">
                 <div class="hidden lg:flex space-x-8">
-                    <a href="#pengalaman" class="text-gray-300 hover:text-white font-medium">Pengalaman</a>
-                    <a href="#pendidikan" class="text-gray-300 hover:text-white font-medium">Pendidikan</a>
-                    <a href="#keahlian" class="text-gray-300 hover:text-white font-medium">Keahlian</a>
-                    <a href="#proyek" class="text-gray-300 hover:text-white font-medium">Proyek</a>
-                    <a href="#sertifikasi" class="text-gray-300 hover:text-white font-medium">Sertifikasi</a>
+                    <a href="#pengalaman" class="text-gray-300 hover:text-white font-medium">Experience</a>
+                    <a href="#pendidikan" class="text-gray-300 hover:text-white font-medium">Education</a>
+                    <a href="#keahlian" class="text-gray-300 hover:text-white font-medium">Skills</a>
+                    <a href="#proyek" class="text-gray-300 hover:text-white font-medium">Projects</a>
+                    <a href="#sertifikasi" class="text-gray-300 hover:text-white font-medium">Certifications</a>
                     <a href="#store" class="text-gray-300 hover:text-white font-medium">Store</a>
-                    <a href="#kontak" class="text-gray-300 hover:text-white font-medium">Kontak</a>
+                    <a href="#kontak" class="text-gray-300 hover:text-white font-medium">Contact</a>
                 </div>
 
-                <!-- Tombol Keranjang Belanja -->
-                <button onclick="openCartModal()" class="relative p-2 text-gray-300 hover:text-blue-400 transition-colors focus:outline-none" aria-label="Keranjang Belanja" title="Keranjang Belanja">
+                <!-- Shopping Cart Button -->
+                <button onclick="openCartModal()" class="relative p-2 text-gray-300 hover:text-blue-400 transition-colors focus:outline-none" aria-label="Shopping Cart" title="Shopping Cart">
                     <i class="w-6 h-6" data-lucide="shopping-cart"></i>
                     <span id="cart-badge" class="absolute -top-1 -right-1 inline-flex items-center justify-center px-2 py-0.5 text-[10px] font-bold leading-none text-white transform bg-blue-600 rounded-full hidden">0</span>
                 </button>
 
-                <!-- Tombol Bintang Verifikasi -->
-                <button id="verification-btn" class="text-yellow-400 hover:text-yellow-300 transition-colors" title="Verifikasi">
+                <!-- Verification Star Button -->
+                <button id="verification-btn" class="text-yellow-400 hover:text-yellow-300 transition-colors" title="Verify">
                     <i data-feather="star" class="w-6 h-6 fill-current text-yellow-400"></i>
                 </button>
-                <!-- Tombol Donate -->
+                <!-- Donate Button -->
                 <a href="https://sibagi.com/reokurniawan" target="_blank" class="text-red-500 hover:text-red-400 transition-colors" title="Donate">
                     <i data-feather="heart" class="w-6 h-6 fill-current"></i>
                 </a>
@@ -266,13 +266,13 @@
             </div>
         </nav>
         <div id="mobile-menu" class="hidden lg:hidden bg-black/90 backdrop-blur-md absolute w-full left-0 top-full border-b border-gray-800">
-            <a href="#pengalaman" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Pengalaman</a>
-            <a href="#pendidikan" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Pendidikan</a>
-            <a href="#keahlian" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Keahlian</a>
-            <a href="#proyek" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Proyek</a>
-            <a href="#sertifikasi" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Sertifikasi</a>
+            <a href="#pengalaman" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Experience</a>
+            <a href="#pendidikan" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Education</a>
+            <a href="#keahlian" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Skills</a>
+            <a href="#proyek" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Projects</a>
+            <a href="#sertifikasi" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Certifications</a>
             <a href="#store" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Store</a>
-            <a href="#kontak" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800">Kontak</a>
+            <a href="#kontak" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800">Contact</a>
         </div>
     </header>
 
@@ -292,25 +292,25 @@
                     </h2>
                     
                     <p class="text-lg text-gray-400 max-w-xl mx-auto md:mx-0 mb-8">
-                        "Founder PT ZHEDVANOIS CREATIVE AGENCY dengan latar belakang analisis mendalam dan eksekusi praktis di lapangan. Berpengalaman dalam memimpin transformasi digital melalui pengelolaan media web dan layanan jasa yang berorientasi pada hasil nyata serta kepuasan mitra bisnis."
+                        "Founder of PT ZHEDVANOIS CREATIVE AGENCY with a background in deep analysis and practical execution in the field. Experienced in leading digital transformation through web media management and services oriented towards real results and business partner satisfaction."
                     </p>
-                    <a href="#kontak" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300 shadow-lg shadow-blue-500/30">Hubungi Saya</a>
+                    <a href="#kontak" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300 shadow-lg shadow-blue-500/30">Contact Me</a>
                 </div>
                 <div class="md:w-2/5 flex justify-center md:justify-end" data-aos="fade-left" data-aos-delay="200">
                     <div class="relative w-72 h-72 md:w-96 md:h-96">
                         <div class="absolute inset-0 animated-gradient rounded-full blur-md"></div>
-                        <!-- Gambar profil -->
+                        <!-- Profile Image -->
                         <div class="relative rounded-full w-full h-full p-1 bg-black/20 overflow-hidden border-2 border-white/10">
-                           <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKcYLfBQi55Ot2CIUYqRJeUR4rtnjFzLvCf4uop3I3TJ34aYgsXcSOwZPMtMqLg0v41k5bERbmNZS_H7OFFUoLGXFD6FP3twgJ5RCr8MntqAQ4lRXBLnhOYZsqOKtMPURP8HR_iti7Pps4RhUD_1E8LBFBTMcS9S36DD9p-8-Yq4h0-8WBbuw9xYUTb0w-/s1024/IMG_2374.png" alt="Foto Profil Reo Kurniawan" class="w-full h-full object-cover profile-image hover:scale-105 transition-transform duration-500">
+                           <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKcYLfBQi55Ot2CIUYqRJeUR4rtnjFzLvCf4uop3I3TJ34aYgsXcSOwZPMtMqLg0v41k5bERbmNZS_H7OFFUoLGXFD6FP3twgJ5RCr8MntqAQ4lRXBLnhOYZsqOKtMPURP8HR_iti7Pps4RhUD_1E8LBFBTMcS9S36DD9p-8-Yq4h0-8WBbuw9xYUTb0w-/s1024/IMG_2374.png" alt="Profile of Reo Kurniawan" class="w-full h-full object-cover profile-image hover:scale-105 transition-transform duration-500">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Pengalaman Kerja -->
+        <!-- Work Experience -->
         <section id="pengalaman" class="mb-20 md:mb-32">
-            <h2 class="section-title" data-aos="fade-up">Pengalaman Kerja</h2>
+            <h2 class="section-title" data-aos="fade-up">Work Experience</h2>
             <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
                 <!-- HR -->
                 <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="100">
@@ -320,14 +320,14 @@
                         </div>
                         <div>
                             <p class="text-sm text-gray-400">KOMPLEK SUARA</p>
-                            <p class="text-sm text-gray-300">Jun 2022 - Sekarang</p>
+                            <p class="text-sm text-gray-300">Jun 2022 - Present</p>
                             <h3 class="text-2xl font-bold text-white mt-1">CONTENT WRITER</h3>
                             <p class="text-lg font-medium text-gray-300 mb-4"></p>
                             <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
-                                <li>Menulis artikel blog yang SEO-friendly dengan struktur H1, H2, H3 yang tepat.</li>
-                                <li>Berhasil meningkatkan organic traffic website sebesar 40% dalam waktu 3 bulan.</li>
-                                <li>Meningkatkan average time on page (durasi baca) dari 1 menit menjadi 3 menit melalui perbaikan struktur konten.</li>
-                                <li>Meningkatkan Conversion Rate (CTR) iklan sebesar 1.5% melalui optimasi copywriting pada headline.</li>
+                                <li>Writing SEO-friendly blog articles with correct H1, H2, H3 structures.</li>
+                                <li>Successfully increased organic website traffic by 40% within 3 months.</li>
+                                <li>Increased average time on page (reading duration) from 1 minute to 3 minutes through content structure improvements.</li>
+                                <li>Increased ad Click-Through Rate (CTR) by 1.5% through copywriting optimization on headlines.</li>
                             </ul>
                         </div>
                     </div>
@@ -340,14 +340,14 @@
                         </div>
                         <div>
                             <p class="text-sm text-gray-400">REXER PARFUME</p>
-                            <p class="text-sm text-gray-300">June 2025 - Sekarang</p>
+                            <p class="text-sm text-gray-300">June 2025 - Present</p>
                             <h3 class="text-2xl font-bold text-white mt-1">BRAND ANALYST</h3>
                             <p class="text-lg font-medium text-gray-300 mb-4"></p>
                             <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
-                                <li>Meningkatkan pangsa pasar 5% melalui analisis tren konsumen.</li>
-                                <li>Meningkatkan ROI pemasaran digital sebesar 18% melalui optimalisasi budget.</li>
-                                <li>Mempercepat pengambilan keputusan berbasis data hingga 40% dengan dashboard otomatis.</li>
-                                <li>Meningkatkan sentimen positif merek 25% melalui analisis kompetitif.</li>
+                                <li>Increased market share by 5% through consumer trend analysis.</li>
+                                <li>Increased digital marketing ROI by 18% through budget optimization.</li>
+                                <li>Accelerated data-driven decision making by up to 40% with automated dashboards.</li>
+                                <li>Increased positive brand sentiment by 25% through competitive analysis.</li>
                             </ul>
                         </div>
                     </div>
@@ -360,12 +360,12 @@
                         </div>
                         <div>
                             <p class="text-sm text-gray-400">GudangPhone</p>
-                            <p class="text-sm text-gray-300">Des 2024 - Juli 2025</p>
+                            <p class="text-sm text-gray-300">Dec 2024 - July 2025</p>
                             <h3 class="text-2xl font-bold text-white mt-1">STORE MANAGER</h3>
                             <p class="text-lg font-medium text-gray-300 mb-4"></p>
                             <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
-                                <li>Berhasil meningkatkan 15% penjualan toko </li>
-                                <li>Meningkatkam customer sebanyak 31% selama 5 bulan Serta mengurangi Fraud pada setiap barang masuk dan keluar</li>
+                                <li>Successfully increased store sales by 15%.</li>
+                                <li>Increased customers by 31% over 5 months and reduced fraud on incoming and outgoing goods.</li>
                             </ul>
                         </div>
                     </div>
@@ -378,12 +378,12 @@
                         </div>
                         <div>
                             <p class="text-sm text-gray-400">ZHEDVANOIS OFFICIAL</p>
-                            <p class="text-sm text-gray-400">Agust 2018 - Okt 2022</p>
+                            <p class="text-sm text-gray-400">Aug 2018 - Oct 2022</p>
                             <h3 class="text-2xl font-bold text-white mt-1">MANAGER</h3>
                             <p class="text-lg font-medium text-gray-300 mb-4"></p>
                             <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
-                                <li>Memimpin tim dalam mengelola beberapa bidang perlombaan Internal Pondok Pesantren Antar angkatan.</li>
-                                <li>Membimbing beberapa rekan hingga memperoleh beberapa kejuaran.</li>
+                                <li>Led the team in managing several internal boarding school competition categories across student cohorts.</li>
+                                <li>Mentored several peers to achieve multiple awards and championships.</li>
                             </ul>
                         </div>
                     </div>
@@ -396,12 +396,12 @@
                         </div>
                         <div>
                             <p class="text-sm text-gray-400">MYROBIN.ID</p>
-                            <p class="text-sm text-gray-300">Nov 2023 - Sekarang</p>
+                            <p class="text-sm text-gray-300">Nov 2023 - Present</p>
                             <h3 class="text-2xl font-bold text-white mt-1">Recruiter & Fraud Analyst</h3>
                             <p class="text-lg font-medium text-gray-300 mb-4"></p>
                             <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
-                                <li>Berhasil menekan angka insiden penipuan di area monitoring sebesar <span class="font-bold text-green-400">80%</span>.</li>
-                                <li>Melampaui target pemenuhan kebutuhan klien hingga <span class="font-bold text-green-400">20%</span>.</li>
+                                <li>Successfully reduced fraud incidents in the monitored area by <span class="font-bold text-green-400">80%</span>.</li>
+                                <li>Exceeded client fulfillment targets by <span class="font-bold text-green-400">20%</span>.</li>
                             </ul>
                         </div>
                     </div>
@@ -409,122 +409,126 @@
             </div>
         </section>
         
-        <!-- Riwayat Pendidikan -->
+        <!-- Education History -->
         <section id="pendidikan" class="mb-20 md:mb-32">
-            <h2 class="section-title" data-aos="fade-up">Riwayat Pendidikan</h2>
-            <div class="max-w-3xl mx-auto glass-card p-8" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="section-title" data-aos="fade-up">Education History</h2>
+            <div class="max-w-3xl mx-auto glass-card p-8" data-aos="zoom-in" data-aos-delay="100">
                 <div class="relative">
                     <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
                         <div class="timeline-icon"><i data-feather="award" class="text-blue-400 w-5 h-5"></i></div>
-                        <h3 class="text-xl font-bold text-white">Universitas Muhammadiyah Malang</h3>
-                        <p class="text-gray-400">Ilmu Hukum</p>
+                        <h3 class="text-xl font-bold text-white">Muhammadiyah University of Malang</h3>
+                        <p class="text-gray-400">Law / Legal Studies</p>
                     </div>
                     <div class="timeline-item" data-aos="fade-left" data-aos-delay="300">
                         <div class="timeline-icon"><i data-feather="book-open" class="text-blue-400 w-5 h-5"></i></div>
                         <h3 class="text-xl font-bold text-white">MA. Insan Generasi Islami</h3>
+                        <p class="text-xs text-gray-400">Islamic Senior High School</p>
                     </div>
                     <div class="timeline-item" data-aos="fade-left" data-aos-delay="400">
                         <div class="timeline-icon"><i data-feather="book-open" class="text-blue-400 w-5 h-5"></i></div>
                         <h3 class="text-xl font-bold text-white">MTS TMI Al-Amien Prenduan</h3>
+                        <p class="text-xs text-gray-400">Islamic Junior High School</p>
                     </div>
                     <div class="timeline-item" data-aos="fade-left" data-aos-delay="500">
                         <div class="timeline-icon"><i data-feather="book" class="text-blue-400 w-5 h-5"></i></div>
                         <h3 class="text-xl font-bold text-white">SDN Tagangser Daya 01</h3>
+                        <p class="text-xs text-gray-400">Elementary School</p>
                     </div>
                     <div class="timeline-item" data-aos="fade-left" data-aos-delay="600">
                         <div class="timeline-icon"><i data-feather="gift" class="text-blue-400 w-5 h-5"></i></div>
                         <h3 class="text-xl font-bold text-white">TK Al-Amien Jember</h3>
+                        <p class="text-xs text-gray-400">Kindergarten</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Keahlian -->
+        <!-- Core Skills -->
         <section id="keahlian" class="mb-20 md:mb-32">
-            <h2 class="section-title" data-aos="fade-up">Keahlian Utama</h2>
+            <h2 class="section-title" data-aos="fade-up">Core Skills</h2>
             <div class="max-w-5xl mx-auto text-center" data-aos="fade-up" data-aos-delay="100">
                 <div class="flex flex-wrap justify-center gap-4">
-                    <span class="skill-tag">Analisis Data</span>
-                    <span class="skill-tag">Google Spreadsheet & Doc</span>
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Google Sheets & Docs</span>
                     <span class="skill-tag">AppSheet</span>
                     <span class="skill-tag">Looker Studio</span>
                     <span class="skill-tag">Video Editing</span>
-                    <span class="skill-tag">Desain Grafis</span>
+                    <span class="skill-tag">Graphic Design</span>
                     <span class="skill-tag">Copywriting</span>
-                    <span class="skill-tag">Penyelesaian Masalah</span>
+                    <span class="skill-tag">Problem Solving</span>
                     <span class="skill-tag">Public Speaking</span>
-                    <span class="skill-tag">Customer service</span>
-                    <span class="skill-tag">Rekrutmen & ATS</span>
-                    <span class="skill-tag">Manajemen Tim</span>
-                    <span class="skill-tag">Analisis Merek</span>
-                    <span class="skill-tag">Strategi Konten</span>
+                    <span class="skill-tag">Customer Service</span>
+                    <span class="skill-tag">Recruitment & ATS</span>
+                    <span class="skill-tag">Team Management</span>
+                    <span class="skill-tag">Brand Analysis</span>
+                    <span class="skill-tag">Content Strategy</span>
                 </div>
             </div>
         </section>
 
-        <!-- Proyek & Prestasi -->
+        <!-- Projects & Achievements -->
         <section id="proyek" class="mb-20 md:mb-32">
-            <h2 class="section-title" data-aos="fade-up">Proyek & Prestasi</h2>
+            <h2 class="section-title" data-aos="fade-up">Projects & Achievements</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="bg-green-500/20 p-3 rounded-full w-max mb-4 border border-green-500/30"><i data-feather="edit-3" class="text-green-400"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Editing Kreatif</h3>
-                    <p class="text-gray-400">Bertanggung jawab atas editing kreatif di MA. Insan Generasi Islami untuk berbagai acara sekolah.</p>
+                    <h3 class="text-xl font-bold text-white mb-2">Creative Editing</h3>
+                    <p class="text-gray-400">Responsible for creative editing at MA. Insan Generasi Islami for various school events.</p>
                 </div>
                 <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="bg-purple-500/20 p-3 rounded-full w-max mb-4 border border-purple-500/30"><i data-feather="users" class="text-purple-400"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Tim Manajemen Acara</h3>
-                    <p class="text-gray-400">Sukses mengelola event tahunan pondok dengan partisipasi lebih dari 500 peserta.</p>
+                    <h3 class="text-xl font-bold text-white mb-2">Event Management Team</h3>
+                    <p class="text-gray-400">Successfully managed annual boarding school events with over 500 participants.</p>
                 </div>
                 <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="bg-blue-500/20 p-3 rounded-full w-max mb-4 border border-blue-500/30"><i data-feather="bar-chart" class="text-blue-400"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Analisis Fraud</h3>
-                    <p class="text-gray-400">Mengembangkan sistem monitoring manual yang efektif untuk mendeteksi pola penipuan di platform kerja.</p>
+                    <h3 class="text-xl font-bold text-white mb-2">Fraud Analysis</h3>
+                    <p class="text-gray-400">Developed an effective manual monitoring system to detect fraudulent patterns on the work platform.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Sertifikasi Section -->
+        <!-- Certifications Section -->
         <section id="sertifikasi" class="mb-20 md:mb-32">
-            <h2 class="section-title" data-aos="fade-up">Sertifikasi</h2>
+            <h2 class="section-title" data-aos="fade-up">Certifications</h2>
             <div class="max-w-4xl mx-auto mb-16" data-aos="zoom-in">
                 
-                <!-- Sertifikat Pertama (Asli) -->
+                <!-- First Certificate -->
                 <div class="glass-card overflow-hidden">
                     <div class="p-4 bg-white/5 border-b border-white/10 flex items-center justify-between">
                         <div class="flex items-center space-x-3">
                             <div class="p-2 bg-yellow-500/20 rounded-lg">
                                 <i data-feather="award" class="text-yellow-400 w-5 h-5"></i>
                             </div>
-                            <h3 class="text-lg font-bold text-white">Sertifikat Keahlian</h3>
+                            <h3 class="text-lg font-bold text-white">Certificate of Expertise</h3>
                         </div>
-                        <span class="text-xs text-gray-400 px-3 py-1 rounded-full border border-white/10">Terverifikasi</span>
+                        <span class="text-xs text-gray-400 px-3 py-1 rounded-full border border-white/10">Verified</span>
                     </div>
                     <div class="p-4 flex justify-center">
                         <img 
                             src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9QQk5ubPhCOS2nY4nDBPxgbCEC0_i4yy9_g8O68GVBegMTPX1NYZvvm5fjJdB3ZLfDHtgNeJJ5EdfAwuPS3udOb7AT92kdG_XP-qMaZCyMg1V-FpFlwrOrHyfolwSL1x_1HUz4dr6AWiQ1GkaK6-J60vK5l02mgMWr1V790SRBkms1vcjMZewkUujnSFu/s1746/1000066702.png" 
-                            alt="Sertifikat Reo Kurniawan" 
+                            alt="Reo Kurniawan Certificate" 
                             class="rounded-lg max-w-full h-auto shadow-2xl hover:scale-[1.02] transition-transform duration-500 cursor-zoom-in"
                             onclick="openLightbox(this.src)"
                         >
                     </div>
                 </div>
 
-                <!-- Sertifikat Kedua (Baru Ditambahkan) -->
+                <!-- Second Certificate -->
                 <div class="glass-card overflow-hidden mt-8">
                     <div class="p-4 bg-white/5 border-b border-white/10 flex items-center justify-between">
                         <div class="flex items-center space-x-3">
                             <div class="p-2 bg-yellow-500/20 rounded-lg">
                                 <i data-feather="award" class="text-yellow-400 w-5 h-5"></i>
                             </div>
-                            <h3 class="text-lg font-bold text-white">Sertifikat Tambahan</h3>
+                            <h3 class="text-lg font-bold text-white">Additional Certificate</h3>
                         </div>
-                        <span class="text-xs text-gray-400 px-3 py-1 rounded-full border border-white/10">Terverifikasi</span>
+                        <span class="text-xs text-gray-400 px-3 py-1 rounded-full border border-white/10">Verified</span>
                     </div>
                     <div class="p-4 flex justify-center">
                         <img 
                             src="https://blogger.googleusercontent.com/img/a/AVvXsEipZqPTIvxoIdVWMtK9iH4u9apmzyV3UcfG2SwkPe6wRg3qxyznC0TB2F_jnFbC4rz-GNwzz5Rg9PHkFiNmRcGsYXIaSNflk5PGNTNiy8foUawxcGbEmucYESZW9-hj6U5AbVWrdpDQ0ZAj1pNk6E61GixLEG3Y95_tOePtQlwyVQYA_klND0KjBEFF8ZSP" 
-                            alt="Sertifikat Reo Kurniawan Tambahan" 
+                            alt="Reo Kurniawan Additional Certificate" 
                             class="rounded-lg max-w-full h-auto shadow-2xl hover:scale-[1.02] transition-transform duration-500 cursor-zoom-in"
                             onclick="openLightbox(this.src)"
                         >
@@ -532,17 +536,17 @@
                 </div>
             </div>
 
-            <!-- Galeri Sertifikat & Karya -->
+            <!-- Certificates & Works Gallery -->
             <div class="max-w-6xl mx-auto" data-aos="fade-up">
                 <div class="flex items-center justify-between mb-6">
                     <h3 class="text-2xl font-bold text-white flex items-center gap-2">
-                        <i data-feather="grid" class="text-blue-400"></i> Galeri Sertifikat & Karya
+                        <i data-feather="grid" class="text-blue-400"></i> Certificates & Works Gallery
                     </h3>
                     <div class="flex gap-2">
-                        <button id="slide-prev" class="bg-white/5 border border-white/10 p-2.5 rounded-full hover:bg-blue-600/30 hover:border-blue-500 transition-all text-gray-300 hover:text-white" title="Geser Kiri">
+                        <button id="slide-prev" class="bg-white/5 border border-white/10 p-2.5 rounded-full hover:bg-blue-600/30 hover:border-blue-500 transition-all text-gray-300 hover:text-white" title="Slide Left">
                             <i data-feather="chevron-left" class="w-5 h-5"></i>
                         </button>
-                        <button id="slide-next" class="bg-white/5 border border-white/10 p-2.5 rounded-full hover:bg-blue-600/30 hover:border-blue-500 transition-all text-gray-300 hover:text-white" title="Geser Kanan">
+                        <button id="slide-next" class="bg-white/5 border border-white/10 p-2.5 rounded-full hover:bg-blue-600/30 hover:border-blue-500 transition-all text-gray-300 hover:text-white" title="Slide Right">
                             <i data-feather="chevron-right" class="w-5 h-5"></i>
                         </button>
                     </div>
@@ -557,8 +561,8 @@
                                 <img src="sertifikat2.png" alt="Sertifikat 2" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
                             </div>
                             <div class="mt-4">
-                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Sertifikat Prestasi</h4>
-                                <p class="text-xs text-gray-400 mt-1">Juara I Lomba Dakwah Tingkat Nasional</p>
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Certificate of Achievement</h4>
+                                <p class="text-xs text-gray-400 mt-1">1st Place National Level Preaching Competition</p>
                             </div>
                         </div>
                     </div>
@@ -569,8 +573,8 @@
                                 <img src="sertifikat3.png" alt="Sertifikat 3" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
                             </div>
                             <div class="mt-4">
-                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Sertifikat Prestasi</h4>
-                                <p class="text-xs text-gray-400 mt-1">Juara II Lomba Orasi Tingkat Provinsi</p>
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Certificate of Achievement</h4>
+                                <p class="text-xs text-gray-400 mt-1">2nd Place Provincial Level Oratory Competition</p>
                             </div>
                         </div>
                     </div>
@@ -581,8 +585,8 @@
                                 <img src="sertifikat4.png" alt="Sertifikat 4" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
                             </div>
                             <div class="mt-4">
-                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Sertifikat Prestasi</h4>
-                                <p class="text-xs text-gray-400 mt-1">Juara I Lomba Pidato Tingkat Kabupaten</p>
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Certificate of Achievement</h4>
+                                <p class="text-xs text-gray-400 mt-1">1st Place Regency Level Speech Competition</p>
                             </div>
                         </div>
                     </div>
@@ -593,8 +597,8 @@
                                 <img src="sertifikat5.png" alt="Sertifikat 5" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
                             </div>
                             <div class="mt-4">
-                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Sertifikat Prestasi</h4>
-                                <p class="text-xs text-gray-400 mt-1">Juara Harapan III Lomba Vidio Animasi Tingkat Kabupaten</p>
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Certificate of Achievement</h4>
+                                <p class="text-xs text-gray-400 mt-1">3rd Runner-Up Regency Level Animated Video Competition</p>
                             </div>
                         </div>
                     </div>
@@ -605,8 +609,8 @@
                                 <img src="sertifikat6.png" alt="Sertifikat 6" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
                             </div>
                             <div class="mt-4">
-                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Sertifikat Pelatihan</h4>
-                                <p class="text-xs text-gray-400 mt-1">Pelatihan Literasi</p>
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Certificate of Training</h4>
+                                <p class="text-xs text-gray-400 mt-1">Literacy Training</p>
                             </div>
                         </div>
                     </div>
@@ -617,8 +621,8 @@
                                 <img src="sertifikat7.png" alt="Sertifikat 7" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
                             </div>
                             <div class="mt-4">
-                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Sertifikat Pendirian</h4>
-                                <p class="text-xs text-gray-400 mt-1">Terverifikasi</p>
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Establishment Certificate</h4>
+                                <p class="text-xs text-gray-400 mt-1">Verified</p>
                             </div>
                         </div>
                     </div>
@@ -629,8 +633,8 @@
                                 <img src="sertifikat8.png" alt="Sertifikat 8" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
                             </div>
                             <div class="mt-4">
-                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Surat Keputusan</h4>
-                                <p class="text-xs text-gray-400 mt-1">Mentri Hukum Republik Indonesia</p>
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Official Decree</h4>
+                                <p class="text-xs text-gray-400 mt-1">Ministry of Law, Republic of Indonesia</p>
                             </div>
                         </div>
                     </div>
@@ -641,8 +645,8 @@
                                 <img src="sertifikat9.png" alt="Sertifikat 9" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
                             </div>
                             <div class="mt-4">
-                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Karya</h4>
-                                <p class="text-xs text-gray-400 mt-1">Tak Perlu Terang Cukup Redup Tapi Tak Padam</p>
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Creative Work</h4>
+                                <p class="text-xs text-gray-400 mt-1">No Need to be Bright, Just Dim But Not Extinguished (Tak Perlu Terang Cukup Redup Tapi Tak Padam)</p>
                             </div>
                         </div>
                     </div>
@@ -653,8 +657,8 @@
                                 <img src="sertifikat10.png" alt="Sertifikat 10" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
                             </div>
                             <div class="mt-4">
-                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Karya</h4>
-                                <p class="text-xs text-gray-400 mt-1">Ambigu | Qof | Avicenna | Terbang</p>
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Creative Work</h4>
+                                <p class="text-xs text-gray-400 mt-1">Ambiguity | Qof | Avicenna | Fly (Ambigu | Qof | Avicenna | Terbang)</p>
                             </div>
                         </div>
                     </div>
@@ -662,24 +666,24 @@
             </div>
         </section>
 
-        <!-- Zhedvanois Store Section (UPDATED) -->
+        <!-- Zhedvanois Store Section -->
         <section id="store" class="mb-20 md:mb-32">
             <h2 class="section-title" data-aos="fade-up">Zhedvanois Store</h2>
             <div class="mb-8 text-center" data-aos="fade-up">
-                <p class="text-gray-400 mt-1 max-w-xl mx-auto">Temukan berbagai produk digital premium dan produk kreatif terbaik pilihan Anda.</p>
+                <p class="text-gray-400 mt-1 max-w-xl mx-auto">Discover a wide range of premium digital and creative products selected just for you.</p>
             </div>
 
             <!-- Product Grid -->
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6" id="product-grid" data-aos="fade-up">
-                <!-- Produk akan dirender di sini oleh JavaScript -->
+                <!-- Products will be rendered here by JavaScript -->
             </div>
         </section>
 
-        <!-- Kontak -->
+        <!-- Contact Section -->
         <section id="kontak" class="mb-20">
-            <h2 class="section-title" data-aos="fade-up">Hubungi Saya</h2>
+            <h2 class="section-title" data-aos="fade-up">Contact Me</h2>
             <div class="max-w-4xl mx-auto glass-card p-8 md:p-12 text-center" data-aos="zoom-in">
-                <p class="text-xl text-gray-300 mb-8">Tertarik untuk berkolaborasi atau memiliki pertanyaan? Jangan ragu untuk menghubungi saya.</p>
+                <p class="text-xl text-gray-300 mb-8">Interested in collaborating or have any questions? Feel free to reach out to me.</p>
                 
                 <div class="flex flex-wrap justify-center items-center gap-6 mb-10">
                     <!-- Website -->
@@ -721,13 +725,13 @@
                 
                 <div class="flex flex-col md:flex-row gap-4 justify-center">
                     <a href="https://wa.me/62811190396" target="_blank" class="bg-white text-black font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition-colors shadow-lg">
-                        Chat WhatsApp
+                        Chat on WhatsApp
                     </a>
                     <a href="https://kompleksuara.com" target="_blank" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-colors shadow-lg">
-                        Kunjungi Website
+                        Visit Website
                     </a>
                     <a href="https://zhedvanois.toko.vip" target="_blank" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-colors shadow-lg">
-                        Layanan TopUp
+                        Top-Up Service
                     </a>
                 </div>
             </div>
@@ -735,7 +739,7 @@
 
     </main>
 
-    <!-- Modal Keranjang Belanja (UPDATED PREMIUM DARK) -->
+    <!-- Shopping Cart Modal -->
     <div class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-0" id="cart-modal">
         <!-- Backdrop -->
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm modal-backdrop" onclick="closeCartModal()"></div>
@@ -747,7 +751,7 @@
             <div class="px-6 py-4 border-b border-white/10 flex justify-between items-center bg-white/5">
                 <div class="flex items-center gap-2">
                     <i class="text-blue-400 w-5 h-5" data-lucide="shopping-cart"></i>
-                    <h3 class="text-lg font-bold text-white">Keranjang Belanja</h3>
+                    <h3 class="text-lg font-bold text-white">Shopping Cart</h3>
                 </div>
                 <button class="text-gray-400 hover:text-white p-1 rounded-full hover:bg-white/10 transition" onclick="closeCartModal()">
                     <i class="w-5 h-5" data-lucide="x"></i>
@@ -756,28 +760,28 @@
 
             <!-- Modal Body -->
             <div class="px-6 py-4 overflow-y-auto flex-grow" id="cart-items-container">
-                <!-- Item Keranjang dinamis di sini -->
+                <!-- Dynamic cart items here -->
             </div>
 
             <!-- Modal Footer -->
             <div class="px-6 py-4 border-t border-white/10 bg-zinc-900/50">
                 <div class="flex justify-between items-center mb-4">
-                    <span class="text-sm font-medium text-gray-400">Total Belanja:</span>
+                    <span class="text-sm font-medium text-gray-400">Total Order:</span>
                     <span class="text-xl font-extrabold text-blue-400" id="cart-total-price">Rp.0</span>
                 </div>
                 <div class="flex gap-3">
                     <button onclick="closeCartModal()" class="flex-1 border border-white/10 hover:bg-white/5 text-gray-300 font-semibold py-3 rounded-xl transition text-sm">
-                        Tambah Barang
+                        Add Items
                     </button>
                     <button onclick="proceedToCheckout()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-blue-500/20 transition text-sm flex items-center justify-center gap-2">
-                        Lanjut ke CO <i class="w-4 h-4" data-lucide="arrow-right"></i>
+                        Proceed to Checkout <i class="w-4 h-4" data-lucide="arrow-right"></i>
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Pembayaran / Checkout (UPDATED PREMIUM DARK) -->
+    <!-- Checkout / Payment Modal -->
     <div class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-0" id="checkout-modal">
         <!-- Backdrop -->
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm modal-backdrop" onclick="closeModal()"></div>
@@ -787,7 +791,7 @@
             
             <!-- Modal Header -->
             <div class="px-6 py-4 border-b border-white/10 flex justify-between items-center bg-white/5">
-                <h3 class="text-lg font-bold text-white">Selesaikan Pembayaran</h3>
+                <h3 class="text-lg font-bold text-white">Complete Payment</h3>
                 <button class="text-gray-400 hover:text-white p-1 rounded-full hover:bg-white/10 transition" onclick="closeModal()">
                     <i class="w-5 h-5" data-lucide="x"></i>
                 </button>
@@ -795,41 +799,41 @@
 
             <!-- Modal Body -->
             <div class="px-6 py-4 overflow-y-auto flex-grow text-gray-300">
-                <!-- Ringkasan Produk dalam Keranjang -->
+                <!-- Order Summary -->
                 <div class="bg-blue-950/30 rounded-xl p-4 mb-5 border border-blue-500/20">
-                    <p class="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-2">Ringkasan Pesanan</p>
+                    <p class="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-2">Order Summary</p>
                     <div class="max-h-40 overflow-y-auto space-y-3 pr-1" id="checkout-items-list">
-                        <!-- List barang dinamis -->
+                        <!-- Dynamic item list -->
                     </div>
                     <div class="mt-3 pt-3 border-t border-blue-500/20 flex justify-between items-center">
-                        <span class="text-sm font-semibold text-gray-300">Total Pembayaran:</span>
+                        <span class="text-sm font-semibold text-gray-300">Total Payment:</span>
                         <span class="text-lg font-bold text-blue-400" id="checkout-total-price">Rp.0</span>
                     </div>
                 </div>
 
                 <form class="space-y-4" id="checkout-form" onsubmit="event.preventDefault();">
                     <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1" for="buyer-name">Nama Lengkap <span class="text-red-500">*</span></label>
-                        <input class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm" id="buyer-name" placeholder="Masukkan nama Anda" required type="text" />
+                        <label class="block text-sm font-medium text-gray-300 mb-1" for="buyer-name">Full Name <span class="text-red-500">*</span></label>
+                        <input class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm" id="buyer-name" placeholder="Enter your full name" required type="text" />
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1" for="buyer-phone">Nomor WhatsApp <span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium text-gray-300 mb-1" for="buyer-phone">WhatsApp Number <span class="text-red-500">*</span></label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 text-sm">+62</span>
                             <input class="w-full bg-white/5 border border-white/10 pl-12 pr-4 py-2 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm" id="buyer-phone" placeholder="8123456789" required type="tel" />
                         </div>
-                        <p class="text-xs text-gray-500 mt-1">Gunakan angka setelah 0 (contoh: 812...)</p>
+                        <p class="text-xs text-gray-500 mt-1">Use numbers after 0 (example: 812...)</p>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1" for="buyer-address">Alamat Pengiriman <span class="text-red-500">*</span></label>
-                        <textarea class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm resize-none" id="buyer-address" placeholder="Masukkan alamat lengkap (Jalan, RT/RW, Kelurahan, Kecamatan, Kota)" required rows="3"></textarea>
+                        <label class="block text-sm font-medium text-gray-300 mb-1" for="buyer-address">Shipping Address <span class="text-red-500">*</span></label>
+                        <textarea class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm resize-none" id="buyer-address" placeholder="Enter full address (Street, Block/Unit, District, City, Postcode)" required rows="3"></textarea>
                     </div>
 
-                    <!-- Pilihan Metode Pembayaran -->
+                    <!-- Payment Method Options -->
                     <div class="pt-2">
-                        <label class="block text-sm font-medium text-gray-300 mb-2">Metode Pembayaran <span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Payment Method <span class="text-red-500">*</span></label>
                         <div class="grid grid-cols-2 gap-3 mb-3">
                             <div onclick="selectPaymentMethod('qris')" id="pay-qris-card" class="border-2 border-white/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/50 hover:bg-white/5 transition relative">
                                 <input type="radio" name="payment_method" value="qris" id="pay-qris" class="sr-only" required>
@@ -849,9 +853,9 @@
                             </div>
                         </div>
 
-                        <!-- Tampilan Informasi Pembayaran Terpilih -->
+                        <!-- Selected Payment Details Box -->
                         <div id="payment-details" class="p-4 bg-white/5 border border-white/10 rounded-xl hidden transition-all duration-300">
-                            <!-- Diisi oleh JS -->
+                            <!-- Populated by JS -->
                         </div>
                     </div>
                 </form>
@@ -861,22 +865,22 @@
             <div class="px-6 py-4 border-t border-white/10 bg-zinc-900/50">
                 <button class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-green-900/20 transition flex items-center justify-center gap-2 focus:outline-none" onclick="submitOrder()" type="button">
                     <i class="w-5 h-5" data-lucide="message-circle"></i>
-                    Beli via WhatsApp
+                    Buy via WhatsApp
                 </button>
                 <p class="text-center text-[11px] text-gray-500 mt-3">
-                    <i class="w-3 h-3 inline" data-lucide="shield-check"></i> Data Anda aman dan langsung terkirim ke penjual.
+                    <i class="w-3 h-3 inline" data-lucide="shield-check"></i> Your data is secure and sent directly to the seller.
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- Lightbox Modal untuk Preview Gambar Besar -->
+    <!-- Lightbox Modal for Large Image Preview -->
     <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-4 transition-all duration-300 opacity-0" onclick="closeLightbox()">
-        <button class="absolute top-6 right-6 text-white hover:text-red-500 transition-colors bg-white/10 p-2.5 rounded-full" onclick="closeLightbox()" title="Tutup">
+        <button class="absolute top-6 right-6 text-white hover:text-red-500 transition-colors bg-white/10 p-2.5 rounded-full" onclick="closeLightbox()" title="Close">
             <i data-feather="x" class="w-8 h-8"></i>
         </button>
         <div class="max-w-5xl max-h-[85vh] flex items-center justify-center" onclick="event.stopPropagation()">
-            <img id="lightbox-img" src="" alt="Perbesar Sertifikat" class="max-w-full max-h-[80vh] rounded-lg shadow-2xl object-contain">
+            <img id="lightbox-img" src="" alt="Enlarge Certificate" class="max-w-full max-h-[80vh] rounded-lg shadow-2xl object-contain">
         </div>
     </div>
 
@@ -1020,94 +1024,94 @@
             }
         });
 
-        // --- SISTEM E-KATALOG ZHEDVANOIS STORE (JASCRIPT LOGIC) ---
+        // --- ZHEDVANOIS STORE E-CATALOG SYSTEM ---
 
-        // Data Produk Asli
+        // Original Products Data with Translated Titles
         const products = [
             {
                 id: 1,
                 image: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7jdOSxS902R0P7PWycFb0khgJ0d2WC6-As_XkC2sWODv0rBp9ncaPDjEYejlthwoAtly6Ge489oJqLIjUf-33hMXk4nSHlA3VYBhLUAZK1l2bKP91pK7sHfLr6fLymbg4rYQSpAwOYpS9lJFKywqXeJ-8aQFjqePH9JKZWookOdrOylF7FpKbFCe3AmB8/s1024/IMG_0255.png',
-                name: 'BUKU TAK PERLU TERANG CUKUP REDUP TAPI TAK PADAM',
+                name: 'BOOK: TAK PERLU TERANG CUKUP REDUP TAPI TAK PADAM',
                 price: 'Rp.85.000',
                 sold: 1017
             },
             {
                 id: 2,
                 image: 'https://blogger.googleusercontent.com/img/a/AVvXsEibRWdEOk6Ssi-qKy2AE1ptCvaXFiq_S2hdJEmzWBVfzPJUC21LiarHEyvvPl3G1jJuP7reX56NjcNLbZAqXQrxnmLWQ2wlbli0jXJAZvnJYm49DOihzZw4mn7G8Oi6wOys74EwZfJojyhIMzjIEJi4Pf47diFWNhZkxbFF3FsEJoHljyPnib98upgePC8f',
-                name: 'BUKU KETIKA AKU TERBANG TINGGI SETINGGI ANGKASA',
+                name: 'BOOK: KETIKA AKU TERBANG TINGGI SETINGGI ANGKASA',
                 price: 'Rp.75.000',
                 sold: 3641
             },
             {
                 id: 3,
                 image: 'https://blogger.googleusercontent.com/img/a/AVvXsEhd6QHOYfR6qpQ7LnD4ZHgOxqcYq7ekUTcj3TNVYtlmq493hUto9Z5atsKkGOc72tHsBthc-T3Ja2fbhujnJIlzLKPAqbppYwypRmNX8RBD7s3_v5nVJRaDKolRiMQPhmTfItib_aXtaU423w4KnOpzLDz8-5lk02BYGoQToVvvke5ipeuKbvg99s4KIbFS',
-                name: 'BUKU QOF',
+                name: 'BOOK: QOF',
                 price: 'Rp.80.000',
                 sold: 6001
             },
             {
                 id: 4,
                 image: 'https://blogger.googleusercontent.com/img/a/AVvXsEinVUk1B6BcqtWIBymrnLdYt3FfrlOne6T8Q64HucEzkKkKN2WrRCxBZWzRvRkDInW845KlxcXlFITXacBqSPB5kzKzSFb3iCtIYfeHgGePxLKex7efEDuwOBAXgDy2EW893llO_yYHz_xynTffawqmz4UgLwPrWf70dylZ-cT3VdZvBdtQZ8Wqq1oqtpER',
-                name: 'BUKU AVICENNA',
+                name: 'BOOK: AVICENNA',
                 price: 'Rp.80.500',
                 sold: 4893
             },
             {
                 id: 5,
                 image: 'https://blogger.googleusercontent.com/img/a/AVvXsEiHiNXe3PSSrlUO1HVjJFhLOReuLpNE_pa4xk6dpQA0ckNhAZF9MqO-uqsRKVqJaiMbnRvs41Y-KOBX2yOJrg_YNbrt4LKX32NWrnCU1qcGSW1I20qTo4QzB82RtUluqh1ybjp0kTxEZISInA_Tkp0lkgytLwHx_tgiHCvVkdJSWpxcoZKY78r7XIjIFyl3',
-                name: 'BUKU AMBIGU',
+                name: 'BOOK: AMBIGU',
                 price: 'Rp.99.500',
                 sold: 1151
             },
             {
                 id: 6,
                 image: 'https://blogger.googleusercontent.com/img/a/AVvXsEgOc-UgTewhgCjhOCorQYy3OnxJ-ZMu51X6xHHSbG6kqQakvb6iw0d2yvoH6-uJozYLo6GTZaKeCJriOq-i3p53xdwIrV8vpLDeuOayUMWuH2tIrO86gZHzyMMVCLeT26zjv4y-QNid2PG6Dv4HZ_K9srn5F4AO9xIoEOpzl8bDonCWJd9MeKlA0iG_IvTX',
-                name: 'BUKU LO GAK SENDIRIAN SUMPAH !!!',
+                name: "BOOK: LO GAK SENDIRIAN SUMPAH !!!",
                 price: 'Rp.89.999',
                 sold: 3641
             },
             {
                 id: 7,
                 image: 'https://blogger.googleusercontent.com/img/a/AVvXsEh2dJv4DnXT0jjH72lP8_bm9OeLPAVZrRL_2ESpWHAVeaY01nCzakyVgur_2AWIzeYQd0BDncmonMi1RKiMn5YCdYzdIry6cfMo0jlB3-7p_B6k2DxUT7kRn8hf3CXXbytlB-oBLWKvymqtgKo4XgN3vPYQpMk5gBQEx0tp8XxwDeQCkNQ6l6yyph6PA7UK',
-                name: 'REXER PARFUME PAKET BUNDLING',
+                name: 'REXER PERFUME BUNDLE PACK',
                 price: 'Rp.99.999',
                 sold: 12832
             },
             {
                 id: 8,
                 image: 'https://blogger.googleusercontent.com/img/a/AVvXsEhEVGQDEMAxc04CaPMpx_nbEtw-znupBD0EZ6mhIVp1466B3EjNVDAbnB1kZygQmB9lRNRTG2OVP3t8OIIoSezQpo0oqyX3y9wuKZlkt_N2un5f9RWM7let9El0e18dxYBAYyG-gFtvmY_59tyiqnP9x3UO67I5TaeeRw8j-vI_oThQYmg5A9r7D-v0Ix9G',
-                name: 'REXER PARFUME MOON LIGHY X',
+                name: 'REXER PERFUME MOON LIGHT X',
                 price: 'Rp.39.000',
                 sold: 17900
             },
             {
                 id: 9,
                 image: 'https://blogger.googleusercontent.com/img/a/AVvXsEiWWmuUSKIV1QlzMawI110g4fzknpFNRNmjz3MqfBrTvKOS531s3NpwBoKCVqADXL6xIYvFgGd3_4yC3zxvpep5qmhnQ7YAFnJPcDbFMziR4QcO0cC7MnVsaF5wtTF6Eyzkfxo0t9RvnKmxZK8gfNpxmkXfNCmYCjK_pPKyPykq3kXI0OvNjw9F3NDOv7Ly',
-                name: 'REXER PARFUME LOOK MAN',
+                name: 'REXER PERFUME LOOK MAN',
                 price: 'Rp.39.000',
                 sold: 21336
             },
             {
                 id: 10,
                 image: 'https://blogger.googleusercontent.com/img/a/AVvXsEiTASGw-ZV-0lcyW0kc_FMAxF9NiX8r2rx0vOnvXn7BDz7zG9zSo1iZu83guRxqQgxVSxJqJtuMtUX5u1e1447q4z8aBe-Sb0qE7rtZrTsHhBbIp8PN11NyYsu690y1hxioCqlsogR3K7_pSYClnCoVvAblrKXeLLf7_lMgWjVR-Ig1Ey_UmQccM4lPYrz-',
-                name: 'REXER PARFUME HYPARE X',
+                name: 'REXER PERFUME HYPER X',
                 price: 'Rp.39.000',
                 sold: 20251
             }
         ];
 
-        // State Utama Keranjang Belanja
+        // Main Shopping Cart State
         let cart = [];
         let selectedPayment = '';
 
-        // Memuat keranjang dari localStorage jika ada
+        // Load cart from localStorage if exists
         try {
             const savedCart = localStorage.getItem('tokopedia_cart_data');
             if (savedCart) {
                 cart = JSON.parse(savedCart);
             }
         } catch (e) {
-            console.error("Gagal memuat data keranjang", e);
+            console.error("Failed to load cart data", e);
         }
 
         function formatNumber(num) {
@@ -1122,7 +1126,7 @@
             return "Rp." + formatNumber(num);
         }
 
-        // Render Product Grid ke Dark Glass-Card
+        // Render Product Grid inside Dark Glass-Card elements
         const grid = document.getElementById('product-grid');
         
         products.forEach(product => {
@@ -1131,9 +1135,9 @@
             
             card.innerHTML = `
                 <div class="product-image-container relative">
-                    <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='https://placehold.co/400?text=Gambar+Tidak+Tersedia'">
+                    <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='https://placehold.co/400?text=Image+Unavailable'">
                     <div class="absolute top-2 right-2 bg-black/80 backdrop-blur text-[11px] font-semibold px-2 py-1 rounded-full shadow-sm flex items-center gap-1 text-gray-300">
-                        <i data-lucide="star" class="w-3 h-3 text-yellow-400 fill-yellow-400"></i> ${formatNumber(product.sold)} Terjual
+                        <i data-lucide="star" class="w-3 h-3 text-yellow-400 fill-yellow-400"></i> ${formatNumber(product.sold)} Sold
                     </div>
                 </div>
                 <div class="p-4 flex flex-col flex-grow">
@@ -1141,13 +1145,13 @@
                     <div class="mt-auto">
                         <p class="text-base font-extrabold text-blue-400 mb-3">${product.price}</p>
                         <div class="flex gap-2">
-                            <!-- Tombol Tambah ke Keranjang -->
-                            <button onclick="addToCart(${product.id})" class="flex-1 bg-blue-500/10 text-blue-400 hover:bg-blue-600 hover:text-white font-medium py-2 rounded-lg transition-colors flex items-center justify-center gap-1 text-[11px] border border-blue-500/30 hover:border-blue-600" title="Tambahkan ke Keranjang">
-                                <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i> +Keranjang
+                            <!-- Add to Cart Button -->
+                            <button onclick="addToCart(${product.id})" class="flex-1 bg-blue-500/10 text-blue-400 hover:bg-blue-600 hover:text-white font-medium py-2 rounded-lg transition-colors flex items-center justify-center gap-1 text-[11px] border border-blue-500/30 hover:border-blue-600" title="Add to Cart">
+                                <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i> +Cart
                             </button>
-                            <!-- Tombol Langsung Beli -->
+                            <!-- Buy Now Button -->
                             <button onclick="buyNow(${product.id})" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition-colors flex items-center justify-center gap-1 text-[11px] shadow-sm shadow-blue-500/20">
-                                Beli
+                                Buy
                             </button>
                         </div>
                     </div>
@@ -1156,11 +1160,11 @@
             grid.appendChild(card);
         });
         
-        // Render ikon lucide awal & update badge
+        // Initial render of Lucide icons & update badge
         lucide.createIcons();
         updateCartBadge();
 
-        // --- SISTEM KERANJANG (CART SYSTEM) ---
+        // --- SHOPPING CART SYSTEM (CART LOGIC) ---
 
         function updateCartBadge() {
             const badge = document.getElementById('cart-badge');
@@ -1177,7 +1181,7 @@
             try {
                 localStorage.setItem('tokopedia_cart_data', JSON.stringify(cart));
             } catch (e) {
-                console.error("Gagal menyimpan data keranjang", e);
+                console.error("Failed to save cart data", e);
             }
             updateCartBadge();
         }
@@ -1201,7 +1205,7 @@
             
             saveCart();
             if (showConfirm) {
-                showToast(`"${product.name}" berhasil ditambahkan ke keranjang!`);
+                showToast(`"${product.name}" successfully added to cart!`);
             }
         }
 
@@ -1246,8 +1250,8 @@
                 container.innerHTML = `
                     <div class="flex flex-col items-center justify-center py-12 text-center">
                         <i class="w-16 h-16 text-gray-600 mb-4" data-lucide="shopping-cart"></i>
-                        <p class="text-gray-400 font-medium">Keranjang Anda Kosong</p>
-                        <p class="text-xs text-gray-500 mt-1">Silakan pilih beberapa produk di etalase kami.</p>
+                        <p class="text-gray-400 font-medium">Your Cart is Empty</p>
+                        <p class="text-xs text-gray-500 mt-1">Please select some products from our store.</p>
                     </div>
                 `;
                 totalPriceEl.textContent = 'Rp.0';
@@ -1299,6 +1303,7 @@
             document.body.style.overflow = 'hidden';
         }
 
+        // Close Shopping Cart Modal
         function closeCartModal() {
             const cartModal = document.getElementById('cart-modal');
             cartModal.classList.add('hidden');
@@ -1306,20 +1311,20 @@
             document.body.style.overflow = 'auto';
         }
 
-        // --- SISTEM CHECKOUT & METODE PEMBAYARAN ---
+        // --- CHECKOUT SYSTEM & PAYMENT METHOD ---
 
         const modal = document.getElementById('checkout-modal');
         const form = document.getElementById('checkout-form');
 
         function proceedToCheckout() {
             if (cart.length === 0) {
-                showToast("Keranjang belanja Anda masih kosong!", "error");
+                showToast("Your shopping cart is empty!", "error");
                 return;
             }
 
             closeCartModal();
 
-            // Rancang Ringkasan Pemesanan Dinamis
+            // Set up Dynamic Order Summary
             const checkoutItemsList = document.getElementById('checkout-items-list');
             const checkoutTotalPrice = document.getElementById('checkout-total-price');
 
@@ -1341,7 +1346,7 @@
             checkoutItemsList.innerHTML = listHtml;
             checkoutTotalPrice.textContent = formatRupiah(getCartTotal());
 
-            // Reset Form Pilihan Pembayaran
+            // Reset Payment Choice Form
             selectedPayment = '';
             document.getElementById('pay-qris').checked = false;
             document.getElementById('pay-bri').checked = false;
@@ -1354,7 +1359,7 @@
             paymentDetails.classList.add('hidden');
             paymentDetails.innerHTML = '';
 
-            // Tampilkan Modal Checkout
+            // Show Checkout Modal
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             document.body.style.overflow = 'hidden';
@@ -1369,7 +1374,7 @@
             form.reset();
         }
 
-        // Handle Pemilihan Metode Pembayaran
+        // Handle Payment Selection Method
         function selectPaymentMethod(method) {
             selectedPayment = method;
 
@@ -1392,13 +1397,13 @@
                 detailsBox.classList.remove('hidden');
                 detailsBox.innerHTML = `
                     <div class="text-center space-y-2">
-                        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Pindai QRIS Untuk Membayar</p>
+                        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Scan QRIS to Pay</p>
                         <p class="text-xs font-extrabold text-blue-400">PT ZHEDVANOIS CREATIVE AGENCY</p>
                         <div class="w-40 h-40 mx-auto border border-white/20 rounded-lg overflow-hidden bg-white p-1 shadow-sm">
                             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnQDck-3LLV0c9g_q0ZwI9YIwzGqUqW5eX8Vgtb7r8wWqoWVo6cxbnGGw8LlBDp07iFuo_Ldw6XNDdOvZLwnU9_Wc8ZvKgy6pFt2m-pyo04e6wiZsW61_Z_F8QjY_TWu3VHLfy0nSgnDRkW1rYLRR5BABlbwtqnrGN88r2fTUMU-8NYyH3Eb3ZfuAffplL/s572/376e4202-8cfe-479d-967b-35fb7cef656f.jpeg" alt="QRIS PT ZHEDVANOIS" class="w-full h-full object-contain">
                         </div>
                         <div class="pt-1">
-                            <p class="text-[10px] text-gray-500">Nominal yang harus dibayarkan:</p>
+                            <p class="text-[10px] text-gray-500">Total amount to pay:</p>
                             <p class="text-sm font-extrabold text-red-400">${formatRupiah(totalNominal)}</p>
                         </div>
                     </div>
@@ -1412,18 +1417,18 @@
                 detailsBox.classList.remove('hidden');
                 detailsBox.innerHTML = `
                     <div class="space-y-3 text-xs">
-                        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider text-center">Transfer Bank BRI</p>
+                        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider text-center">BRI Bank Transfer</p>
                         <div class="bg-white/5 p-3 rounded-lg border border-white/10 space-y-1">
-                            <p class="text-[9px] text-gray-400 font-medium">Nomor Rekening</p>
+                            <p class="text-[9px] text-gray-400 font-medium">Account Number</p>
                             <div class="flex items-center justify-between">
                                 <span class="font-bold text-sm text-white tracking-wider">646801000142569</span>
-                                <button onclick="copyToClipboard('64680100012569')" class="text-blue-400 hover:text-blue-300 text-[10px] font-bold flex items-center gap-1 bg-blue-500/10 border border-blue-500/20 px-2 py-1 rounded focus:outline-none">
-                                    <i data-lucide="copy" class="w-3 h-3"></i> Salin
+                                <button onclick="copyToClipboard('646801000142569')" class="text-blue-400 hover:text-blue-300 text-[10px] font-bold flex items-center gap-1 bg-blue-500/10 border border-blue-500/20 px-2 py-1 rounded focus:outline-none">
+                                    <i data-lucide="copy" class="w-3 h-3"></i> Copy
                                 </button>
                             </div>
                         </div>
                         <div class="bg-white/5 p-3 rounded-lg border border-white/10 space-y-1">
-                            <p class="text-[9px] text-gray-400 font-medium">Nama Bank &amp; Penerima</p>
+                            <p class="text-[9px] text-gray-400 font-medium">Bank &amp; Beneficiary Name</p>
                             <p class="font-bold text-white text-[11px]">BRI - PT ZHEDVANOIS CREATIVE AGENCY</p>
                         </div>
                     </div>
@@ -1432,25 +1437,25 @@
             lucide.createIcons();
         }
 
-        // Fungsi Mengirim Pesan WhatsApp & Validasi Form
+        // Send Order via WhatsApp & Validate Form Inputs
         function submitOrder() {
             const name = document.getElementById('buyer-name').value.trim();
             const phone = document.getElementById('buyer-phone').value.trim();
             const address = document.getElementById('buyer-address').value.trim();
             
             if (!name || !phone || !address) {
-                showToast("Mohon lengkapi semua data pengiriman terlebih dahulu.", "error");
+                showToast("Please complete all shipping details first.", "error");
                 return;
             }
 
             if (!selectedPayment) {
-                showToast("Mohon pilih metode pembayaran Anda.", "error");
+                showToast("Please select your payment method.", "error");
                 return;
             }
 
             const targetPhone = "6285190002348";
 
-            // Format isi rincian barang untuk chat WhatsApp
+            // Format cart items details for WhatsApp body
             let itemsMessage = '';
             cart.forEach((item, idx) => {
                 const subTotal = parsePrice(item.price) * item.quantity;
@@ -1460,15 +1465,15 @@
             const totalPayable = formatRupiah(getCartTotal());
             const paymentText = selectedPayment === 'qris' 
                 ? 'QRIS (PT ZHEDVANOIS CREATIVE AGENCY)' 
-                : 'Transfer Bank (646801000142569 BRI a.n PT ZHEDVANOIS CREATIVE AGENCY)';
+                : 'Bank Transfer (646801000142569 BRI a.n PT ZHEDVANOIS CREATIVE AGENCY)';
 
-            // Template pesan WhatsApp profesional
-            const message = `Halo, saya ingin memesan barang berikut:\n\n*🛍️ DETAIL PESANAN:*\n${itemsMessage}\n💰 *Total Pembayaran:* ${totalPayable}\n💳 *Metode Pembayaran:* ${paymentText}\n\n*🏠 DATA PENGIRIMAN:*\n👤 Nama Lengkap: ${name}\n📞 No. WhatsApp: +62${phone}\n📍 Alamat Lengkap:\n${address}\n\nMohon informasi ketersediaan barang dan konfirmasi pembayarannya. Terima kasih!`;
+            // WhatsApp Message Template
+            const message = `Hello, I would like to order the following items:\n\n*🛍️ ORDER DETAILS:*\n${itemsMessage}\n💰 *Total Payment:* ${totalPayable}\n💳 *Payment Method:* ${paymentText}\n\n*🏠 SHIPPING DATA:*\n👤 Full Name: ${name}\n📞 WhatsApp No.: +62${phone}\n📍 Full Address:\n${address}\n\nPlease let me know the product availability and payment confirmation. Thank you!`;
 
             const encodedMessage = encodeURIComponent(message);
             const waUrl = `https://wa.me/${targetPhone}?text=${encodedMessage}`;
 
-            // Reset keranjang belanja setelah checkout berhasil diajukan
+            // Reset shopping cart state after successful redirect
             cart = [];
             saveCart();
 
@@ -1476,7 +1481,7 @@
             closeModal();
         }
 
-        // --- SISTEM TOAST & SALIN PAPAN KLIP (CLIPBOARD) ---
+        // --- TOAST NOTIFICATIONS & COPY TO CLIPBOARD ---
 
         function showToast(message, type = 'success') {
             const existingToast = document.querySelector('.toast-notification');
@@ -1511,7 +1516,7 @@
             tempInput.select();
             document.execCommand('copy');
             document.body.removeChild(tempInput);
-            showToast("Nomor rekening berhasil disalin!");
+            showToast("Account number successfully copied!");
         }
     </script>
 </body>
