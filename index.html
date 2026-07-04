@@ -258,6 +258,28 @@
                 <a href="https://sibagi.com/reokurniawan" target="_blank" class="text-red-500 hover:text-red-400 transition-colors" title="Donate">
                     <i data-feather="heart" class="w-6 h-6 fill-current"></i>
                 </a>
+                
+                <!-- Kerja (Work) Dropdown Menu Button -->
+                <div class="relative inline-block text-left">
+                    <button id="kerja-btn" class="text-gray-300 hover:text-blue-400 transition-colors focus:outline-none p-1 flex items-center justify-center" title="Menu Kerja" aria-label="Kerja Menu">
+                        <i data-feather="briefcase" class="w-6 h-6"></i>
+                    </button>
+                    <!-- Dropdown Content -->
+                    <div id="kerja-dropdown" class="origin-top-right absolute right-0 mt-2 w-52 rounded-xl shadow-2xl bg-zinc-950/95 border border-white/10 backdrop-blur-md ring-1 ring-black ring-opacity-5 focus:outline-none hidden z-50">
+                        <div class="py-1.5" role="none">
+                            <button onclick="handleKerjaMenu('belajar_bareng')" class="w-full text-left block px-4 py-3 text-xs md:text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">
+                                BelajarBareng <span class="text-[10px] bg-blue-500/20 text-blue-400 px-1.5 py-0.5 rounded ml-2 font-bold">Key</span>
+                            </button>
+                            <button onclick="handleKerjaMenu('management_surat')" class="w-full text-left block px-4 py-3 text-xs md:text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">
+                                Management Surat <span class="text-[10px] bg-blue-500/20 text-blue-400 px-1.5 py-0.5 rounded ml-2 font-bold">Key</span>
+                            </button>
+                            <button onclick="handleKerjaMenu('profil_pt')" class="w-full text-left block px-4 py-3 text-xs md:text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">
+                                Profil PT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="lg:hidden">
                     <button id="menu-btn" class="text-gray-300 focus:outline-none">
                         <i data-feather="menu" class="w-6 h-6"></i>
@@ -738,6 +760,31 @@
         </section>
 
     </main>
+
+    <!-- Password Verification Modal -->
+    <div class="fixed inset-0 z-[110] hidden items-center justify-center p-4 sm:p-0" id="password-modal">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm modal-backdrop" onclick="closePasswordModal()"></div>
+        
+        <!-- Modal Container -->
+        <div class="bg-zinc-950/95 border border-white/10 rounded-2xl shadow-2xl w-full max-w-sm relative z-10 modal-content overflow-hidden p-6 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2" id="password-title">
+                <i data-lucide="lock" class="text-blue-500 w-5 h-5"></i> Enter Password
+            </h3>
+            <p class="text-xs text-gray-400 mb-4">Fitur ini diproteksi oleh sandi keamanan. Harap masukkan kata sandi akses.</p>
+            
+            <input type="password" id="kerja-password-input" onkeydown="if(event.key === 'Enter') verifyKerjaPassword()" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm mb-5" placeholder="Masukkan Sandi Keamanan">
+            
+            <div class="flex gap-3">
+                <button onclick="closePasswordModal()" class="flex-1 border border-white/10 hover:bg-white/5 text-gray-300 font-semibold py-2.5 rounded-xl transition text-sm">
+                    Batal
+                </button>
+                <button onclick="verifyKerjaPassword()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl shadow-lg shadow-blue-500/20 transition text-sm">
+                    Masuk
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Shopping Cart Modal -->
     <div class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-0" id="cart-modal">
@@ -1517,6 +1564,103 @@
             document.execCommand('copy');
             document.body.removeChild(tempInput);
             showToast("Account number successfully copied!");
+        }
+
+        // --- ZHEDVANOIS PORTFOLIO: KERJA NAVIGATION & PASSWORD VERIFICATION ---
+
+        const kerjaBtn = document.getElementById('kerja-btn');
+        const kerjaDropdown = document.getElementById('kerja-dropdown');
+        let targetKerjaType = '';
+
+        // Toggle Dropdown Menu
+        if (kerjaBtn && kerjaDropdown) {
+            kerjaBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                kerjaDropdown.classList.toggle('hidden');
+            });
+
+            // Close dropdown if clicked outside
+            document.addEventListener('click', (e) => {
+                if (!kerjaDropdown.contains(e.target) && e.target !== kerjaBtn) {
+                    kerjaDropdown.classList.add('hidden');
+                }
+            });
+        }
+
+        // Handle Menu Option Clicks
+        function handleKerjaMenu(type) {
+            // Hide dropdown
+            if (kerjaDropdown) {
+                kerjaDropdown.classList.add('hidden');
+            }
+
+            if (type === 'profil_pt') {
+                // No password needed for PT Profile
+                window.location.href = 'profil_pt.html';
+            } else {
+                // Password verification needed
+                targetKerjaType = type;
+                openPasswordModal(type);
+            }
+        }
+
+        // Open custom password modal
+        function openPasswordModal(type) {
+            const modal = document.getElementById('password-modal');
+            const titleEl = document.getElementById('password-title');
+            const inputEl = document.getElementById('kerja-password-input');
+            
+            if (titleEl) {
+                const displayName = type === 'belajar_bareng' ? 'BelajarBareng' : 'Management Surat';
+                titleEl.innerHTML = `<i data-lucide="lock" class="text-blue-500 w-5 h-5"></i> Access ${displayName}`;
+            }
+            
+            if (inputEl) {
+                inputEl.value = '';
+            }
+
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+                if (inputEl) {
+                    setTimeout(() => inputEl.focus(), 100);
+                }
+            }
+            lucide.createIcons();
+        }
+
+        // Close custom password modal
+        function closePasswordModal() {
+            const modal = document.getElementById('password-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Validate Key Code
+        function verifyKerjaPassword() {
+            const inputEl = document.getElementById('kerja-password-input');
+            const password = inputEl ? inputEl.value.trim() : '';
+            
+            if (password === '234817') {
+                closePasswordModal();
+                showToast("Akses diizinkan! Mengalihkan halaman...", "success");
+                setTimeout(() => {
+                    if (targetKerjaType === 'belajar_bareng') {
+                        window.location.href = 'belajar_bareng.html';
+                    } else if (targetKerjaType === 'management_surat') {
+                        window.location.href = 'management_surat.html';
+                    }
+                }, 1200);
+            } else {
+                showToast("Sandi akses salah! Silakan coba lagi.", "error");
+                if (inputEl) {
+                    inputEl.select();
+                }
+            }
         }
     </script>
 </body>
