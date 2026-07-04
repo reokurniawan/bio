@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repositori Mata Kuliah Hukum</title>
+    <!-- Tailwind CSS untuk styling modern -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter untuk tipografi premium & bersih -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons untuk ikon minimalis -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar untuk kenyamanan visual */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 h-full flex flex-col overflow-hidden antialiased">
+
+    <!-- Top Navigation Header -->
+    <header class="border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-40 flex-none px-6 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+                <div class="flex items-center gap-3">
+                    <span class="p-2 bg-slate-100 text-slate-700 rounded-lg flex items-center justify-center">
+                        <i data-lucide="book-open" class="w-5 h-5"></i>
+                    </span>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-900">Repositori Mata Kuliah</h1>
+                </div>
+                <p class="text-xs text-slate-500 mt-1">Daftar Isi & Workspace Interaktif Pembelajaran Hukum</p>
+            </div>
+            
+            <!-- Quick Statistics and Config Button -->
+            <div class="flex items-center gap-4 flex-wrap">
+                <div class="flex items-center gap-2 bg-slate-55 bg-slate-50 border border-slate-100 rounded-lg px-3 py-1.5 text-xs text-slate-600 font-medium">
+                    <span id="stat-total" class="font-bold text-slate-900">0</span> Mata Kuliah
+                    <span class="text-slate-300">|</span>
+                    <span id="stat-favorites" class="font-bold text-slate-900">0</span> Favorit
+                </div>
+                
+                <button onclick="openConfigModal()" class="flex items-center gap-1.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 hover:text-slate-900 rounded-lg px-3 py-1.5 text-xs font-medium transition-all shadow-sm">
+                    <i data-lucide="settings" class="w-3.5 h-3.5"></i>
+                    Atur Format File
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container Layout (Dual-Pane Workspace) -->
+    <main class="flex-1 flex overflow-hidden relative">
+        
+        <!-- Left Side: Table of Contents & Controls -->
+        <section id="sidebar-pane" class="w-full md:w-5/12 lg:w-4/12 border-r border-slate-100 flex flex-col bg-white h-full transition-all duration-300 ease-in-out z-30">
+            <!-- Filter, Search, and Toolbar -->
+            <div class="p-4 border-b border-slate-100 flex flex-col gap-3 flex-none bg-white">
+                <!-- Search Input Box -->
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                    </span>
+                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="Cari mata kuliah..." class="w-full pl-9 pr-8 py-2 bg-slate-50 hover:bg-slate-100/55 focus:bg-white border border-slate-200 focus:border-slate-400 focus:ring-1 focus:ring-slate-400 rounded-lg text-sm text-slate-800 placeholder-slate-400 outline-none transition-all">
+                    <button id="clear-search" onclick="clearSearch()" class="hidden absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-600">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Category and View Tabs -->
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center justify-between text-[11px] font-semibold tracking-wider text-slate-400 uppercase">
+                        <span>Filter Rumpun</span>
+                        <button onclick="resetFilters()" class="text-slate-500 hover:text-slate-800 transition-colors lowercase font-normal">Reset</button>
+                    </div>
+                    
+                    <!-- Horizontal scrollable filter pills -->
+                    <div class="flex gap-1.5 overflow-x-auto pb-1.5 -mx-1 px-1" id="category-container">
+                        <!-- Dynamic categories will be generated here -->
+                    </div>
+                </div>
+
+                <!-- Bookmark Mode Toggle -->
+                <div class="flex items-center justify-between border-t border-slate-100 pt-2.5">
+                    <span class="text-xs text-slate-500 flex items-center gap-1.5">
+                        <i data-lucide="stars" class="w-3.5 h-3.5 text-amber-500"></i>
+                        Tampilkan Favorit Saja
+                    </span>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="favorite-toggle" onchange="toggleFavoritesFilter()" class="sr-only peer">
+                        <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-slate-800"></div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- List of Course Cards -->
+            <div id="course-list" class="flex-1 overflow-y-auto divide-y divide-slate-100">
+                <!-- Course rows will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Right Side: Interactive Preview Frame (Hidden on Mobile by default unless active) -->
+        <section id="preview-pane" class="hidden md:flex flex-col flex-1 bg-slate-50 h-full relative z-20">
+            <!-- Frame Top Bar -->
+            <div id="preview-header" class="bg-white border-b border-slate-100 px-6 py-3 flex items-center justify-between flex-none">
+                <div class="flex items-center gap-3">
+                    <button onclick="closePreview()" class="md:hidden p-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    </button>
+                    <div>
+                        <span id="preview-badge" class="inline-block px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-[10px] font-semibold tracking-wider uppercase">Kategori</span>
+                        <h2 id="preview-title" class="text-sm font-semibold text-slate-900 mt-0.5">Nama Mata Kuliah</h2>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <!-- File Path Information Info -->
+                    <span id="preview-path" class="text-xs font-mono text-slate-400 bg-slate-50 px-2 py-1 rounded border border-slate-100 select-all hidden sm:inline-block">/materi/file.html</span>
+                    
+                    <!-- Direct Open Link -->
+                    <a id="preview-direct-link" href="#" target="_blank" class="flex items-center gap-1.5 bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700 rounded-lg px-3 py-1.5 text-xs font-medium transition-all">
+                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        Buka di Tab Baru
+                    </a>
+                </div>
+            </div>
+
+            <!-- Frame Contents/Iframe -->
+            <div class="flex-1 relative bg-slate-100">
+                <iframe id="preview-iframe" class="w-full h-full border-0 hidden" src="" title="Content Preview"></iframe>
+                
+                <!-- Zero State Placeholder -->
+                <div id="preview-placeholder" class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-slate-50">
+                    <div class="w-16 h-16 bg-white border border-slate-100 rounded-2xl flex items-center justify-center shadow-sm text-slate-400 mb-4">
+                        <i data-lucide="book" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-sm font-medium text-slate-900">Belum ada materi yang dipilih</h3>
+                    <p class="text-xs text-slate-500 mt-1 max-w-sm">Pilih mata kuliah dari daftar di sebelah kiri untuk melihat materi atau membuka file HTML bersangkutan.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Settings Modal -->
+    <div id="config-modal" class="hidden fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Background Overlay -->
+            <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" aria-hidden="true" onclick="closeConfigModal()"></div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!-- Modal Panel -->
+            <div class="inline-block align-bottom bg-white rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full border border-slate-100">
+                <div class="bg-white px-6 pt-6 pb-4">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-md font-semibold text-slate-900 flex items-center gap-2">
+                            <i data-lucide="sliders" class="w-4 h-4 text-slate-700"></i>
+                            Pengaturan Format File
+                        </h3>
+                        <button onclick="closeConfigModal()" class="text-slate-400 hover:text-slate-600">
+                            <i data-lucide="x" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+                        Sesuaikan bagaimana halaman ini mencari file HTML mata kuliah Anda. Tentukan format path dan nama file agar sesuai dengan nama file fisik Anda di dalam penyimpanan/folder.
+                    </p>
+
+                    <!-- Config Form -->
+                    <div class="space-y-4">
+                        <!-- Folder Location Input -->
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Lokasi Folder (Sub-direktori)</label>
+                            <input type="text" id="cfg-folder" placeholder="Misal: materi/ (biarkan kosong jika satu folder)" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-xs text-slate-800 outline-none focus:border-slate-400">
+                        </div>
+
+                        <!-- Spacing Style -->
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Gaya Karakter Spasi</label>
+                            <select id="cfg-space-rule" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-xs bg-white text-slate-800 outline-none focus:border-slate-400">
+                                <option value="dash">Ubah Spasi menjadi Tanda Hubung (antropologi-hukum.html)</option>
+                                <option value="underscore">Ubah Spasi menjadi Garis Bawah (antropologi_hukum.html)</option>
+                                <option value="camel">Gaya CamelCase (antropologiHukum.html)</option>
+                                <option value="none">Sesuai Nama Asli dengan Spasi (antropologi hukum.html)</option>
+                            </select>
+                        </div>
+
+                        <!-- Letter Case Style -->
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Gaya Huruf</label>
+                            <select id="cfg-case-rule" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-xs bg-white text-slate-800 outline-none focus:border-slate-400">
+                                <option value="lower">Huruf Kecil Semua (antropologi...)</option>
+                                <option value="upper">Huruf Besar Semua (ANTROPOLOGI...)</option>
+                                <option value="original">Sesuai Nama Asli (Antropologi...)</option>
+                            </select>
+                        </div>
+
+                        <!-- Live File Preview Example -->
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-100">
+                            <span class="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">Contoh Nama File yang Dihasilkan:</span>
+                            <code id="cfg-preview-example" class="text-xs font-mono font-medium text-slate-700">materi/antropologi-hukum.html</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 px-6 py-4 flex items-center justify-between gap-3 border-t border-slate-100">
+                    <button onclick="restoreDefaultConfig()" class="text-xs text-slate-500 hover:text-slate-800 transition-colors">Default</button>
+                    <div class="flex gap-2">
+                        <button onclick="closeConfigModal()" class="px-3 py-1.5 border border-slate-200 hover:bg-slate-100 text-slate-600 rounded-lg text-xs font-medium transition-all">
+                            Batal
+                        </button>
+                        <button onclick="saveConfig()" class="px-4 py-1.5 bg-slate-800 hover:bg-slate-950 text-white rounded-lg text-xs font-medium transition-all">
+                            Simpan Perubahan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert / Toast Container -->
+    <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2"></div>
+
+    <script>
+        // Full list of 66 courses based on user's input data
+        const originalCourses = [
+            "Antropologi Hukum",
+            "Penalaran Hukum/LogikaSosiologi",
+            "Productive Skills of Foreign Languages for Specific Purpose",
+            "Pancasila",
+            "Pengantar Ilmu Hukum",
+            "Ilmu Negara",
+            "Bahasa Indonesia",
+            "Pengantar Filsafat",
+            "Keimanan dan Kemanusiaan",
+            "Kewarganegaraan",
+            "Ibadah dan Mu'amalah",
+            "English Proficiency Test Preparation Course",
+            "Hukum Islam",
+            "Hukum Perdata",
+            "Hukum Pidana",
+            "Hukum Tata Negara",
+            "Pengantar Hukum Indonesia",
+            "Hukum Acara Pidana",
+            "Hukum Administrasi Negara",
+            "Hukum Agraria",
+            "Hukum Pidana Islam",
+            "Hukum Perusahaan dan Lembaga Keuangan",
+            "Tindak Pidana Terhadap Harta Benda dan Subyek Hukum",
+            "Hukum Perjanjian dan Jaminan",
+            "Hukum Internasional",
+            "Hukum Acara Perdata",
+            "Hukum Ketenagakerjaan",
+            "Hukum Lingkungan",
+            "Hukum Waris Indonesia",
+            "Ilmu Perundang-Undangan",
+            "Hukum Pemerintahan Daerah",
+            "Hukum dan HAM",
+            "Metode Penemuan Hukum Islam",
+            "Hukum Ekonomi Bisnis",
+            "Hukum Peralihan HAT",
+            "Kemuhammadiyahan",
+            "Filsafat Hukum",
+            "Hukum Adat",
+            "Hukum Perlindungan Konsumen",
+            "Metode Penelitian Hukum",
+            "Kekayaan Intelektual Terapan",
+            "Hukum Pajak dan Perizinan",
+            "Hukum Konstitusi dan Lembaga Negara",
+            "Hukum Pidana Khusus",
+            "Islam dan IPTEKS",
+            "Etika Profesi",
+            "Hukum Acara Tata Usaha Negara",
+            "Hukum Acara Mahkamah Konstitusi",
+            "Managemen Kantor Hukum",
+            "PLKH Praktisi Hukum",
+            "Hukum Pidana Internasional",
+            "Hukum Investasi dan Pasar Modal",
+            "Hukum Tata Negara Islam",
+            "Perbandingan Hukum Tata Negara",
+            "Kriminologi",
+            "Hukum Acara Pidana Khusus",
+            "Hukum Acara Perdata Khusus",
+            "Hukum Ekonomi Islam",
+            "Hukum Perdata Internasional",
+            "Penologi/Victimologi",
+            "Studi Klinis Kepidanaan",
+            "Studi Klinis Keperdataan",
+            "Pembaruan Hukum Pidana",
+            "PLKH Legal Drafting",
+            "PLKH Legal Adviser",
+            "Studi Klinis Ketatanegaraan dan Keadministrasian"
+        ];
+
+        // Categories map
+        const CATEGORIES = {
+            "DASAR": { label: "Dasar & Umum", color: "bg-blue-50 text-blue-700 hover:bg-blue-100 border-blue-100" },
+            "PERDATA": { label: "Perdata & Dagang", color: "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border-emerald-100" },
+            "PIDANA": { label: "Pidana", color: "bg-rose-50 text-rose-700 hover:bg-rose-100 border-rose-100" },
+            "NEGARA": { label: "Tata Negara & Adm", color: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border-indigo-100" },
+            "ACARA": { label: "Acara & Praktik", color: "bg-amber-50 text-amber-700 hover:bg-amber-100 border-amber-100" },
+            "FILSAFAT": { label: "Filsafat & Metodologi", color: "bg-purple-50 text-purple-700 hover:bg-purple-100 border-purple-100" }
+        };
+
+        // Custom auto-classifier for standard legal studies curriculum
+        function classifyCourse(name) {
+            const low = name.toLowerCase();
+            if (low.includes('acara') || low.includes('plkh') || low.includes('klinis') || low.includes('managemen')) return 'ACARA';
+            if (low.includes('pidana') || low.includes('kriminologi') || low.includes('penologi') || low.includes('victimologi')) return 'PIDANA';
+            if (low.includes('perdata') || low.includes('perusahaan') || low.includes('perjanjian') || low.includes('bisnis') || low.includes('konsumen') || low.includes('kekayaan intelektual') || low.includes('investasi') || low.includes('waris')) return 'PERDATA';
+            if (low.includes('negara') || low.includes('pemerintahan') || low.includes('administrasi') || low.includes('agraria') || low.includes('perundang-undangan') || low.includes('konstitusi') || low.includes('pajak')) return 'NEGARA';
+            if (low.includes('filsafat') || low.includes('penelitian') || low.includes('antropologi') || low.includes('logika') || low.includes('penalaran') || low.includes('adat') || low.includes('etika') || low.includes('internasional') || low.includes('lingkungan') || low.includes('penemuan')) return 'FILSAFAT';
+            return 'DASAR';
+        }
+
+        // Configuration State
+        let config = {
+            folder: '',
+            spaceRule: 'dash', // 'dash', 'underscore', 'camel', 'none'
+            caseRule: 'lower'  // 'lower', 'upper', 'original'
+        };
+
+        // App State
+        let courses = [];
+        let favorites = [];
+        let selectedCategory = null;
+        let searchQuery = '';
+        let onlyFavorites = false;
+        let activeCourseId = null;
+
+        // Initialize App on Window Load
+        window.onload = function() {
+            loadConfig();
+            loadFavorites();
+            initializeCourses();
+            renderCategories();
+            renderCourseList();
+            updateStats();
+            
+            // Listen for window live preview adjustments
+            window.addEventListener('resize', handleResponsiveUI);
+            
+            // Generate icons
+            lucide.createIcons();
+            
+            // Attach settings modal example live updates
+            attachModalLiveListeners();
+        }
+
+        function loadConfig() {
+            const saved = localStorage.getItem('hukum_repo_config');
+            if (saved) {
+                try {
+                    config = JSON.parse(saved);
+                } catch(e) {}
+            }
+        }
+
+        function saveConfig() {
+            config.folder = document.getElementById('cfg-folder').value.trim();
+            config.spaceRule = document.getElementById('cfg-space-rule').value;
+            config.caseRule = document.getElementById('cfg-case-rule').value;
+            
+            localStorage.setItem('hukum_repo_config', JSON.stringify(config));
+            
+            // Re-apply to names
+            initializeCourses();
+            renderCourseList();
+            
+            // Show feedback
+            showToast('Konfigurasi disimpan!', 'success');
+            closeConfigModal();
+
+            // Refresh preview if active
+            if (activeCourseId) {
+                const current = courses.find(c => c.id === activeCourseId);
+                if (current) selectCourse(activeCourseId);
+            }
+        }
+
+        function restoreDefaultConfig() {
+            config = {
+                folder: '',
+                spaceRule: 'dash',
+                caseRule: 'lower'
+            };
+            document.getElementById('cfg-folder').value = '';
+            document.getElementById('cfg-space-rule').value = 'dash';
+            document.getElementById('cfg-case-rule').value = 'lower';
+            updateConfigPreview();
+        }
+
+        function loadFavorites() {
+            const saved = localStorage.getItem('hukum_repo_favorites');
+            if (saved) {
+                try {
+                    favorites = JSON.parse(saved);
+                } catch(e) {}
+            }
+        }
+
+        function initializeCourses() {
+            courses = originalCourses.map((name, index) => {
+                return {
+                    id: `mk-${index}`,
+                    name: name,
+                    category: classifyCourse(name),
+                    fileName: generateFileName(name)
+                };
+            });
+        }
+
+        // Converts a Course Name to clean safe relative paths
+        function generateFileName(name) {
+            // Replace / with empty space before cleanups
+            let cleaned = name.replace(/\//g, ' ');
+            
+            // Handle Case Rules
+            if (config.caseRule === 'lower') {
+                cleaned = cleaned.toLowerCase();
+            } else if (config.caseRule === 'upper') {
+                cleaned = cleaned.toUpperCase();
+            }
+
+            // Handle Spacing Rules
+            if (config.spaceRule === 'dash') {
+                cleaned = cleaned.replace(/\s+/g, '-');
+            } else if (config.spaceRule === 'underscore') {
+                cleaned = cleaned.replace(/\s+/g, '_');
+            } else if (config.spaceRule === 'camel') {
+                cleaned = cleaned.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+                    return index === 0 ? word.toLowerCase() : word.toUpperCase();
+                }).replace(/\s+/g, '');
+            }
+
+            // Prepend directory if set
+            let baseDir = config.folder;
+            if (baseDir && !baseDir.endsWith('/')) {
+                baseDir += '/';
+            }
+
+            return `${baseDir}${cleaned}.html`;
+        }
+
+        // Render Sidebar Category Filter Chips
+        function renderCategories() {
+            const container = document.getElementById('category-container');
+            container.innerHTML = '';
+
+            // Add "Semua" pill
+            const activeAllClass = !selectedCategory ? 'bg-slate-900 text-white' : 'bg-slate-50 text-slate-600 border border-slate-200 hover:bg-slate-100';
+            let allHtml = `<button onclick="selectCategory(null)" class="flex-none px-3 py-1 rounded-full text-xs font-medium transition-all ${activeAllClass}">Semua</button>`;
+            
+            for (const [key, meta] of Object.entries(CATEGORIES)) {
+                const isActive = selectedCategory === key;
+                const activeClass = isActive ? 'bg-slate-900 text-white border-transparent' : `${meta.color} border`;
+                allHtml += `<button onclick="selectCategory('${key}')" class="flex-none px-3 py-1 rounded-full text-xs font-medium transition-all border ${activeClass}">${meta.label}</button>`;
+            }
+
+            container.innerHTML = allHtml;
+        }
+
+        function renderCourseList() {
+            const listContainer = document.getElementById('course-list');
+            listContainer.innerHTML = '';
+
+            // Filter logic
+            const filtered = courses.filter(item => {
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
+                const matchesCategory = !selectedCategory || item.category === selectedCategory;
+                const matchesFav = !onlyFavorites || favorites.includes(item.id);
+                return matchesSearch && matchesCategory && matchesFav;
+            });
+
+            if (filtered.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="p-8 text-center bg-white text-slate-400">
+                        <i data-lucide="info" class="w-8 h-8 mx-auto mb-2 text-slate-300"></i>
+                        <p class="text-sm">Tidak ditemukan mata kuliah</p>
+                        <p class="text-xs text-slate-400 mt-1">Coba ubah kata kunci pencarian atau filter Anda.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            filtered.forEach(item => {
+                const isFavorite = favorites.includes(item.id);
+                const isActive = activeCourseId === item.id;
+                const catMeta = CATEGORIES[item.category];
+
+                const row = document.createElement('div');
+                row.className = `group flex items-center justify-between p-4 hover:bg-slate-50 transition-colors duration-150 relative border-l-2 ${isActive ? 'bg-slate-50 border-l-slate-800' : 'border-l-transparent'}`;
+                row.innerHTML = `
+                    <!-- Course details side clickable to select -->
+                    <div onclick="selectCourse('${item.id}')" class="flex-1 min-w-0 pr-3 cursor-pointer">
+                        <span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-semibold tracking-wider uppercase mb-1 ${catMeta.color}">
+                            ${catMeta.label}
+                        </span>
+                        <h4 class="text-xs font-semibold text-slate-800 leading-snug group-hover:text-slate-900 truncate">
+                            ${item.name}
+                        </h4>
+                        <p class="text-[10px] text-slate-400 font-mono mt-0.5 truncate flex items-center gap-1">
+                            <i data-lucide="file-code" class="w-3 h-3"></i> ${item.fileName}
+                        </p>
+                    </div>
+                    
+                    <!-- Action utility options -->
+                    <div class="flex items-center gap-1.5">
+                        <!-- Favorite Star Button -->
+                        <button onclick="toggleFavorite(event, '${item.id}')" class="p-1.5 hover:bg-slate-200/50 rounded-lg text-slate-400 hover:text-amber-500 transition-colors">
+                            <i data-lucide="star" class="w-4 h-4 ${isFavorite ? 'fill-amber-400 text-amber-500' : ''}"></i>
+                        </button>
+
+                        <!-- Fast New Tab Option -->
+                        <a href="${item.fileName}" target="_blank" onclick="event.stopPropagation();" class="p-1.5 hover:bg-slate-200/50 rounded-lg text-slate-400 hover:text-slate-800 transition-colors" title="Buka di tab baru">
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                `;
+                listContainer.appendChild(row);
+            });
+
+            lucide.createIcons();
+        }
+
+        // State Change Event Handlers
+        function handleSearch() {
+            const val = document.getElementById('search-input').value;
+            searchQuery = val;
+            
+            const clearBtn = document.getElementById('clear-search');
+            if (val) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+
+            renderCourseList();
+        }
+
+        function clearSearch() {
+            document.getElementById('search-input').value = '';
+            searchQuery = '';
+            document.getElementById('clear-search').classList.add('hidden');
+            renderCourseList();
+        }
+
+        function selectCategory(categoryKey) {
+            selectedCategory = categoryKey;
+            renderCategories();
+            renderCourseList();
+        }
+
+        function resetFilters() {
+            selectedCategory = null;
+            onlyFavorites = false;
+            document.getElementById('favorite-toggle').checked = false;
+            clearSearch();
+            renderCategories();
+            renderCourseList();
+        }
+
+        function toggleFavoritesFilter() {
+            onlyFavorites = document.getElementById('favorite-toggle').checked;
+            renderCourseList();
+        }
+
+        // Toggle Favorites Persistence
+        function toggleFavorite(event, id) {
+            event.stopPropagation();
+            const index = favorites.indexOf(id);
+            if (index > -1) {
+                favorites.splice(index, 1);
+                showToast('Mata kuliah dihapus dari favorit', 'info');
+            } else {
+                favorites.push(id);
+                showToast('Mata kuliah ditambahkan ke favorit', 'success');
+            }
+            localStorage.setItem('hukum_repo_favorites', JSON.stringify(favorites));
+            updateStats();
+            renderCourseList();
+        }
+
+        function updateStats() {
+            document.getElementById('stat-total').textContent = originalCourses.length;
+            document.getElementById('stat-favorites').textContent = favorites.length;
+        }
+
+        // Interactive Split View Selection
+        function selectCourse(id) {
+            activeCourseId = id;
+            const course = courses.find(item => item.id === id);
+            if (!course) return;
+
+            // Re-render course items list to highlight selected card
+            renderCourseList();
+
+            // Set up Interactive Panel Elements
+            const previewPane = document.getElementById('preview-pane');
+            const previewHeader = document.getElementById('preview-header');
+            const previewTitle = document.getElementById('preview-title');
+            const previewBadge = document.getElementById('preview-badge');
+            const previewPath = document.getElementById('preview-path');
+            const previewDirectLink = document.getElementById('preview-direct-link');
+            const previewIframe = document.getElementById('preview-iframe');
+            const previewPlaceholder = document.getElementById('preview-placeholder');
+
+            // Set Title & Metadata
+            previewTitle.textContent = course.name;
+            previewBadge.textContent = CATEGORIES[course.category].label;
+            
+            // Apply category style to badge
+            previewBadge.className = `inline-block px-2 py-0.5 rounded text-[10px] font-semibold tracking-wider uppercase ${CATEGORIES[course.category].color}`;
+            
+            previewPath.textContent = `./${course.fileName}`;
+            previewDirectLink.href = course.fileName;
+
+            // Load iframe
+            previewIframe.src = course.fileName;
+            
+            // Adjust Visible Panels (Responsive)
+            const isMobile = window.innerWidth < 768;
+            const sidebar = document.getElementById('sidebar-pane');
+
+            if (isMobile) {
+                sidebar.classList.add('hidden');
+                previewPane.classList.remove('hidden');
+                previewPane.classList.add('flex');
+            } else {
+                previewPane.classList.remove('hidden');
+                previewPane.classList.add('flex');
+            }
+
+            // Remove empty placeholder and show loaded iframe frame
+            previewPlaceholder.classList.add('hidden');
+            previewIframe.classList.remove('hidden');
+        }
+
+        function closePreview() {
+            const sidebar = document.getElementById('sidebar-pane');
+            const previewPane = document.getElementById('preview-pane');
+            
+            sidebar.classList.remove('hidden');
+            previewPane.classList.add('hidden');
+            previewPane.classList.remove('flex');
+            
+            activeCourseId = null;
+            renderCourseList();
+        }
+
+        function handleResponsiveUI() {
+            const isMobile = window.innerWidth < 768;
+            const sidebar = document.getElementById('sidebar-pane');
+            const previewPane = document.getElementById('preview-pane');
+
+            if (!isMobile) {
+                // Restore split screen on desktop scale up
+                sidebar.classList.remove('hidden');
+                if (activeCourseId) {
+                    previewPane.classList.remove('hidden');
+                    previewPane.classList.add('flex');
+                }
+            } else {
+                // Adjust for mobile viewports
+                if (activeCourseId) {
+                    sidebar.classList.add('hidden');
+                } else {
+                    previewPane.classList.add('hidden');
+                    previewPane.classList.remove('flex');
+                }
+            }
+        }
+
+        // Settings Dialog Management
+        function openConfigModal() {
+            document.getElementById('cfg-folder').value = config.folder;
+            document.getElementById('cfg-space-rule').value = config.spaceRule;
+            document.getElementById('cfg-case-rule').value = config.caseRule;
+            
+            updateConfigPreview();
+            
+            document.getElementById('config-modal').classList.remove('hidden');
+        }
+
+        function closeConfigModal() {
+            document.getElementById('config-modal').classList.add('hidden');
+        }
+
+        function updateConfigPreview() {
+            const testName = "Antropologi Hukum";
+            let folderVal = document.getElementById('cfg-folder').value.trim();
+            const spaceVal = document.getElementById('cfg-space-rule').value;
+            const caseVal = document.getElementById('cfg-case-rule').value;
+
+            let cleaned = testName;
+            if (caseVal === 'lower') {
+                cleaned = cleaned.toLowerCase();
+            } else if (caseVal === 'upper') {
+                cleaned = cleaned.toUpperCase();
+            }
+
+            if (spaceVal === 'dash') {
+                cleaned = cleaned.replace(/\s+/g, '-');
+            } else if (spaceVal === 'underscore') {
+                cleaned = cleaned.replace(/\s+/g, '_');
+            } else if (spaceVal === 'camel') {
+                cleaned = cleaned.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+                    return index === 0 ? word.toLowerCase() : word.toUpperCase();
+                }).replace(/\s+/g, '');
+            }
+
+            if (folderVal && !folderVal.endsWith('/')) {
+                folderVal += '/';
+            }
+
+            document.getElementById('cfg-preview-example').textContent = `${folderVal}${cleaned}.html`;
+        }
+
+        function attachModalLiveListeners() {
+            document.getElementById('cfg-folder').addEventListener('input', updateConfigPreview);
+            document.getElementById('cfg-space-rule').addEventListener('change', updateConfigPreview);
+            document.getElementById('cfg-case-rule').addEventListener('change', updateConfigPreview);
+        }
+
+        // Dynamic Toast Notifications
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            let icon = 'info';
+            let bgClass = 'bg-slate-900 text-white';
+            
+            if (type === 'success') {
+                icon = 'check-circle';
+                bgClass = 'bg-emerald-900 text-emerald-50';
+            } else if (type === 'warning') {
+                icon = 'alert-triangle';
+                bgClass = 'bg-amber-900 text-amber-50';
+            }
+
+            toast.className = `${bgClass} flex items-center gap-2.5 px-4 py-2.5 rounded-lg text-xs font-medium shadow-lg transition-all duration-300 translate-y-2 opacity-0 transform border border-white/10`;
+            toast.innerHTML = `
+                <i data-lucide="${icon}" class="w-4 h-4"></i>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+            lucide.createIcons();
+
+            // Animate In
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 50);
+
+            // Animate Out & Destroy
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-1');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
