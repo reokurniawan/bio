@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT ZHEDVANOIS CREATIVE AGENCY - Digital Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0a0a0a;
+            color: #f8fafc;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px #3b82f6;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            border-color: rgba(96, 165, 250, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigasi -->
+    <nav class="fixed w-full z-50 glass border-b border-white/5 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-3">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiBVW1E7uyOeZux3h4vV5adyB9nAo0wjFtB0Qyo2w75PXaaUhTlWGvySGnuvo6z8rBwebUg543SEO71hY8A6nSnrzwCyHQtf6oPKfTU-F8pi8GwIjbl-zuf1cT_kTfllnpucHzONsdZNL8e5U_rn66r-eDXW9b8SPm4ez37X1aUhBK4AIJcv0hq5HzHUoR6" 
+                         alt="Logo PT ZHEDVANOIS" 
+                         class="h-12 w-auto rounded-full">
+                    <span class="font-bold text-lg tracking-wider hidden md:block uppercase text-white">Zhedvanois</span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest text-gray-400">
+                    <a href="#home" class="hover:text-white transition">Home</a>
+                    <a href="#services" class="hover:text-white transition">Layanan</a>
+                    <a href="#about" class="hover:text-white transition">Profil</a>
+                    <a href="#certification" class="hover:text-white transition">Sertifikasi</a>
+                </div>
+                <div>
+                    <a href="https://wa.me/6285190802348" class="btn-gradient px-6 py-2.5 rounded-full text-sm font-bold inline-flex items-center gap-2 text-white">
+                        <i class="fab fa-whatsapp"></i> Hubungi Kami
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-40 pb-24 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
+            <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/10 blur-[120px] rounded-full"></div>
+            <div class="absolute bottom-[10%] right-[-5%] w-[30%] h-[30%] bg-purple-500/10 blur-[120px] rounded-full"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 relative z-10 text-center">
+            <span class="inline-block py-1 px-4 rounded-full bg-white/5 border border-white/10 text-xs font-semibold tracking-widest text-blue-400 mb-6 uppercase">
+                Portal Web & Platform Digtal
+            </span>
+            <h1 class="text-4xl md:text-7xl font-extrabold mb-6 leading-tight text-white">
+                Inovasi Tanpa Batas <br>
+                <span class="gradient-text">Di Dunia Digital</span>
+            </h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+                PT ZHEDVANOIS CREATIVE AGENCY adalah mitra terpercaya Anda untuk solusi layanan digital, media publikasi, dan manajemen agensi yang berorientasi pada masa depan.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#services" class="px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition">
+                    Jelajahi Layanan
+                </a>
+                <a href="#about" class="px-8 py-4 glass text-white font-bold rounded-xl hover:bg-white/10 transition">
+                    Tentang Direktur
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-[#0d0d0d]">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4 text-white uppercase tracking-wider">Layanan Utama</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="glass p-10 rounded-3xl card-hover transition-all duration-300">
+                    <div class="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-rocket text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Layanan Jasa Digital</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Kami menyediakan solusi digital komprehensif untuk membantu bisnis Anda bertransformasi dan berkembang di era modern.
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass p-10 rounded-3xl card-hover transition-all duration-300">
+                    <div class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-2xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Media Publikasi Web</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Pengelolaan portal informasi dan platform media digital non-komersial yang kredibel dan berjangkauan luas.
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass p-10 rounded-3xl card-hover transition-all duration-300">
+                    <div class="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-users-cog text-2xl text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Creative Agency</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Strategi kreatif, manajemen branding, dan solusi agensi yang dirancang khusus untuk memenuhi kebutuhan unik Anda.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder & About Section -->
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- Image Container -->
+                <div class="lg:w-5/12 relative">
+                    <div class="absolute -inset-2 bg-gradient-to-tr from-blue-500/30 to-purple-600/30 blur-2xl rounded-full"></div>
+                    <div class="relative z-10 rounded-[3rem] overflow-hidden border-2 border-white/10 group">
+                        <!-- Updated Founder Image -->
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgnIVZuoeWoL1_B2ovt6tFbxgg_piqC9kKmkhPILkyOc1d1osSgtKXRAch94YbDHxwckSvwlOY2xTnOhR-8FNVTn-QKsjulTvdAJx48Hl-Yp4lpE6gFjjUB2kI2zx-tgbzeCunxrj5giuYat9imVGMOV_DpAiZ20M5w6L7KpytIjDDThVg3SEyzCRyG8mG9/s5184/IMG_7868-01.jpeg" 
+                             alt="Founder & Direktur Utama" 
+                             class="w-full aspect-[4/5] object-cover transition duration-700 group-hover:scale-110">
+                    </div>
+                    <!-- Badge -->
+                    <div class="absolute -bottom-6 -right-6 glass px-8 py-4 rounded-2xl z-20 border-white/10 shadow-2xl">
+                        <p class="text-xs text-blue-400 font-bold uppercase tracking-widest">Leadership</p>
+                        <p class="text-xl font-bold text-white">Founder & CEO</p>
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="lg:w-7/12">
+                    <span class="inline-block py-1 px-4 rounded-lg bg-blue-500/10 text-blue-400 text-sm font-bold uppercase mb-6">Profil Perusahaan</span>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-8 text-white">Membangun Masa Depan <br>Lewat Visi Digital</h2>
+                    <p class="text-gray-400 mb-6 text-lg leading-relaxed">
+                        Sebagai sebuah agensi kreatif perorangan, PT ZHEDVANOIS berfokus pada dedikasi dan kualitas di setiap proyek digital yang kami kelola. Fokus kami pada platform non-komersial memungkinkan kami untuk mengeksplorasi kreativitas tanpa batas.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8 mb-10 text-white">
+                        <div>
+                            <p class="text-3xl font-bold gradient-text">100%</p>
+                            <p class="text-gray-500 text-sm uppercase">Dedikasi Digital</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold gradient-text">24/7</p>
+                            <p class="text-gray-500 text-sm uppercase">Dukungan Platform</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic border-l-4 border-purple-500 pl-6 text-lg">
+                        "Kreativitas bukan hanya tentang apa yang kita buat, tapi tentang bagaimana karya tersebut memberikan nilai bagi ekosistem digital di masa depan."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certification Section -->
+    <section id="certification" class="py-24 bg-[#0d0d0d]">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4 text-white uppercase tracking-widest">Legalitas & Sertifikasi</h2>
+            <p class="text-gray-500 mb-12">Bukti komitmen dan profesionalisme kami dalam beroperasi sesuai hukum Indonesia.</p>
+            
+            <div class="glass p-6 rounded-[2.5rem] inline-block shadow-2xl border-white/10 group">
+                <div class="overflow-hidden rounded-2xl">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiyZLOWgZKBi33k2ZALCnt26xqFgP1zcrDspLyk9McGc81HF23k-VTwClX_94zqM_tLUwp8Rw3-KYkcT3V2cUIj1kScdozZ6pP4k4cgxH4a_3RsjIPTGuKXm3_l7DCESgsLEFGamuTFh-jnbUI_7tkjIrSO8JYyjBSAl5ixej9FNkZgxaUDwg7hTSLAmTrr" 
+                         alt="Sertifikasi PT ZHEDVANOIS" 
+                         class="max-w-full h-auto shadow-inner transition duration-500 group-hover:scale-[1.03]">
+                </div>
+            </div>
+            
+            <div class="mt-12 flex items-center justify-center gap-2 text-gray-400">
+                <i class="fas fa-shield-alt text-blue-500"></i>
+                <span class="text-sm">Terdaftar Resmi di Kemenkumham RI</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/5 bg-black">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-12">
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-4 mb-4">
+                        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiBVW1E7uyOeZux3h4vV5adyB9nAo0wjFtB0Qyo2w75PXaaUhTlWGvySGnuvo6z8rBwebUg543SEO71hY8A6nSnrzwCyHQtf6oPKfTU-F8pi8GwIjbl-zuf1cT_kTfllnpucHzONsdZNL8e5U_rn66r-eDXW9b8SPm4ez37X1aUhBK4AIJcv0hq5HzHUoR6" 
+                             alt="Logo" class="h-14 w-auto rounded-full">
+                        <div>
+                            <h4 class="font-black text-2xl text-white tracking-tighter uppercase">Zhedvanois</h4>
+                            <p class="text-xs text-blue-400 font-bold uppercase tracking-widest">Creative Agency</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 max-w-sm">Membangun masa depan digital melalui kreativitas dan inovasi yang berkelanjutan.</p>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-end gap-6">
+                    <div class="flex gap-4">
+                        <a href="#" class="w-12 h-12 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-12 h-12 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-12 h-12 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        &copy; 2024 PT ZHEDVANOIS CREATIVE AGENCY.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Floating WA -->
+    <div class="fixed bottom-6 right-6 z-50 md:hidden">
+        <a href="https://wa.me/628XXXXXXXXXX" class="btn-gradient w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-2xl text-white">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+</body>
+</html>
