@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembelajaran Antropologi Hukum</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons for premium visual feel -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-white text-neutral-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-neutral-100 px-4 py-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-neutral-100 rounded-lg text-neutral-900">
+                    <i data-lucide="scale" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-tight text-neutral-900">ANTROPOLOGI HUKUM</h1>
+                    <p class="text-xs text-neutral-500 font-medium">Modul Pembelajaran & Kuis Interaktif</p>
+                </div>
+            </div>
+            
+            <!-- Quick Navigation & Search -->
+            <div class="flex items-center gap-3 w-full md:w-auto">
+                <div class="relative w-full md:w-64">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-neutral-400">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                    </span>
+                    <input type="text" id="searchInput" oninput="searchMaterial()" placeholder="Cari materi..." class="w-full pl-9 pr-4 py-2 text-sm bg-neutral-50 border border-neutral-200 rounded-full focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent transition-all">
+                </div>
+                <button onclick="scrollToSection('quiz-section')" class="px-4 py-2 bg-neutral-900 text-white text-sm font-semibold rounded-full hover:bg-neutral-800 transition-colors shrink-0">
+                    Mulai Kuis
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 py-8 md:px-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        <!-- Sticky Sidebar Navigation -->
+        <aside class="lg:col-span-1 lg:sticky lg:top-24 h-fit space-y-4">
+            <div class="p-5 border border-neutral-200 rounded-2xl bg-neutral-50/50">
+                <h3 class="font-bold text-neutral-900 mb-3 text-xs uppercase tracking-wider">Daftar Isi Materi</h3>
+                <nav class="space-y-1">
+                    <button onclick="scrollToSection('bab1')" class="nav-link w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition-all flex items-center gap-2">
+                        <span class="w-5 h-5 flex items-center justify-center rounded-md bg-white border border-neutral-200 text-xs font-bold text-neutral-500">1</span>
+                        Pengantar & Konsep Dasar
+                    </button>
+                    <button onclick="scrollToSection('bab2')" class="nav-link w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition-all flex items-center gap-2">
+                        <span class="w-5 h-5 flex items-center justify-center rounded-md bg-white border border-neutral-200 text-xs font-bold text-neutral-500">2</span>
+                        Sejarah & Metodologi
+                    </button>
+                    <button onclick="scrollToSection('bab3')" class="nav-link w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition-all flex items-center gap-2">
+                        <span class="w-5 h-5 flex items-center justify-center rounded-md bg-white border border-neutral-200 text-xs font-bold text-neutral-500">3</span>
+                        Teori-Teori Utama
+                    </button>
+                    <button onclick="scrollToSection('bab4')" class="nav-link w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition-all flex items-center gap-2">
+                        <span class="w-5 h-5 flex items-center justify-center rounded-md bg-white border border-neutral-200 text-xs font-bold text-neutral-500">4</span>
+                        Sengketa & Penyelesaian
+                    </button>
+                    <button onclick="scrollToSection('bab5')" class="nav-link w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition-all flex items-center gap-2">
+                        <span class="w-5 h-5 flex items-center justify-center rounded-md bg-white border border-neutral-200 text-xs font-bold text-neutral-500">5</span>
+                        Hukum & Pengendalian Sosial
+                    </button>
+                    <button onclick="scrollToSection('bab6')" class="nav-link w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition-all flex items-center gap-2">
+                        <span class="w-5 h-5 flex items-center justify-center rounded-md bg-white border border-neutral-200 text-xs font-bold text-neutral-500">6</span>
+                        Isu-Isu Kontemporer
+                    </button>
+                    <div class="h-px bg-neutral-200 my-2"></div>
+                    <button onclick="scrollToSection('kesimpulan')" class="nav-link w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition-all flex items-center gap-2">
+                        <i data-lucide="book-open" class="w-4 h-4 text-neutral-500"></i>
+                        Kesimpulan Akhir
+                    </button>
+                    <button onclick="scrollToSection('quiz-section')" class="nav-link w-full text-left px-3 py-2 rounded-lg text-sm font-semibold text-neutral-800 hover:bg-neutral-100 transition-all flex items-center justify-between">
+                        <span class="flex items-center gap-2">
+                            <i data-lucide="award" class="w-4 h-4 text-amber-500"></i>
+                            Kuis Interaktif (10 Soal)
+                        </span>
+                        <span class="text-xs bg-neutral-200 text-neutral-800 px-2 py-0.5 rounded-full font-bold">10 Q</span>
+                    </button>
+                </nav>
+            </div>
+            
+            <!-- Information Card -->
+            <div class="p-4 border border-neutral-200 rounded-2xl bg-neutral-50 text-xs text-neutral-500 space-y-2">
+                <p class="font-bold text-neutral-800 flex items-center gap-1.5">
+                    <i data-lucide="info" class="w-3.5 h-3.5 text-neutral-600"></i>
+                    Petunjuk Belajar
+                </p>
+                <p>Bacalah setiap bab materi secara seksama sebelum menguji pemahaman Anda di bagian kuis interaktif di bagian bawah halaman.</p>
+            </div>
+        </aside>
+
+        <!-- Detailed Material Content -->
+        <section class="lg:col-span-3 space-y-12">
+            
+            <!-- Hero / Intro -->
+            <div class="border-b border-neutral-100 pb-8">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-neutral-100 text-neutral-800 mb-4">
+                    <i data-lucide="bookmark" class="w-3 h-3"></i> Kurikulum Pendidikan Tinggi Hukum
+                </span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 tracking-tight leading-tight">
+                    Menguak Realitas Hukum Melalui Kacamata Budaya & Sosial
+                </h2>
+                <p class="mt-4 text-base md:text-lg text-neutral-600 leading-relaxed">
+                    Selamat datang di Web Pembelajaran Mandiri Antropologi Hukum. Temukan bagaimana hukum bekerja bukan hanya sebagai kumpulan pasal-pasal tertulis, melainkan sebagai organisme hidup yang dinamis dalam kebudayaan manusia.
+                </p>
+            </div>
+
+            <!-- SEARCH RESULTS NOTIFICATION -->
+            <div id="searchNotification" class="hidden p-4 bg-amber-50 border border-amber-200 text-amber-900 rounded-xl text-sm flex items-center justify-between">
+                <span>Penyaringan kata kunci aktif. Menampilkan bab yang sesuai saja.</span>
+                <button onclick="clearSearch()" class="font-bold underline hover:text-amber-700">Tampilkan Semua</button>
+            </div>
+
+            <!-- BAB 1 -->
+            <article id="bab1" class="material-card border border-neutral-200 rounded-2xl p-6 md:p-8 space-y-6 hover:shadow-sm transition-shadow">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">Bab 01</span>
+                        <h3 class="text-2xl font-bold text-neutral-900 mt-1">Pengantar dan Konsep Dasar Antropologi Hukum</h3>
+                    </div>
+                    <span class="px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-800 rounded">Konsep Dasar</span>
+                </div>
+                <hr class="border-neutral-100">
+                <div class="space-y-4 text-neutral-600 leading-relaxed text-sm md:text-base">
+                    <p>
+                        <strong>Antropologi Hukum</strong> adalah cabang ilmu pengetahuan yang mempelajari hubungan timbal balik antara hukum dengan kebudayaan dan gejala sosial dalam masyarakat. Kajian utamanya tidak berfokus pada undang-undang tertulis dalam kodifikasi formal negara (*law in books*), melainkan bagaimana hukum dioperasikan secara nyata dalam kehidupan sehari-hari (*law in action*).
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                        <div class="p-4 bg-neutral-50 rounded-xl border border-neutral-100">
+                            <h4 class="font-bold text-neutral-900 mb-2 flex items-center gap-2">
+                                <i data-lucide="help-circle" class="w-4 h-4 text-neutral-500"></i> Apa Fokusnya?
+                            </h4>
+                            <p class="text-xs">Mempelajari cara-cara masyarakat dari berbagai latar belakang budaya mempertahankan keteraturan sosial, menyelesaikan konflik, dan memandang keadilan.</p>
+                        </div>
+                        <div class="p-4 bg-neutral-50 rounded-xl border border-neutral-100">
+                            <h4 class="font-bold text-neutral-900 mb-2 flex items-center gap-2">
+                                <i data-lucide="git-compare" class="w-4 h-4 text-neutral-500"></i> Apa Bedanya?
+                            </h4>
+                            <p class="text-xs">Berbeda dari ilmu hukum normatif, antropologi hukum menganggap hukum adat, norma lisan, dan sanksi sosial setara tingkat fungsionalnya dengan hukum negara.</p>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-neutral-900 mt-4 text-base">Perbedaan Antropologi Hukum, Sosiologi Hukum, dan Hukum Adat</h4>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-xs text-left text-neutral-500 border border-neutral-200 rounded-lg overflow-hidden">
+                            <thead class="text-xs text-neutral-700 uppercase bg-neutral-50">
+                                <tr>
+                                    <th class="px-4 py-3 border-b border-neutral-200">Aspek Perbandingan</th>
+                                    <th class="px-4 py-3 border-b border-neutral-200">Antropologi Hukum</th>
+                                    <th class="px-4 py-3 border-b border-neutral-200">Sosiologi Hukum</th>
+                                    <th class="px-4 py-3 border-b border-neutral-200">Hukum Adat</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-neutral-200">
+                                <tr>
+                                    <td class="px-4 py-3 font-semibold text-neutral-900">Metode Utama</td>
+                                    <td class="px-4 py-3">Kualitatif, etnografi, observasi partisipasi mendalam.</td>
+                                    <td class="px-4 py-3">Kuantitatif & Kualitatif, makro, survei sosial.</td>
+                                    <td class="px-4 py-3">Normatif, mempelajari aturan adat tertulis/lisan yang berlaku di Indonesia.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-semibold text-neutral-900">Sifat Kajian</td>
+                                    <td class="px-4 py-3">Komparatif budaya global (mikro ke makro).</td>
+                                    <td class="px-4 py-3">Struktur sosial kemasyarakatan dan kelas.</td>
+                                    <td class="px-4 py-3">Praktis dogmatis demi kepentingan hukum positif lokal.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+
+            <!-- BAB 2 -->
+            <article id="bab2" class="material-card border border-neutral-200 rounded-2xl p-6 md:p-8 space-y-6 hover:shadow-sm transition-shadow">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">Bab 02</span>
+                        <h3 class="text-2xl font-bold text-neutral-900 mt-1">Sejarah Perkembangan & Metodologi Penelitian</h3>
+                    </div>
+                    <span class="px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-800 rounded">Metode & Sejarah</span>
+                </div>
+                <hr class="border-neutral-100">
+                <div class="space-y-4 text-neutral-600 leading-relaxed text-sm md:text-base">
+                    <p>
+                        Awal mula antropologi hukum lahir dari rasa ingin tahu sarjana-sarjana Barat di era kolonial mengenai bagaimana masyarakat non-Barat (yang mereka sebut primitif) dapat hidup teratur tanpa adanya polisi, pengadilan, undang-undang tertulis, ataupun penjara.
+                    </p>
+                    <h4 class="font-bold text-neutral-900 text-base">Fase Perkembangan Penting:</h4>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li><strong>Fase Evolusionistik (Abad ke-19):</strong> Tokoh seperti Sir Henry Maine berasumsi hukum berkembang secara linear dari masyarakat statis (*status*) menuju masyarakat dinamis dan kontrak (*contract*).</li>
+                        <li><strong>Fase Fungsional (Awal Abad ke-20):</strong> Dipelopori oleh Bronislaw Malinowski yang membuktikan bahwa masyarakat "primitif" di Kepulauan Trobriand patuh pada aturan bukan karena takut kepada polisi, melainkan karena prinsip **resiprositas** (timbal balik) yang mengakar dalam kebudayaan mereka.</li>
+                        <li><strong>Fase Modern/Pluralisme:</strong> Mempelajari relasi kekuasaan, ketidakadilan gender, hak asasi manusia, dan hukum negara yang menindas hukum rakyat (*folk law*).</li>
+                    </ol>
+                    <div class="p-4 bg-neutral-50 rounded-xl border border-neutral-200 mt-4">
+                        <h5 class="font-bold text-neutral-900 text-sm mb-1 flex items-center gap-1.5">
+                            <i data-lucide="eye" class="w-4 h-4 text-neutral-600"></i> Metodologi Etnografi (Fieldwork)
+                        </h5>
+                        <p class="text-xs leading-relaxed">
+                            Peneliti antropologi hukum tidak sekadar menyebar kuesioner, melainkan melakukan **pengamatan terlibat (participant observation)**. Peneliti tinggal menetap bersama komunitas yang diteliti selama berbulan-bulan bahkan bertahun-tahun, mempelajari bahasa mereka, serta mengamati langsung saat sengketa terjadi dan diselesaikan secara internal.
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- BAB 3 -->
+            <article id="bab3" class="material-card border border-neutral-200 rounded-2xl p-6 md:p-8 space-y-6 hover:shadow-sm transition-shadow">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">Bab 03</span>
+                        <h3 class="text-2xl font-bold text-neutral-900 mt-1">Teori-Teori Utama Antropologi Hukum</h3>
+                    </div>
+                    <span class="px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-800 rounded">Teori</span>
+                </div>
+                <hr class="border-neutral-100">
+                <div class="space-y-6 text-neutral-600 leading-relaxed text-sm md:text-base">
+                    <p>
+                        Teori dalam antropologi hukum membantu kita menjelaskan alasan di balik ketaatan masyarakat terhadap hukum dan bagaimana struktur aturan dibentuk.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-neutral-900 pl-4">
+                            <h4 class="font-bold text-neutral-900 text-base">1. Teori Resiprositas (Bronislaw Malinowski)</h4>
+                            <p class="text-sm mt-1">
+                                Ketaatan terhadap aturan di masyarakat adat didorong oleh rantai kewajiban timbal-balik yang saling menguntungkan. Jika seseorang menolak menolong tetangganya membetulkan kapal, di kemudian hari komunitasnya juga akan menolak membantunya. Ketaatan didasarkan pada rasa saling membutuhkan (*mutual dependency*), bukan paksaan fisik aparat negara.
+                            </p>
+                        </div>
+                        
+                        <div class="border-l-4 border-neutral-900 pl-4">
+                            <h4 class="font-bold text-neutral-900 text-base">2. Teori Pluralisme Hukum (Legal Pluralism)</h4>
+                            <p class="text-sm mt-1">
+                                Menyatakan bahwa dalam suatu ruang sosial atau wilayah politik yang sama berlaku lebih dari satu sistem hukum secara bersamaan. Contoh nyata di Indonesia: di mana hukum Negara (KUHP/UU), hukum Agama (Syariah Islam/Kompilasi Hukum Islam), dan hukum Adat berjalan berdampingan sekaligus saling memengaruhi atau berkompetisi di satu masyarakat yang sama.
+                            </p>
+                        </div>
+
+                        <div class="border-l-4 border-neutral-900 pl-4">
+                            <h4 class="font-bold text-neutral-900 text-base">3. Teori Kasus (The Case Method - Llewellyn & Hoebel)</h4>
+                            <p class="text-sm mt-1">
+                                Dipopulerkan dalam penelitian legendaris tentang Suku Cheyenne. Teori ini menyakini cara terbaik untuk memahami esensi hukum suatu komunitas adalah bukan menanyakan "apa aturan Anda?", melainkan mengamati langsung kasus sengketa nyata (*trouble cases*) yang terjadi serta bagaimana cara penyelesaiannya. Sengketa membuka tabir nilai hukum sesungguhnya dari masyarakat tersebut.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- BAB 4 -->
+            <article id="bab4" class="material-card border border-neutral-200 rounded-2xl p-6 md:p-8 space-y-6 hover:shadow-sm transition-shadow">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">Bab 04</span>
+                        <h3 class="text-2xl font-bold text-neutral-900 mt-1">Sengketa dan Penyelesaian Sengketa (Dispute Resolution)</h3>
+                    </div>
+                    <span class="px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-800 rounded">Sengketa</span>
+                </div>
+                <hr class="border-neutral-100">
+                <div class="space-y-4 text-neutral-600 leading-relaxed text-sm md:text-base">
+                    <p>
+                        Salah satu kontribusi terbesar antropologi hukum adalah penguraian tahap sengketa dan alternatif penyelesaian di luar sistem peradilan negara yang kaku.
+                    </p>
+                    <h4 class="font-bold text-neutral-900 text-base">Tahapan Terjadinya Sengketa (Menurut Laura Nader & Todd):</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Grievance (Keluhan):</strong> Keadaan tidak puas individu atas tindakan orang lain namun masih bersifat personal (belum diutarakan secara terbuka).</li>
+                        <li><strong>Conflict (Konflik):</strong> Keluhan tersebut diutarakan secara terbuka kepada pihak pelanggar sehingga memicu reaksi ketegangan bilateral.</li>
+                        <li><strong>Dispute (Sengketa):</strong> Konflik bilateral tersebut dibawa ke ranah publik dengan melibatkan pihak ketiga yang sah (kepala suku, polisi, mediator, atau hakim).</li>
+                    </ul>
+
+                    <div class="p-5 bg-neutral-50 rounded-2xl border border-neutral-200 mt-4 space-y-2">
+                        <h4 class="font-bold text-neutral-900 text-sm flex items-center gap-1.5">
+                            <i data-lucide="shield-alert" class="w-4 h-4 text-neutral-700"></i> Mekanisme Penyelesaian Sengketa Adat
+                        </h4>
+                        <p class="text-xs leading-relaxed">
+                            Masyarakat adat lebih mengutamakan pendekatan **Restorative Justice** (pemulihan keadaan) daripada retributive (penghukuman kurungan badan). Musyawarah mufakat, ritual rekonsiliasi adat, pemberian denda adat berupa hewan ternak atau benda bernilai, bertujuan utama untuk memulihkan keharmonisan sosial kosmik yang sempat retak akibat pelanggaran.
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- BAB 5 -->
+            <article id="bab5" class="material-card border border-neutral-200 rounded-2xl p-6 md:p-8 space-y-6 hover:shadow-sm transition-shadow">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">Bab 05</span>
+                        <h3 class="text-2xl font-bold text-neutral-900 mt-1">Hukum, Kebudayaan, dan Pengendalian Sosial</h3>
+                    </div>
+                    <span class="px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-800 rounded">Budaya & Kontrol</span>
+                </div>
+                <hr class="border-neutral-100">
+                <div class="space-y-4 text-neutral-600 leading-relaxed text-sm md:text-base">
+                    <p>
+                        Hukum sejatinya merupakan perwujudan dari kebudayaan materiil dan spiritual suatu bangsa. Kebudayaan menuntun lahirnya norma kelayakan yang lambat laun dikukuhkan menjadi aturan hukum formal.
+                    </p>
+                    <h4 class="font-bold text-neutral-900 text-base">Konsep Pengendalian Sosial (Social Control)</h4>
+                    <p>
+                        Masyarakat memiliki cara-cara tersendiri untuk mengendalikan perilaku anggotanya agar patuh pada norma sosial, yang terbagi dalam dua metode:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                        <div class="p-4 border border-neutral-200 rounded-xl">
+                            <h5 class="font-bold text-neutral-900 text-sm mb-1">Pengendalian Sosial Formal</h5>
+                            <p class="text-xs text-neutral-500">Dilakukan oleh aparat resmi negara melalui prosedur penangkapan, denda pidana, kurungan penjara, atau hukuman mati sesuai aturan konstitusional.</p>
+                        </div>
+                        <div class="p-4 border border-neutral-200 rounded-xl">
+                            <h5 class="font-bold text-neutral-900 text-sm mb-1">Pengendalian Sosial Informal</h5>
+                            <p class="text-xs text-neutral-500">Dilakukan masyarakat sehari-hari tanpa aparat melalui desas-desus/gosip, teguran adat, cemoohan, pamali, kutukan ritual, hingga pengucilan sosial (*ostracism*).</p>
+                        </div>
+                    </div>
+                    <p class="text-sm italic text-neutral-500">
+                        *Catatan Antropologis:* Pada banyak kasus di masyarakat pedalaman, ketakutan akan sanksi supranatural (kuwalat/kutukan leluhur) atau takut dikucilkan dari kelompok adat jauh lebih efektif mencegah kejahatan dibanding ketakutan akan ancaman pasal-pasal KUHP negara.
+                    </p>
+                </div>
+            </article>
+
+            <!-- BAB 6 -->
+            <article id="bab6" class="material-card border border-neutral-200 rounded-2xl p-6 md:p-8 space-y-6 hover:shadow-sm transition-shadow">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">Bab 06</span>
+                        <h3 class="text-2xl font-bold text-neutral-900 mt-1">Isu-Isu Kontemporer Antropologi Hukum</h3>
+                    </div>
+                    <span class="px-2.5 py-1 text-xs font-semibold bg-neutral-100 text-neutral-800 rounded">Isu Kontemporer</span>
+                </div>
+                <hr class="border-neutral-100">
+                <div class="space-y-4 text-neutral-600 leading-relaxed text-sm md:text-base">
+                    <p>
+                        Pada era globalisasi ini, antropologi hukum tidak lagi hanya meneliti suku-suku pedalaman yang terisolasi, melainkan isu modern yang berpusat pada benturan sistem nilai global dan lokal.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex gap-2.5 items-start">
+                            <span class="w-6 h-6 flex items-center justify-center rounded-full bg-neutral-100 text-xs font-bold text-neutral-800 shrink-0">A</span>
+                            <div>
+                                <strong class="text-neutral-900">Hak Milik Atas Tanah Ulayat vs Korporasi:</strong>
+                                <span class="block text-sm mt-0.5">Konflik agraria yang terjadi akibat tumpang tindih pemberian izin hak penguasaan lahan oleh negara kepada perusahaan pertambangan/perkebunan di atas tanah adat kelolaan suku lokal.</span>
+                            </div>
+                        </li>
+                        <li class="flex gap-2.5 items-start">
+                            <span class="w-6 h-6 flex items-center justify-center rounded-full bg-neutral-100 text-xs font-bold text-neutral-800 shrink-0">B</span>
+                            <div>
+                                <strong class="text-neutral-900">Universalitas HAM vs Relativisme Budaya:</strong>
+                                <span class="block text-sm mt-0.5">Perdebatan apakah prinsip Hak Asasi Manusia internasional harus diterapkan mutlak tanpa pengecualian, atau harus menghormati kearifan lokal tertentu (misalnya praktik inisiasi adat yang dinilai keras oleh standar luar).</span>
+                            </div>
+                        </li>
+                        <li class="flex gap-2.5 items-start">
+                            <span class="w-6 h-6 flex items-center justify-center rounded-full bg-neutral-100 text-xs font-bold text-neutral-800 shrink-0">C</span>
+                            <div>
+                                <strong class="text-neutral-900">Eko-Antropologi Hukum:</strong>
+                                <span class="block text-sm mt-0.5">Mempelajari cara hukum lokal menjaga ekosistem hutan dan sungai melalui tabu adat (misalnya konsep sasi di Maluku atau lubuk larangan di Sumatra) yang sering kali terbukti lebih efektif dibandingkan undang-undang konservasi lingkungan formal.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- KESIMPULAN -->
+            <article id="kesimpulan" class="border border-neutral-900 bg-neutral-50 rounded-2xl p-6 md:p-8 space-y-4">
+                <div class="flex items-center gap-2 text-neutral-900">
+                    <i data-lucide="book-open" class="w-6 h-6"></i>
+                    <h3 class="text-2xl font-bold">Kesimpulan Akhir Mata Kuliah</h3>
+                </div>
+                <p class="text-neutral-700 leading-relaxed text-sm md:text-base">
+                    Mata kuliah <strong>Antropologi Hukum</strong> memberikan pemahaman kritis bahwa hukum bukanlah entitas netral dan kaku yang terlepas dari dinamika kemanusiaan. Hukum merupakan bagian tak terpisahkan dari kebudayaan. Memahami antropologi hukum menghindarkan para penegak hukum di masa depan dari sikap "legisme buta" (hanya mematuhi teks tertulis demi formalitas belaka) dan menumbuhkan kepekaan sosial terhadap pluralitas nilai keadilan yang nyata hidup di tengah masyarakat multikultural seperti Indonesia.
+                </p>
+            </article>
+
+            <!-- KUIS INTERAKTIF SECTION -->
+            <article id="quiz-section" class="border border-neutral-200 rounded-3xl p-6 md:p-8 space-y-6 bg-white shadow-lg shadow-neutral-100">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="space-y-1">
+                        <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">Evaluasi Pemahaman</span>
+                        <h3 class="text-2xl font-extrabold text-neutral-900 flex items-center gap-2">
+                            <i data-lucide="award" class="text-amber-500 w-6 h-6"></i> Kuis Interaktif Antropologi Hukum
+                        </h3>
+                        <p class="text-xs text-neutral-500">Uji kemampuan akademis Anda dengan 10 butir pertanyaan di bawah ini.</p>
+                    </div>
+                    <!-- Score Board -->
+                    <div class="p-3 bg-neutral-50 border border-neutral-200 rounded-2xl text-center shrink-0">
+                        <span class="block text-xs text-neutral-500 uppercase tracking-wider font-semibold">Skor Anda</span>
+                        <span id="quiz-score" class="text-2xl font-bold text-neutral-900">0 / 10</span>
+                    </div>
+                </div>
+
+                <hr class="border-neutral-100">
+
+                <!-- Interactive Quiz Form -->
+                <form id="quizForm" class="space-y-8" onsubmit="event.preventDefault();">
+                    
+                    <!-- Question 1 -->
+                    <div class="question-block space-y-3" data-qindex="1">
+                        <p class="font-semibold text-neutral-900 text-sm md:text-base">
+                            1. Apakah fokus utama dari studi Antropologi Hukum dalam melihat bekerjanya hukum di masyarakat?
+                        </p>
+                        <div class="grid grid-cols-1 gap-2">
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q1" value="A" class="mt-1 accent-neutral-900" onchange="checkAnswer(1, 'B')">
+                                <span class="text-xs md:text-sm text-neutral-700">A. Kumpulan pasal-pasal undang-undang secara dogmatis dan kaku (*law in books*)</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q1" value="B" class="mt-1 accent-neutral-900" onchange="checkAnswer(1, 'B')">
+                                <span class="text-xs md:text-sm text-neutral-700">B. Cara hukum itu benar-benar dijalankan dan dipraktikkan dalam budaya masyarakat sehari-hari (*law in action*)</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q1" value="C" class="mt-1 accent-neutral-900" onchange="checkAnswer(1, 'B')">
+                                <span class="text-xs md:text-sm text-neutral-700">C. Struktur kelembagaan mahkamah agung serta administrasi pengadilan negeri</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q1" value="D" class="mt-1 accent-neutral-900" onchange="checkAnswer(1, 'B')">
+                                <span class="text-xs md:text-sm text-neutral-700">D. Prosedur perancangan legislasi undang-undang baru oleh DPR</span>
+                            </label>
+                        </div>
+                        <div class="explanation-box hidden mt-2 p-3 bg-neutral-50 rounded-lg text-xs text-neutral-600 border border-neutral-100"></div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="question-block space-y-3" data-qindex="2">
+                        <p class="font-semibold text-neutral-900 text-sm md:text-base">
+                            2. Siapakah tokoh antropologi klasik yang meneliti masyarakat adat Kepulauan Trobriand dan menyimpulkan konsep ketaatan hukum melalui prinsip resiprositas?
+                        </p>
+                        <div class="grid grid-cols-1 gap-2">
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q2" value="A" class="mt-1 accent-neutral-900" onchange="checkAnswer(2, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">A. Sir Henry Maine</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q2" value="B" class="mt-1 accent-neutral-900" onchange="checkAnswer(2, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">B. Karl Marx</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q2" value="C" class="mt-1 accent-neutral-900" onchange="checkAnswer(2, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">C. Bronislaw Malinowski</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q2" value="D" class="mt-1 accent-neutral-900" onchange="checkAnswer(2, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">D. Laura Nader</span>
+                            </label>
+                        </div>
+                        <div class="explanation-box hidden mt-2 p-3 bg-neutral-50 rounded-lg text-xs text-neutral-600 border border-neutral-100"></div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="question-block space-y-3" data-qindex="3">
+                        <p class="font-semibold text-neutral-900 text-sm md:text-base">
+                            3. Apakah arti dasar dari istilah "Pluralisme Hukum" (*Legal Pluralism*)?
+                        </p>
+                        <div class="grid grid-cols-1 gap-2">
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q3" value="A" class="mt-1 accent-neutral-900" onchange="checkAnswer(3, 'A')">
+                                <span class="text-xs md:text-sm text-neutral-700">A. Berlakunya lebih dari satu sistem hukum secara bersamaan di wilayah sosial yang sama</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q3" value="B" class="mt-1 accent-neutral-900" onchange="checkAnswer(3, 'A')">
+                                <span class="text-xs md:text-sm text-neutral-700">B. Peleburan seluruh hukum adat setempat ke dalam satu undang-undang nasional terpadu</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q3" value="C" class="mt-1 accent-neutral-900" onchange="checkAnswer(3, 'A')">
+                                <span class="text-xs md:text-sm text-neutral-700">C. Adanya pengadilan militer dan pengadilan perdata yang terpisah dalam kepangkatan militer</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q3" value="D" class="mt-1 accent-neutral-900" onchange="checkAnswer(3, 'A')">
+                                <span class="text-xs md:text-sm text-neutral-700">D. Hak absolut negara untuk membatalkan hukum keagamaan lokal</span>
+                            </label>
+                        </div>
+                        <div class="explanation-box hidden mt-2 p-3 bg-neutral-50 rounded-lg text-xs text-neutral-600 border border-neutral-100"></div>
+                    </div>
+
+                    <!-- Question 4 -->
+                    <div class="question-block space-y-3" data-qindex="4">
+                        <p class="font-semibold text-neutral-900 text-sm md:text-base">
+                            4. Manakah di bawah ini metode khas pengumpulan data penelitian antropologi hukum yang membedakannya dengan ilmu hukum normatif?
+                        </p>
+                        <div class="grid grid-cols-1 gap-2">
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q4" value="A" class="mt-1 accent-neutral-900" onchange="checkAnswer(4, 'D')">
+                                <span class="text-xs md:text-sm text-neutral-700">A. Analisis isi (*content analysis*) dari lembaran berita pidana nasional</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q4" value="B" class="mt-1 accent-neutral-900" onchange="checkAnswer(4, 'D')">
+                                <span class="text-xs md:text-sm text-neutral-700">B. Eksperimen di laboratorium sosial sosiologi</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q4" value="C" class="mt-1 accent-neutral-900" onchange="checkAnswer(4, 'D')">
+                                <span class="text-xs md:text-sm text-neutral-700">C. Penyebaran kuesioner digital (*Google Form*) secara masif tanpa interaksi fisik</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q4" value="D" class="mt-1 accent-neutral-900" onchange="checkAnswer(4, 'D')">
+                                <span class="text-xs md:text-sm text-neutral-700">D. Pengamatan terlibat (*participant observation*) dan studi etnografi mendalam bersama subjek penelitian</span>
+                            </label>
+                        </div>
+                        <div class="explanation-box hidden mt-2 p-3 bg-neutral-50 rounded-lg text-xs text-neutral-600 border border-neutral-100"></div>
+                    </div>
+
+                    <!-- Question 5 -->
+                    <div class="question-block space-y-3" data-qindex="5">
+                        <p class="font-semibold text-neutral-900 text-sm md:text-base">
+                            5. Menurut antropolog Laura Nader dan Todd, suatu keluhan (*grievance*) bertransformasi menjadi sengketa (*dispute*) ketika...
+                        </p>
+                        <div class="grid grid-cols-1 gap-2">
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q5" value="A" class="mt-1 accent-neutral-900" onchange="checkAnswer(5, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">A. Ada undang-undang baru disahkan oleh pemerintah pusat</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q5" value="B" class="mt-1 accent-neutral-900" onchange="checkAnswer(5, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">B. Korban memendam amarahnya sendiri tanpa memberi tahu siapa pun</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q5" value="C" class="mt-1 accent-neutral-900" onchange="checkAnswer(5, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">C. Konflik antarpihak dibawa ke ranah publik dengan melibatkan pihak ketiga yang sah untuk menengahi</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q5" value="D" class="mt-1 accent-neutral-900" onchange="checkAnswer(5, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">D. Pelaku membayar ganti rugi secara diam-diam di malam hari</span>
+                            </label>
+                        </div>
+                        <div class="explanation-box hidden mt-2 p-3 bg-neutral-50 rounded-lg text-xs text-neutral-600 border border-neutral-100"></div>
+                    </div>
+
+                    <!-- Question 6 -->
+                    <div class="question-block space-y-3" data-qindex="6">
+                        <p class="font-semibold text-neutral-900 text-sm md:text-base">
+                            6. Apakah salah satu alasan mendasar mengapa pengucilan sosial (*ostracism*) sering kali dianggap sebagai sanksi yang paling ditakuti di masyarakat adat pedesaan?
+                        </p>
+                        <div class="grid grid-cols-1 gap-2">
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q6" value="A" class="mt-1 accent-neutral-900" onchange="checkAnswer(6, 'B')">
+                                <span class="text-xs md:text-sm text-neutral-700">A. Pengucilan membuat pelanggar dipindahkan secara fisik ke penjara militer negara</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q6" value="B" class="mt-1 accent-neutral-900" onchange="checkAnswer(6, 'B')">
+                                <span class="text-xs md:text-sm text-neutral-700">B. Memutus rantai relasi resiprositas-sosial dan menghilangkan akses bertahan hidup bersama komunitasnya</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q6" value="C" class="mt-1 accent-neutral-900" onchange="checkAnswer(6, 'B')">
+                                <span class="text-xs md:text-sm text-neutral-700">C. Karena sanksi pengucilan wajib denda uang triliunan rupiah kepada lembaga adat</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q6" value="D" class="mt-1 accent-neutral-900" onchange="checkAnswer(6, 'B')">
+                                <span class="text-xs md:text-sm text-neutral-700">D. Pelaku dipaksa mengganti marga/nama belakang keluarganya di catatan sipil</span>
+                            </label>
+                        </div>
+                        <div class="explanation-box hidden mt-2 p-3 bg-neutral-50 rounded-lg text-xs text-neutral-600 border border-neutral-100"></div>
+                    </div>
+
+                    <!-- Question 7 -->
+                    <div class="question-block space-y-3" data-qindex="7">
+                        <p class="font-semibold text-neutral-900 text-sm md:text-base">
+                            7. Apakah yang dimaksud dengan aliran "Relativisme Budaya" dalam kajian penegakan Hak Asasi Manusia (HAM)?
+                        </p>
+                        <div class="grid grid-cols-1 gap-2">
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q7" value="A" class="mt-1 accent-neutral-900" onchange="checkAnswer(7, 'A')">
+                                <span class="text-xs md:text-sm text-neutral-700">A. Pandangan bahwa nilai-nilai moral dan hukum harus dipahami sesuai dengan konteks kebudayaan masing-masing masyarakat</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q7" value="B" class="mt-1 accent-neutral-900" onchange="checkAnswer(7, 'A')">
+                                <span class="text-xs md:text-sm text-neutral-700">B. Anggapan bahwa budaya Barat adalah satu-satunya acuan nilai HAM yang mutlak</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q7" value="C" class="mt-1 accent-neutral-900" onchange="checkAnswer(7, 'A')">
+                                <span class="text-xs md:text-sm text-neutral-700">C. Keyakinan bahwa semua adat di seluruh dunia harus dihapuskan agar tercipta perdamaian</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q7" value="D" class="mt-1 accent-neutral-900" onchange="checkAnswer(7, 'A')">
+                                <span class="text-xs md:text-sm text-neutral-700">D. Pendapat bahwa tidak ada hubungan sama sekali antara nilai kemanusiaan dengan hukum setempat</span>
+                            </label>
+                        </div>
+                        <div class="explanation-box hidden mt-2 p-3 bg-neutral-50 rounded-lg text-xs text-neutral-600 border border-neutral-100"></div>
+                    </div>
+
+                    <!-- Question 8 -->
+                    <div class="question-block space-y-3" data-qindex="8">
+                        <p class="font-semibold text-neutral-900 text-sm md:text-base">
+                            8. Dalam metode antropologi "Trouble-Case Method" yang dipopulerkan oleh Llewellyn & Hoebel, apa objek utama yang wajib diamati oleh peneliti di lapangan?
+                        </p>
+                        <div class="grid grid-cols-1 gap-2">
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q8" value="A" class="mt-1 accent-neutral-900" onchange="checkAnswer(8, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">A. Struktur bangunan balai desa adat</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q8" value="B" class="mt-1 accent-neutral-900" onchange="checkAnswer(8, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">B. Naskah tertulis aturan purba adat</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q8" value="C" class="mt-1 accent-neutral-900" onchange="checkAnswer(8, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">C. Kasus sengketa riil/nyata yang terjadi di dalam masyarakat bersangkutan</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q8" value="D" class="mt-1 accent-neutral-900" onchange="checkAnswer(8, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">D. Tingkat ekonomi pendapatan harian masyarakat</span>
+                            </label>
+                        </div>
+                        <div class="explanation-box hidden mt-2 p-3 bg-neutral-50 rounded-lg text-xs text-neutral-600 border border-neutral-100"></div>
+                    </div>
+
+                    <!-- Question 9 -->
+                    <div class="question-block space-y-3" data-qindex="9">
+                        <p class="font-semibold text-neutral-900 text-sm md:text-base">
+                            9. Apa contoh kasus konkret pluralisme hukum di wilayah Negara Kesatuan Republik Indonesia?
+                        </p>
+                        <div class="grid grid-cols-1 gap-2">
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q9" value="A" class="mt-1 accent-neutral-900" onchange="checkAnswer(9, 'A')">
+                                <span class="text-xs md:text-sm text-neutral-700">A. Berlakunya KUH Perdata, Hukum Islam, dan Hukum Adat secara bersamaan dalam urusan kewarisan</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q9" value="B" class="mt-1 accent-neutral-900" onchange="checkAnswer(9, 'A')">
+                                <span class="text-xs md:text-sm text-neutral-700">B. Aturan pengadilan lalu lintas yang mewajibkan pembayaran e-tilang lewat satu bank tunggal</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q9" value="C" class="mt-1 accent-neutral-900" onchange="checkAnswer(9, 'A')">
+                                <span class="text-xs md:text-sm text-neutral-700">C. Adanya pembagian hukum nasional menjadi hukum perdata dan hukum pidana saja</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q9" value="D" class="mt-1 accent-neutral-900" onchange="checkAnswer(9, 'A')">
+                                <span class="text-xs md:text-sm text-neutral-700">D. Pelarangan total terhadap seluruh hukum lokal di luar hukum konstitusi pusat</span>
+                            </label>
+                        </div>
+                        <div class="explanation-box hidden mt-2 p-3 bg-neutral-50 rounded-lg text-xs text-neutral-600 border border-neutral-100"></div>
+                    </div>
+
+                    <!-- Question 10 -->
+                    <div class="question-block space-y-3" data-qindex="10">
+                        <p class="font-semibold text-neutral-900 text-sm md:text-base">
+                            10. Konsep "lubuk larangan" di Sumatra atau "sasi" di Maluku merupakan bentuk kearifan lokal yang dikaji dalam antropologi hukum ekologis sebagai...
+                        </p>
+                        <div class="grid grid-cols-1 gap-2">
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q10" value="A" class="mt-1 accent-neutral-900" onchange="checkAnswer(10, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">A. Tindak pidana korupsi sumber daya alam kelautan</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q10" value="B" class="mt-1 accent-neutral-900" onchange="checkAnswer(10, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">B. Simbol kekuasaan feudal kerajaan tradisional masa lampau</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q10" value="C" class="mt-1 accent-neutral-900" onchange="checkAnswer(10, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">C. Aturan hukum adat lokal berbasis tabu untuk melestarikan dan mengendalikan eksploitasi alam</span>
+                            </label>
+                            <label class="flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors">
+                                <input type="radio" name="q10" value="D" class="mt-1 accent-neutral-900" onchange="checkAnswer(10, 'C')">
+                                <span class="text-xs md:text-sm text-neutral-700">D. Pelanggaran terhadap undang-undang lingkungan hidup resmi negara</span>
+                            </label>
+                        </div>
+                        <div class="explanation-box hidden mt-2 p-3 bg-neutral-50 rounded-lg text-xs text-neutral-600 border border-neutral-100"></div>
+                    </div>
+
+                    <div class="pt-4 flex flex-col md:flex-row items-center justify-between gap-4">
+                        <button type="button" onclick="resetQuiz()" class="px-6 py-2.5 border border-neutral-300 text-neutral-700 text-sm font-semibold rounded-xl hover:bg-neutral-50 transition-colors">
+                            Ulangi Kuis
+                        </button>
+                        <div id="quiz-final-msg" class="text-sm font-semibold text-neutral-950 hidden"></div>
+                    </div>
+                </form>
+            </article>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 border-t border-neutral-100 bg-neutral-50 py-10 px-4 md:px-8 text-center">
+        <div class="max-w-7xl mx-auto space-y-2">
+            <p class="text-sm font-bold text-neutral-800">Media Pembelajaran Interaktif Antropologi Hukum</p>
+            <p class="text-xs text-neutral-500">Didesain dengan pendekatan minimalis berlatar belakang putih agar ramah mata dan nyaman dipelajari.</p>
+        </div>
+    </footer>
+
+    <!-- JS Logic -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Scroll utility
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                const headerOffset = 100;
+                const elementPosition = el.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        }
+
+        // Comprehensive Explanations for the Quiz Questions
+        const explanations = {
+            1: "<strong>Benar! Jawaban B.</strong> Antropologi Hukum menolak analisis sempit sekadar teks tertulis (*law in books*). Fokus utamanya adalah mendeteksi pola relasi dan kebudayaan bagaimana hukum riil dipraktikkan masyarakat sehari-hari (*law in action*).",
+            2: "<strong>Benar! Jawaban C.</strong> Bronislaw Malinowski merupakan tokoh klasik pencetus teori ini lewat penelitiannya tentang adat pertukaran kula di Kepulauan Trobriand.",
+            3: "<strong>Benar! Jawaban A.</strong> Legal Pluralism (Pluralisme Hukum) mengacu pada kondisi ko-eksistensi di mana sistem hukum negara, agama, dan adat bekerja bersamaan dalam cakupan ruang sosial budaya yang sama.",
+            4: "<strong>Benar! Jawaban D.</strong> Etnografi dan pengamatan terlibat mendalam (*participant observation*) adalah kekhasan utama antropologi hukum demi menangkap realitas adat di lapangan secara alami.",
+            5: "<strong>Benar! Jawaban C.</strong> Suatu ketidakpuasan baru berstatus 'sengketa' (dispute) sesaat setelah dibawa dari interaksi tersembunyi/bilateral ke arena luar publik dengan menuntut keterlibatan pihak ketiga yang dipercaya.",
+            6: "<strong>Benar! Jawaban B.</strong> Pengucilan adat merontokkan segenap basis relasi mutualistik sosial pelanggar. Tanpa resiprositas, pelanggar kesulitan mendapatkan sandang, pangan, pertolongan fisik, dan pengakuan status dalam kehidupan komunal.",
+            7: "<strong>Benar! Jawaban A.</strong> Relativisme Budaya menekankan bahwa seluruh kriteria moral, norma, hukum lokal semestinya dipahami dari kerangka budaya internal penuturnya sendiri, bukan ditakar paksa dari parameter eksternal global.",
+            8: "<strong>Benar! Jawaban C.</strong> Metode Kasus (*Trouble Case Method*) menilai hukum dinilai dari apa yang diperbuat pihak-pihak saat terjadi ketegangan atau pelanggaran nyata, bukan apa yang tertera di teks teoritis yang diucapkan kepala suku.",
+            9: "<strong>Benar! Jawaban A.</strong> Di Indonesia, pembagian porsi warisan sangat lazim menggunakan hukum Adat lokal, Hukum Islam (KHI) ataupun BW (KUHPerdata) sesuai kesepakatan dan latar belakang subjek hukum yang berdampingan hidup bebas.",
+            10: "<strong>Benar! Jawaban C.</strong> Sasi (Maluku) dan Lubuk Larangan (Sumatra) adalah pranata adat pelarangan tangkap hasil bumi/laut dalam jangka waktu tertentu guna menjamin siklus pertumbuhan biologis fauna agar kelestarian ekosistem senantiasa terjaga."
+        };
+
+        const answersState = {};
+
+        function checkAnswer(qNumber, correctAnswer) {
+            const selectedOpt = document.querySelector(`input[name="q${qNumber}"]:checked`);
+            if (!selectedOpt) return;
+            
+            const selectedVal = selectedOpt.value;
+            const block = document.querySelector(`.question-block[data-qindex="${qNumber}"]`);
+            const expBox = block.querySelector('.explanation-box');
+
+            // Reset labels style inside this block
+            block.querySelectorAll('label').forEach(lbl => {
+                lbl.className = "flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors";
+            });
+
+            const parentLabel = selectedOpt.parentElement;
+            
+            if (selectedVal === correctAnswer) {
+                parentLabel.className = "flex items-start gap-3 p-3 border-2 border-emerald-500 bg-emerald-50/50 rounded-xl cursor-pointer transition-colors";
+                expBox.innerHTML = explanations[qNumber];
+                expBox.className = "explanation-box mt-2 p-3 bg-emerald-50 text-emerald-800 rounded-xl text-xs border border-emerald-200 leading-relaxed block";
+                answersState[qNumber] = true;
+            } else {
+                parentLabel.className = "flex items-start gap-3 p-3 border-2 border-rose-500 bg-rose-50/50 rounded-xl cursor-pointer transition-colors";
+                expBox.innerHTML = `<strong>Kurang tepat.</strong> Pembahasan: ` + explanations[qNumber];
+                expBox.className = "explanation-box mt-2 p-3 bg-rose-50 text-rose-800 rounded-xl text-xs border border-rose-200 leading-relaxed block";
+                answersState[qNumber] = false;
+            }
+
+            // Disable other options to prevent cheating after check
+            block.querySelectorAll('input').forEach(inp => {
+                inp.disabled = true;
+            });
+
+            updateScore();
+        }
+
+        function updateScore() {
+            const correctCount = Object.values(answersState).filter(val => val === true).length;
+            document.getElementById('quiz-score').innerText = `${correctCount} / 10`;
+
+            const totalAnswered = Object.keys(answersState).length;
+            if (totalAnswered === 10) {
+                const finalMsg = document.getElementById('quiz-final-msg');
+                finalMsg.classList.remove('hidden');
+                if (correctCount >= 8) {
+                    finalMsg.className = "text-sm font-bold text-emerald-600";
+                    finalMsg.innerText = "Luar biasa! Pemahaman Anda sangat mendalam.";
+                } else if (correctCount >= 5) {
+                    finalMsg.className = "text-sm font-bold text-amber-600";
+                    finalMsg.innerText = "Cukup baik! Tingkatkan membaca rincian materi lagi.";
+                } else {
+                    finalMsg.className = "text-sm font-bold text-rose-600";
+                    finalMsg.innerText = "Mari baca kembali modul di atas lalu ulangi kuis.";
+                }
+            }
+        }
+
+        function resetQuiz() {
+            document.getElementById('quizForm').reset();
+            const blocks = document.querySelectorAll('.question-block');
+            blocks.forEach(block => {
+                block.querySelectorAll('label').forEach(lbl => {
+                    lbl.className = "flex items-start gap-3 p-3 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 transition-colors";
+                });
+                block.querySelectorAll('input').forEach(inp => {
+                    inp.disabled = false;
+                });
+                const expBox = block.querySelector('.explanation-box');
+                expBox.className = "explanation-box hidden mt-2 p-3 bg-neutral-50 rounded-lg text-xs text-neutral-600 border border-neutral-100";
+                expBox.innerHTML = "";
+            });
+
+            // Clear answer tracking
+            for (let prop in answersState) {
+                if (answersState.hasOwnProperty(prop)) {
+                    delete answersState[prop];
+                }
+            }
+            document.getElementById('quiz-score').innerText = "0 / 10";
+            document.getElementById('quiz-final-msg').classList.add('hidden');
+        }
+
+        // Real-time Material Search Feature
+        function searchMaterial() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.material-card');
+            const searchNotification = document.getElementById('searchNotification');
+            let foundAny = false;
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(input)) {
+                    card.classList.remove('hidden');
+                    foundAny = true;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            if (input.trim() !== '') {
+                searchNotification.classList.remove('hidden');
+            } else {
+                searchNotification.classList.add('hidden');
+                // ensure all cards are visible
+                cards.forEach(card => card.classList.remove('hidden'));
+            }
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            searchMaterial();
+        }
+    </script>
+</body>
+</html>
