@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penalaran & Logika Hukum — Modul Interaktif</title>
+    <!-- Tailwind CSS untuk tata letak modern -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Lora (untuk teks hukum klasik) dan Inter (untuk UI modern) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .serif-text {
+            font-family: 'Lora', serif;
+        }
+        /* Custom scrollbar bergaya minimalis */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000000;
+        }
+    </style>
+</head>
+<body class="bg-white text-black min-h-screen flex flex-col justify-between antialiased selection:bg-black selection:text-white">
+
+    <!-- Navigation Header -->
+    <header class="border-b-2 border-black sticky top-0 bg-white z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="text-center sm:text-left">
+                <a href="#" class="text-xl font-bold uppercase tracking-widest block hover:opacity-80">LOGIKA & PENALARAN HUKUM</a>
+                <span class="text-xs tracking-wider uppercase text-neutral-500">Mata Kuliah Keahlian Hukum (MKK)</span>
+            </div>
+            
+            <nav class="flex gap-2 text-xs font-semibold uppercase tracking-wider">
+                <button onclick="switchTab('materi')" id="tab-materi" class="px-4 py-2 border border-black bg-black text-white hover:bg-black hover:text-white transition duration-200 rounded-sm">
+                    Materi Kuliah
+                </button>
+                <button onclick="switchTab('kuis')" id="tab-kuis" class="px-4 py-2 border border-neutral-300 hover:border-black transition duration-200 rounded-sm">
+                    Kuis Interaktif
+                </button>
+                <button onclick="switchTab('referensi')" id="tab-referensi" class="px-4 py-2 border border-neutral-300 hover:border-black transition duration-200 rounded-sm">
+                    Referensi
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+        
+        <!-- Welcome Banner -->
+        <div class="border-2 border-black p-6 md:p-8 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div class="max-w-2xl">
+                <h1 class="text-3xl md:text-4xl font-bold serif-text leading-tight mb-2">Penalaran Hukum (Legal Reasoning)</h1>
+                <p class="text-sm md:text-base text-neutral-600">
+                    Panduan akademis komprehensif untuk memahami cara berpikir yuridis, penafsiran norma, penemuan hukum (*rechtsvinding*), serta menghindari kesesatan berpikir dalam argumentasi hukum.
+                </p>
+            </div>
+            <div class="flex flex-col gap-2 w-full md:w-auto">
+                <div class="border border-neutral-300 p-3 text-center bg-neutral-50 rounded-sm">
+                    <span class="block text-2xl font-bold serif-text" id="read-progress">0%</span>
+                    <span class="text-[10px] uppercase tracking-wider text-neutral-500 font-semibold">Progres Belajar</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: MATERI KULIAH -->
+        <section id="content-materi" class="space-y-12 block">
+            
+            <!-- Pencarian Materi & Expand All -->
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 bg-neutral-50 p-4 border border-neutral-300 rounded-sm">
+                <div class="relative w-full sm:w-72">
+                    <input type="text" id="search-input" oninput="searchMateri()" placeholder="Cari topik (misal: deduksi, analogi)..." class="w-full px-3 py-2 text-sm border border-neutral-300 focus:border-black focus:outline-none rounded-sm">
+                </div>
+                <div class="flex gap-2 w-full sm:w-auto justify-end text-xs font-semibold uppercase">
+                    <button onclick="toggleAllAccordions(true)" class="px-3 py-2 border border-neutral-300 hover:border-black bg-white rounded-sm">Buka Semua</button>
+                    <button onclick="toggleAllAccordions(false)" class="px-3 py-2 border border-neutral-300 hover:border-black bg-white rounded-sm">Tutup Semua</button>
+                </div>
+            </div>
+
+            <!-- Modul 1 -->
+            <article class="border border-black rounded-sm overflow-hidden" data-search="pengantar penalaran logika definisi fungsi">
+                <button onclick="toggleAccordion('modul1')" class="w-full bg-neutral-50 hover:bg-neutral-100 px-6 py-4 flex justify-between items-center border-b border-black text-left transition duration-150">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-neutral-500 block">BAGIAN I</span>
+                        <h2 class="text-xl font-bold serif-text">Pengantar Penalaran Hukum & Logika</h2>
+                    </div>
+                    <span id="icon-modul1" class="text-xl font-bold font-mono">+</span>
+                </button>
+                
+                <div id="body-modul1" class="hidden p-6 md:p-8 space-y-6 bg-white transition-all">
+                    <div>
+                        <h3 class="text-lg font-bold uppercase border-b border-neutral-300 pb-2 mb-3">1. Definisi Penalaran Hukum (Legal Reasoning)</h3>
+                        <p class="serif-text text-neutral-800 leading-relaxed mb-4">
+                            <strong>Penalaran Hukum (Legal Reasoning)</strong> adalah kegiatan berpikir kritis, problematis, dan sistematis yang dilakukan oleh subjek hukum (praktisi hukum, hakim, jaksa, pengacara, akademisi, dan mahasiswa hukum) untuk menganalisis, menafsirkan, menguji, dan menerapkan norma-norma hukum terhadap peristiwa konkret guna menghasilkan sebuah keputusan hukum yang rasional dan berkepastian.
+                        </p>
+                        <p class="serif-text text-neutral-800 leading-relaxed">
+                            Secara sempit, penalaran hukum sering disamakan dengan penerapan prinsip-prinsip logika dalam menarik kesimpulan dari aturan hukum tertulis. Secara luas, penalaran ini mencakup penilaian moral, pertimbangan sosiologis, asas kepatutan, dan analisis kemanfaatan dari keputusan yang diambil.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-bold uppercase border-b border-neutral-300 pb-2 mb-3">2. Hubungan Logika dengan Hukum</h3>
+                        <p class="serif-text text-neutral-800 leading-relaxed mb-4">
+                            Logika adalah "alat kesehatan berpikir" (*organon*). Tanpa logika, hukum kehilangan objektivitas dan konsistensinya. Hukum menuntut kepastian, dan kepastian hanya dapat dicapai melalui penalaran yang runtut dan tidak kontradiktif.
+                        </p>
+                        <div class="border-l-4 border-black pl-4 italic text-neutral-700 my-4 bg-neutral-50 py-3 pr-2 serif-text">
+                            "Logika bagi hukum ibarat kerangka tulang bagi tubuh manusia. Ia memberikan struktur penopang agar argumen hukum tidak goyah dan runtuh saat diuji dalam perdebatan persidangan."
+                        </div>
+                        <p class="serif-text text-neutral-800 leading-relaxed">
+                            Meskipun begitu, tokoh realisme hukum terkemuka, <strong>Oliver Wendell Holmes Jr.</strong>, pernah melayangkan kritik terkenal: <em>"The life of the law has not been logic; it has been experience."</em> Kalimat ini mengingatkan kita bahwa penalaran hukum tidak boleh kaku secara formal-logis saja, tetapi harus peka terhadap realitas sosial dan keadilan yang berkembang di masyarakat.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-bold uppercase border-b border-neutral-300 pb-2 mb-3">3. Urgensi & Manfaat bagi Praktisi Hukum</h3>
+                        <ul class="list-disc list-inside space-y-2 text-neutral-800 serif-text pl-2">
+                            <li><strong>Bagi Hakim:</strong> Membantu merumuskan pertimbangan hukum (*ratio decidendi*) yang objektif, kokoh, dan tidak berpihak dalam sebuah putusan.</li>
+                            <li><strong>Bagi Advokat:</strong> Membantu merancang strategi pembelaan, menyusun memori gugatan/pledoi yang logis, serta mematahkan argumen lawan secara sistematis.</li>
+                            <li><strong>Bagi Pembuat UU (Legislator):</strong> Memastikan tidak terjadi kontradiksi atau tumpang tindih norma antara undang-undang yang baru dengan instrumen hukum yang sudah ada (*konsistensi vertikal dan horizontal*).</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Modul 2 -->
+            <article class="border border-black rounded-sm overflow-hidden" data-search="metode deduktif deduksi induktif induksi silogisme mayor minor">
+                <button onclick="toggleAccordion('modul2')" class="w-full bg-neutral-50 hover:bg-neutral-100 px-6 py-4 flex justify-between items-center border-b border-black text-left transition duration-150">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-neutral-500 block">BAGIAN II</span>
+                        <h2 class="text-xl font-bold serif-text">Metode Penalaran Hukum: Deduksi & Induksi</h2>
+                    </div>
+                    <span id="icon-modul2" class="text-xl font-bold font-mono">+</span>
+                </button>
+                
+                <div id="body-modul2" class="hidden p-6 md:p-8 space-y-6 bg-white transition-all">
+                    <div>
+                        <h3 class="text-lg font-bold uppercase border-b border-neutral-300 pb-2 mb-3">1. Metode Deduktif (Silogisme Hukum / Syllogism)</h3>
+                        <p class="serif-text text-neutral-800 leading-relaxed mb-4">
+                            Metode deduktif adalah proses berpikir yang bergerak dari hal-hal yang bersifat umum (norma hukum abstrak) ke hal-hal yang bersifat khusus (peristiwa konkret). Hasil dari penarikan kesimpulan deduktif bernilai pasti/mutlak jika premis-premisnya benar.
+                        </p>
+                        <p class="serif-text text-neutral-800 leading-relaxed mb-4">
+                            Dalam dunia hukum, struktur penalaran deduktif diaplikasikan dalam bentuk <strong>Silogisme Hukum</strong> yang terdiri dari tiga komponen utama:
+                        </p>
+                        <div class="bg-neutral-50 border border-neutral-300 p-5 rounded-sm space-y-3 font-mono text-xs md:text-sm">
+                            <div><strong class="text-black uppercase">Premis Mayor (U) :</strong> Aturan atau norma hukum yang bersifat umum (Konstitusi, UU, Peraturan).</div>
+                            <div><strong class="text-black uppercase">Premis Minor (K) :</strong> Fakta hukum konkret yang terjadi (siapa, melakukan apa, di mana, kapan).</div>
+                            <div><strong class="text-black uppercase">Konklusi (S)     :</strong> Putusan hukum atau konsekuensi logis dari penerapan norma terhadap fakta tersebut.</div>
+                        </div>
+                        <div class="mt-4 p-4 border border-black bg-white rounded-sm">
+                            <span class="text-xs font-bold uppercase tracking-wider block text-neutral-500 mb-1">Contoh Klasik Penerapan Silogisme:</span>
+                            <ul class="list-none space-y-1 text-sm font-semibold text-neutral-800">
+                                <li>📌 <strong>Premis Mayor:</strong> Pasal 362 KUHP menyatakan, <em>"Barang siapa mengambil barang sesuatu, yang seluruhnya atau sebagian kepunyaan orang lain, dengan maksud untuk dimiliki secara melawan hukum, diancam karena pencurian..."</em></li>
+                                <li>📌 <strong>Premis Minor:</strong> Terdakwa Adi mengambil sebuah laptop milik Budi tanpa izin dari mejanya dengan niat menjual kembali demi keuntungan pribadi.</li>
+                                <li>📌 <strong>Konklusi:</strong> Terdakwa Adi terbukti secara sah dan meyakinkan melakukan tindak pidana pencurian dan harus diancam pidana berdasarkan Pasal 362 KUHP.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-bold uppercase border-b border-neutral-300 pb-2 mb-3">2. Metode Induktif</h3>
+                        <p class="serif-text text-neutral-800 leading-relaxed mb-4">
+                            Metode induktif adalah penarikan kesimpulan yang bergerak dari fakta-fakta khusus atau kejadian individual menuju ke sebuah kesimpulan umum. Dalam penalaran hukum, induksi sangat krusial dalam proses pembuktian di sidang pengadilan.
+                        </p>
+                        <p class="serif-text text-neutral-800 leading-relaxed mb-4">
+                            Hakim mengumpulkan serpihan petunjuk, keterangan saksi, ahli, dan surat untuk merekonstruksi fakta tindak pidana:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+                            <div class="border border-neutral-300 p-4 rounded-sm">
+                                <span class="font-bold uppercase block mb-1">Fakta Khusus 1</span>
+                                Sidik jari terdakwa ditemukan pada gagang pisau dapur yang digunakan untuk menikam korban.
+                            </div>
+                            <div class="border border-neutral-300 p-4 rounded-sm">
+                                <span class="font-bold uppercase block mb-1">Fakta Khusus 2</span>
+                                Rekaman CCTV menunjukkan terdakwa masuk ke rumah korban 10 menit sebelum kejadian teriakan korban terdengar.
+                            </div>
+                            <div class="border border-neutral-300 p-4 rounded-sm">
+                                <span class="font-bold uppercase block mb-1">Fakta Khusus 3</span>
+                                Ditemukan pesan ancaman kekerasan dari HP terdakwa yang dikirim kepada korban sehari sebelumnya.
+                            </div>
+                        </div>
+                        <p class="serif-text text-neutral-800 leading-relaxed mt-4">
+                            <strong>Kesimpulan Induktif (Probabilitas Tinggi):</strong> Terdakwa adalah pelaku pembunuhan berencana terhadap korban. (Kesimpulan induktif bernilai probabilitas/kemungkinan, sehingga harus diuji agar mendekati kebenaran mutlak).
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-bold uppercase border-b border-neutral-300 pb-2 mb-3">3. Analogi Hukum (Metode Induksi Khusus)</h3>
+                        <p class="serif-text text-neutral-800 leading-relaxed">
+                            Analogi dilakukan dengan cara menerapkan ketentuan undang-undang yang berlaku bagi suatu peristiwa konkret kepada peristiwa lain yang tidak diatur secara eksplisit dalam undang-undang tersebut, namun memiliki kemiripan esensial (*similia similibus*). 
+                            <br><br>
+                            <em>Contoh:</em> Ketika terjadi pencurian aliran listrik, pengadilan menganalogikan "aliran listrik" sebagai "barang" dalam Pasal 362 KUHP, meskipun saat undang-undang itu dibuat, pembuatnya hanya membayangkan barang yang berwujud fisik.
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Modul 3 -->
+            <article class="border border-black rounded-sm overflow-hidden" data-search="penemuan hukum rechtsvinding interpretasi konstruksi analogi gramatikal">
+                <button onclick="toggleAccordion('modul3')" class="w-full bg-neutral-50 hover:bg-neutral-100 px-6 py-4 flex justify-between items-center border-b border-black text-left transition duration-150">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-neutral-500 block">BAGIAN III</span>
+                        <h2 class="text-xl font-bold serif-text">Penemuan Hukum (Rechtsvinding): Interpretasi & Konstruksi</h2>
+                    </div>
+                    <span id="icon-modul3" class="text-xl font-bold font-mono">+</span>
+                </button>
+                
+                <div id="body-modul3" class="hidden p-6 md:p-8 space-y-6 bg-white transition-all">
+                    <p class="serif-text text-neutral-800 leading-relaxed">
+                        Undang-undang tidak pernah lengkap dan sempurna. Seringkali normanya tidak jelas, kabur (*vague norm*), atau bahkan kosong (*rechtvacuum*). Di sinilah pentingnya **Penemuan Hukum (Rechtsvinding)** oleh hakim agar tidak menolak perkara atas dasar hukumnya belum diatur.
+                    </p>
+
+                    <div>
+                        <h3 class="text-lg font-bold uppercase border-b border-neutral-300 pb-2 mb-3">A. Metode Interpretasi (Penafsiran) Hukum</h3>
+                        <p class="serif-text text-neutral-800 leading-relaxed mb-4">
+                            Metode interpretasi digunakan apabila bunyi teks undang-undang ada, namun maknanya masih meragukan atau tidak jelas.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="border-l-2 border-black pl-4">
+                                <h4 class="font-bold text-sm uppercase">1. Interpretasi Gramatikal (Bahasa)</h4>
+                                <p class="text-xs md:text-sm text-neutral-700 serif-text">Menafsirkan arti kata dalam undang-undang berdasarkan tata bahasa atau kamus umum. Contoh: Menafsirkan kata "kendaraan" sebagai sepeda motor, mobil, dan truk dalam peraturan lalu lintas.</p>
+                            </div>
+                            <div class="border-l-2 border-black pl-4">
+                                <h4 class="font-bold text-sm uppercase">2. Interpretasi Sistematis (Logis)</h4>
+                                <p class="text-xs md:text-sm text-neutral-700 serif-text">Menafsirkan sebuah pasal dengan menghubungkannya dengan pasal lain di dalam undang-undang yang sama atau dalam sistem hukum yang lebih luas. Suatu pasal tidak boleh ditafsirkan bertentangan dengan keseluruhan sistem hukum.</p>
+                            </div>
+                            <div class="border-l-2 border-black pl-4">
+                                <h4 class="font-bold text-sm uppercase">3. Interpretasi Historis</h4>
+                                <p class="text-xs md:text-sm text-neutral-700 serif-text">Mencari tahu maksud sebenarnya dari para pembentuk undang-undang saat aturan tersebut dirumuskan (melalui risalah persidangan/sejarah pembahasan UU).</p>
+                            </div>
+                            <div class="border-l-2 border-black pl-4">
+                                <h4 class="font-bold text-sm uppercase">4. Interpretasi Teleologis / Sosiologis</h4>
+                                <p class="text-xs md:text-sm text-neutral-700 serif-text">Menafsirkan undang-undang berdasarkan tujuan kemasyarakatan yang aktual hari ini agar undang-undang yang kuno tetap dapat diterapkan pada situasi modern.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-bold uppercase border-b border-neutral-300 pb-2 mb-3">B. Metode Konstruksi Hukum</h3>
+                        <p class="serif-text text-neutral-800 leading-relaxed mb-4">
+                            Metode ini digunakan apabila terdapat kekosongan hukum (*lacuna*) di mana sama sekali tidak ada pasal undang-undang yang mengatur perkara tersebut.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="border-l-2 border-black pl-4">
+                                <h4 class="font-bold text-sm uppercase">1. Argumentum a Contrario (Penafsiran Berlawanan)</h4>
+                                <p class="text-xs md:text-sm text-neutral-700 serif-text">
+                                    Penalaran yang didasarkan pada anggapan bahwa jika undang-undang menetapkan hal khusus untuk peristiwa tertentu, maka untuk hal di luar ketentuan itu berlaku kebalikannya.
+                                    <br>
+                                    <em>Contoh:</em> Pasal 110 KUHPerdata menyatakan seorang janda harus menunggu waktu tertentu sebelum menikah lagi. Berdasarkan <em>a contrario</em>, ketentuan masa tunggu ini tidak berlaku bagi seorang duda.
+                                </p>
+                            </div>
+                            <div class="border-l-2 border-black pl-4">
+                                <h4 class="font-bold text-sm uppercase">2. Penyempitan Hukum (Rechtsverfijning / Restriksi)</h4>
+                                <p class="text-xs md:text-sm text-neutral-700 serif-text">
+                                    Mempersempit ruang lingkup suatu pasal undang-undang karena jika pasal tersebut diterapkan secara harfiah dan umum akan menimbulkan ketidakadilan yang parah bagi pihak tertentu.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Modul 4 -->
+            <article class="border border-black rounded-sm overflow-hidden" data-search="kesesatan berpikir fallacy fallacies ad hominem baculum misericordiam verecundiam">
+                <button onclick="toggleAccordion('modul4')" class="w-full bg-neutral-50 hover:bg-neutral-100 px-6 py-4 flex justify-between items-center border-b border-black text-left transition duration-150">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-neutral-500 block">BAGIAN IV</span>
+                        <h2 class="text-xl font-bold serif-text">Kesesatan Relevansi dalam Penalaran Hukum (Legal Fallacies)</h2>
+                    </div>
+                    <span id="icon-modul4" class="text-xl font-bold font-mono">+</span>
+                </button>
+                
+                <div id="body-modul4" class="hidden p-6 md:p-8 space-y-6 bg-white transition-all">
+                    <p class="serif-text text-neutral-800 leading-relaxed mb-4">
+                        Kesesatan berpikir (*fallacy*) adalah argumen yang tampaknya benar dan persuasif, namun setelah diperiksa dengan cermat, ternyata cacat logika, melanggar kaidah berpikir sehat, serta menyesatkan kesimpulan. Di ranah litigasi/persidangan, praktisi hukum harus jeli mendeteksi kesesatan berpikir lawan.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="border border-neutral-300 p-5 rounded-sm">
+                            <h4 class="font-bold uppercase tracking-wide text-sm border-b border-neutral-200 pb-2 mb-2">1. Argumentum ad Hominem</h4>
+                            <p class="text-xs md:text-sm text-neutral-700 serif-text">
+                                Menyerang karakter pribadi, penampilan, atau latar belakang lawan bicara, alih-alih merespons substansi argumen hukum yang mereka sampaikan.
+                                <br><br>
+                                <span class="block bg-neutral-50 p-2 text-xs font-mono font-bold">"Jangan dengarkan kesaksian ahli pidana itu, dia saja pernah bercerai dengan istrinya!"</span>
+                            </p>
+                        </div>
+
+                        <div class="border border-neutral-300 p-5 rounded-sm">
+                            <h4 class="font-bold uppercase tracking-wide text-sm border-b border-neutral-200 pb-2 mb-2">2. Argumentum ad Misericordiam</h4>
+                            <p class="text-xs md:text-sm text-neutral-700 serif-text">
+                                Mengandalkan dan memanipulasi belas kasihan, rasa kasihan, atau kesedihan hakim agar melepaskan terdakwa dari tuntutan pidana, di luar pembuktian hukum objektif.
+                                <br><br>
+                                <span class="block bg-neutral-50 p-2 text-xs font-mono font-bold">"Bebaskan klien saya dari dakwaan korupsi ini karena dia memiliki anak yang masih kecil-kecil."</span>
+                            </p>
+                        </div>
+
+                        <div class="border border-neutral-300 p-5 rounded-sm">
+                            <h4 class="font-bold uppercase tracking-wide text-sm border-b border-neutral-200 pb-2 mb-2">3. Argumentum ad Baculum</h4>
+                            <p class="text-xs md:text-sm text-neutral-700 serif-text">
+                                Menggunakan ancaman kekuatan, kekuasaan, jabatan, atau kekerasan untuk memaksa pihak lain menyetujui sebuah klaim atau kesimpulan hukum.
+                                <br><br>
+                                <span class="block bg-neutral-50 p-2 text-xs font-mono font-bold">"Jika Anda menuntut direktur kami, kami akan pastikan karier Anda di kepolisian akan hancur seketika."</span>
+                            </p>
+                        </div>
+
+                        <div class="border border-neutral-300 p-5 rounded-sm">
+                            <h4 class="font-bold uppercase tracking-wide text-sm border-b border-neutral-200 pb-2 mb-2">4. Argumentum ad Verecundiam (Auctoritatis)</h4>
+                            <p class="text-xs md:text-sm text-neutral-700 serif-text">
+                                Menyatakan bahwa suatu argumen hukum itu benar hanya karena argumen tersebut diucapkan oleh tokoh terkenal atau otoritas besar, padahal bidang keahlian tokoh tersebut tidak relevan.
+                                <br><br>
+                                <span class="block bg-neutral-50 p-2 text-xs font-mono font-bold">"Tindakan investasi bodong ini legal, sebab pernah dipromosikan oleh penyanyi legendaris idola nasional."</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- TAB: KUIS INTERAKTIF -->
+        <section id="content-kuis" class="space-y-6 hidden">
+            <!-- Quiz Dashboard / Start Screen -->
+            <div id="quiz-intro" class="border border-black p-6 md:p-8 text-center space-y-4 rounded-sm">
+                <span class="text-xs font-bold uppercase tracking-wider text-neutral-500">UJI PEMAHAMAN ANDA</span>
+                <h2 class="text-2xl md:text-3xl font-bold serif-text">Kuis Interaktif Penalaran Hukum</h2>
+                <p class="text-sm text-neutral-600 max-w-xl mx-auto">
+                    Kuis ini terdiri dari 10 soal pilihan ganda berbasis analisis kasus nyata. Anda akan langsung mengetahui apakah jawaban Anda benar/salah beserta penjelasan analisis teoretisnya secara terperinci.
+                </p>
+                <button onclick="startQuiz()" class="px-6 py-3 bg-black text-white hover:bg-neutral-800 text-xs font-bold uppercase tracking-wider transition rounded-sm">
+                    Mulai Ujian Sekarang
+                </button>
+            </div>
+
+            <!-- Quiz Panel (Hidden by default) -->
+            <div id="quiz-panel" class="hidden border border-black rounded-sm overflow-hidden bg-white">
+                <!-- Header Kuis -->
+                <div class="bg-neutral-50 border-b border-black p-4 flex justify-between items-center text-xs font-semibold uppercase tracking-wider">
+                    <span>Pertanyaan <span id="current-question-num" class="font-bold">1</span> dari <span id="total-questions-num" class="font-bold">10</span></span>
+                    <span id="quiz-timer" class="text-neutral-500">Logika Hukum</span>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-neutral-200 h-1.5">
+                    <div id="quiz-progress-bar" class="bg-black h-1.5 transition-all duration-300" style="width: 10%"></div>
+                </div>
+
+                <!-- Soal Konten -->
+                <div class="p-6 md:p-8 space-y-6">
+                    <div class="serif-text text-base md:text-lg font-semibold text-neutral-900 leading-relaxed" id="question-text">
+                        [Teks pertanyaan akan muncul di sini...]
+                    </div>
+
+                    <!-- Pilihan Jawaban -->
+                    <div class="space-y-3" id="options-container">
+                        <!-- Options will be generated dynamically here -->
+                    </div>
+
+                    <!-- Kotak Feedback Penjelasan -->
+                    <div id="feedback-box" class="hidden border p-4 rounded-sm">
+                        <span id="feedback-status" class="block font-bold text-xs uppercase tracking-wider mb-1"></span>
+                        <p id="feedback-explanation" class="text-sm serif-text text-neutral-800"></p>
+                    </div>
+                </div>
+
+                <!-- Footer Kuis -->
+                <div class="bg-neutral-50 border-t border-black p-4 flex justify-between items-center">
+                    <button id="btn-next" onclick="nextQuestion()" class="ml-auto px-5 py-2.5 bg-black text-white hover:bg-neutral-800 text-xs font-bold uppercase tracking-wider transition rounded-sm disabled:opacity-50" disabled>
+                        Pertanyaan Selanjutnya &rarr;
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Score Result Screen (Hidden by default) -->
+            <div id="quiz-result" class="hidden border-2 border-black p-8 text-center space-y-6 rounded-sm bg-white">
+                <span class="text-xs font-bold uppercase tracking-wider text-neutral-500">HASIL PENILAIAN AKHIR</span>
+                <h2 class="text-4xl font-bold serif-text" id="final-score">0 / 100</h2>
+                
+                <div class="max-w-md mx-auto space-y-2">
+                    <p class="font-semibold text-lg" id="score-grade">Cukup Baik</p>
+                    <p class="text-sm text-neutral-600" id="score-comment">
+                        Anda telah berhasil menyelesaikan kuis penalaran hukum. Silakan baca ulang modul untuk memperdalam pemahaman konsep.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button onclick="startQuiz()" class="px-5 py-3 border border-black hover:bg-black hover:text-white text-xs font-bold uppercase tracking-wider transition rounded-sm">
+                        Coba Lagi
+                    </button>
+                    <button onclick="switchTab('materi')" class="px-5 py-3 border border-neutral-300 hover:border-black text-xs font-bold uppercase tracking-wider transition rounded-sm">
+                        Tinjau Kembali Materi
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: REFERENSI -->
+        <section id="content-referensi" class="space-y-6 hidden">
+            <div class="border border-black p-6 md:p-8 rounded-sm bg-white">
+                <h2 class="text-2xl font-bold serif-text mb-6 border-b border-black pb-2 uppercase tracking-wide">Daftar Pustaka & Sumber Teoretis</h2>
+                
+                <div class="space-y-6 serif-text text-sm md:text-base text-neutral-800 leading-relaxed">
+                    <div class="border-b border-neutral-200 pb-4">
+                        <p class="font-semibold">Hadjon, Philipus M., dan Tatiek Sri Djatmiati. 2005. <em>Argumentasi Hukum</em>. Yogyakarta: Gadjah Mada University Press.</p>
+                        <span class="text-xs font-mono text-neutral-500 block mt-1">Sumbangsih: Membahas secara teoretis bagaimana penemuan hukum dan struktur argumentasi hukum terkonstruksi di Indonesia.</span>
+                    </div>
+
+                    <div class="border-b border-neutral-200 pb-4">
+                        <p class="font-semibold">Mertokusumo, Sudikno. 2009. <em>Penemuan Hukum: Sebuah Pengantar</em>. Yogyakarta: Liberty.</p>
+                        <span class="text-xs font-mono text-neutral-500 block mt-1">Sumbangsih: Menjelaskan klasifikasi interpretasi hukum serta metode konstruksi hukum (analogical reasoning dan a contrario).</span>
+                    </div>
+
+                    <div class="border-b border-neutral-200 pb-4">
+                        <p class="font-semibold">Shidarta. 2013. <em>Hukum Penalaran dan Penalaran Hukum dalam Filsafat</em>. Jakarta: Genta Publishing.</p>
+                        <span class="text-xs font-mono text-neutral-500 block mt-1">Sumbangsih: Menjelaskan keterikatan mendalam antara epistemologi filsafat hukum dengan penalaran normatif hakim.</span>
+                    </div>
+
+                    <div class="border-b border-neutral-200 pb-4">
+                        <p class="font-semibold">Copi, Irving M., Carl Cohen, dan Victor Flom. 2014. <em>Introduction to Logic</em>. Pearson Education.</p>
+                        <span class="text-xs font-mono text-neutral-500 block mt-1">Sumbangsih: Sumber teoretis utama penulisan kesesatan berpikir (fallacy) formal dan informal di tingkat internasional.</span>
+                    </div>
+
+                    <div>
+                        <p class="font-semibold">Holmes, Oliver Wendell Jr. 1881. <em>The Common Law</em>. Boston: Little, Brown, and Company.</p>
+                        <span class="text-xs font-mono text-neutral-500 block mt-1">Sumbangsih: Memberikan perspektif kritis fungsional bahwa hukum tidak sekadar logika matematis, melainkan cerminan kebutuhan zaman.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t-2 border-black bg-black text-white mt-12 py-8">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="text-xs font-bold uppercase tracking-widest">&copy; 2026 LOGIKA & PENALARAN HUKUM INTERAKTIF</p>
+                <p class="text-[10px] text-neutral-400 mt-1">Media Belajar Digital Mandiri Fakultas Hukum Universitas</p>
+            </div>
+            <div class="flex gap-4 text-[10px] uppercase font-semibold tracking-wider text-neutral-400">
+                <a href="#" onclick="window.print()" class="hover:text-white transition">Cetak Materi (PDF)</a>
+                <span>&bull;</span>
+                <a href="https://google.com" target="_blank" class="hover:text-white transition">Google Scholar</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // State Management
+        let readSections = {
+            modul1: false,
+            modul2: false,
+            modul3: false,
+            modul4: false
+        };
+
+        // Data Soal Kuis Penalaran Hukum
+        const kuisDatabase = [
+            {
+                pertanyaan: "Dalam menyusun putusan, Hakim mendasarkan diri pada Pasal 340 KUHP tentang Pembunuhan Berencana sebagai dasar umum, lalu menguji kebenaran perbuatan terdakwa Amir yang merencanakan pembunuhan terhadap Budi, untuk kemudian menjatuhkan hukuman mati kepada Amir. Metode penalaran hukum apa yang diterapkan Hakim tersebut?",
+                pilihan: [
+                    "A. Metode Penalaran Induktif",
+                    "B. Metode Penalaran Deduktif (Silogisme Hukum)",
+                    "C. Penafsiran Argumentum a Contrario",
+                    "D. Metode Abduksi Spontan"
+                ],
+                jawabanBenar: 1, // B
+                penjelasan: "Sangat Tepat! Hakim menggunakan Metode Deduktif (Silogisme Hukum). Premis mayornya adalah Pasal 340 KUHP (norma umum), premis minornya adalah perbuatan konkret Amir (fakta khusus), dan konklusinya adalah penjatuhan hukuman mati (keputusan hukum khusus)."
+            },
+            {
+                pertanyaan: "Ketika seorang pengacara berargumen di persidangan dengan mengatakan: 'Majelis Hakim yang Mulia, tuntutan jaksa haruslah dibatalkan demi hukum karena jaksa penuntut umum tersebut belum memiliki sertifikasi keahlian khusus sengketa bisnis dari asosiasi advokat internasional,' ia melakukan cacat logika/kesesatan berpikir jenis apa?",
+                pilihan: [
+                    "A. Argumentum ad Baculum",
+                    "B. Argumentum ad Misericordiam",
+                    "C. Argumentum ad Hominem",
+                    "D. Fallacy of Composition"
+                ],
+                jawabanBenar: 2, // C
+                penjelasan: "Tepat sekali! Ini adalah Argumentum ad Hominem. Pengacara tersebut menyerang kualifikasi pribadi/administrasi jaksa, alih-alih merespons atau menyangkal kebenaran argumen hukum dan dakwaan yang diajukan jaksa."
+            },
+            {
+                pertanyaan: "Apabila hakim menolak penuntutan terhadap seseorang karena undang-undang secara spesifik hanya melarang 'wanita hamil yang telah menikah' menggunakan obat tertentu, sementara pelaku adalah 'gadis remaja yang belum menikah' dengan alasan ketentuan itu secara terbalik tidak berlaku padanya. Metode konstruksi hukum apa yang diterapkan?",
+                pilihan: [
+                    "A. Interpretasi Gramatikal",
+                    "B. Analogi Hukum",
+                    "C. Argumentum a Contrario (Berlawanan)",
+                    "D. Rechtsverfijning (Penyempitan Hukum)"
+                ],
+                jawabanBenar: 2, // C
+                penjelasan: "Benar! Ini adalah Argumentum a Contrario. Penalaran ini didasarkan pada asumsi bahwa jika undang-undang menyebutkan syarat khusus untuk peristiwa tertentu secara eksplisit, maka peristiwa yang bertolak belakang harus diperlakukan secara berkebalikan pula."
+            },
+            {
+                pertanyaan: "Satu undang-undang agraria peninggalan tahun 1950 melarang penjualan 'tanah pertanian' kepada pihak asing. Hakim menafsirkan bahwa di era digital ini, 'lahan tambak garam pesisir' juga tergolong 'tanah pertanian' yang dilindungi karena memiliki peran penting bagi kedaulatan pangan lokal. Metode penafsiran apa yang digunakan hakim?",
+                pilihan: [
+                    "A. Interpretasi Historis",
+                    "B. Interpretasi Gramatikal Literal",
+                    "C. Interpretasi Teleologis / Sosiologis",
+                    "D. Interpretasi Komparatif"
+                ],
+                jawabanBenar: 2, // C
+                penjelasan: "Benar! Hakim menggunakan Interpretasi Teleologis/Sosiologis. Hakim melangkah melampaui teks harfiah masa lalu untuk menyesuaikan tujuan perlindungan kemasyarakatan undang-undang dengan kebutuhan ketahanan pangan sosiologis masa kini."
+            },
+            {
+                pertanyaan: "Sebuah aturan berbunyi: 'Kendaraan roda empat dilarang melintasi jembatan penyeberangan darurat.' Seseorang mengendarai motor roda tiga (tossa) bermuatan penuh dan ditilang. Polisi beralasan bahwa motor roda tiga juga berbahaya bagi jembatan tipis tersebut. Penalaran kepolisian ini menggunakan metode...",
+                pilihan: [
+                    "A. Analogi Hukum",
+                    "B. Argumentum a Contrario",
+                    "C. Penafsiran Gramatikal",
+                    "D. Argumentum ad Verecundiam"
+                ],
+                jawabanBenar: 0, // A
+                penjelasan: "Tepat! Analogi Hukum digunakan karena polisi menyamakan 'motor roda tiga bermuatan berat' dengan 'kendaraan roda empat' berdasarkan sifat dasarnya yang sama-sama membahayakan struktur jembatan darurat."
+            },
+            {
+                pertanyaan: "Seorang terdakwa kasus korupsi memohon kepada Majelis Hakim: 'Yang mulia, mohon ringankan hukuman saya menjadi tahanan kota saja, sebab jika saya dipenjara, pabrik tekstil saya akan tutup dan ribuan buruh miskin akan kehilangan pekerjaan dan menjadi kelaparan.' Argumentasi ini mengandung kesesatan...",
+                pilihan: [
+                    "A. Argumentum ad Populum",
+                    "B. Argumentum ad Baculum",
+                    "C. Argumentum ad Misericordiam",
+                    "D. Post Hoc Ergo Propter Hoc"
+                ],
+                jawabanBenar: 2, // C
+                penjelasan: "Benar! Argumentum ad Misericordiam terjadi saat pembelaan beralih dari aspek hukum ke eksploitasi rasa belas kasihan/nasib tragis pihak lain demi meloloskan terdakwa dari jeratan hukum."
+            },
+            {
+                pertanyaan: "Filsuf hukum terkemuka yang menegaskan bahwa 'kehidupan hukum bukanlah semata-mata logika, melainkan pengalaman sosiologis/praktis' adalah...",
+                pilihan: [
+                    "A. Philipus M. Hadjon",
+                    "B. Oliver Wendell Holmes Jr.",
+                    "C. Sudikno Mertokusumo",
+                    "D. Hans Kelsen"
+                ],
+                jawabanBenar: 1, // B
+                penjelasan: "Benar! Tokoh Realisme Hukum Amerika, Hakim Agung Oliver Wendell Holmes Jr. yang menyatakan hal tersebut untuk mengkritik formalism hukum yang kaku."
+            },
+            {
+                pertanyaan: "Metode penemuan hukum di mana hakim membatasi cakupan berlaku dari suatu pasal karena jika diterapkan secara kaku sesuai bunyi teks akan mencederai keadilan publik disebut...",
+                pilihan: [
+                    "A. Argumentum a Contrario",
+                    "B. Analogi",
+                    "C. Penyempitan Hukum (Rechtsverfijning / Restriksi)",
+                    "D. Interpretasi Sistematis"
+                ],
+                jawabanBenar: 2, // C
+                penjelasan: "Benar! Penyempitan Hukum (Rechtsverfijning) bertugas mengesampingkan penerapan harfiah hukum yang terlalu luas agar menghasilkan putusan yang adil secara kontekstual."
+            },
+            {
+                pertanyaan: "Dalam penalaran hukum, Premis Mayor dari silogisme hukum haruslah berupa...",
+                pilihan: [
+                    "A. Fakta kejahatan di tempat kejadian",
+                    "B. Berita Acara Pemeriksaan (BAP) penyidik",
+                    "C. Aturan, ketentuan, atau norma hukum positif yang valid",
+                    "D. Pendapat atau keyakinan subjektif dari hakim"
+                ],
+                jawabanBenar: 2, // C
+                penjelasan: "Benar! Premis Mayor adalah payung hukumnya, yaitu peraturan perundang-undangan tertulis atau norma hukum adat yang sah."
+            },
+            {
+                pertanyaan: "Seorang pejabat publik mengancam pengacara pelapor dengan perkataan: 'Hati-hati berbicara di media sosial, keluarga Anda dipantau oleh aparat keamanan.' Argumen ini termasuk kesesatan berpikir...",
+                pilihan: [
+                    "A. Argumentum ad Baculum",
+                    "B. Argumentum ad Hominem",
+                    "C. Argumentum ad Misericordiam",
+                    "D. Argumentum ad Verecundiam"
+                ],
+                jawabanBenar: 0, // A
+                penjelasan: "Benar! Argumentum ad Baculum menggunakan paksaan, kekuatan fisik, atau ancaman psikis untuk menghentikan lawan mengajukan argumentasinya."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let isAnswered = false;
+
+        // Switch Tabs
+        function switchTab(tabName) {
+            document.getElementById('content-materi').classList.add('hidden');
+            document.getElementById('content-kuis').classList.add('hidden');
+            document.getElementById('content-referensi').classList.add('hidden');
+
+            document.getElementById('tab-materi').className = "px-4 py-2 border border-neutral-300 hover:border-black transition duration-200 rounded-sm";
+            document.getElementById('tab-kuis').className = "px-4 py-2 border border-neutral-300 hover:border-black transition duration-200 rounded-sm";
+            document.getElementById('tab-referensi').className = "px-4 py-2 border border-neutral-300 hover:border-black transition duration-200 rounded-sm";
+
+            if (tabName === 'materi') {
+                document.getElementById('content-materi').classList.remove('hidden');
+                document.getElementById('tab-materi').className = "px-4 py-2 border border-black bg-black text-white hover:bg-black hover:text-white transition duration-200 rounded-sm";
+            } else if (tabName === 'kuis') {
+                document.getElementById('content-kuis').classList.remove('hidden');
+                document.getElementById('tab-kuis').className = "px-4 py-2 border border-black bg-black text-white hover:bg-black hover:text-white transition duration-200 rounded-sm";
+            } else if (tabName === 'referensi') {
+                document.getElementById('content-referensi').classList.remove('hidden');
+                document.getElementById('tab-referensi').className = "px-4 py-2 border border-black bg-black text-white hover:bg-black hover:text-white transition duration-200 rounded-sm";
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Accordion Controls
+        function toggleAccordion(id) {
+            const body = document.getElementById(`body-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            
+            if (body.classList.contains('hidden')) {
+                body.classList.remove('hidden');
+                icon.textContent = "−";
+                // Track reading progress
+                readSections[id] = true;
+                updateProgress();
+            } else {
+                body.classList.add('hidden');
+                icon.textContent = "+";
+            }
+        }
+
+        function toggleAllAccordions(open) {
+            const sections = ['modul1', 'modul2', 'modul3', 'modul4'];
+            sections.forEach(id => {
+                const body = document.getElementById(`body-${id}`);
+                const icon = document.getElementById(`icon-${id}`);
+                if (open) {
+                    body.classList.remove('hidden');
+                    icon.textContent = "−";
+                    readSections[id] = true;
+                } else {
+                    body.classList.add('hidden');
+                    icon.textContent = "+";
+                }
+            });
+            updateProgress();
+        }
+
+        // Update Progress Tracker
+        function updateProgress() {
+            const total = Object.keys(readSections).length;
+            const readCount = Object.values(readSections).filter(val => val === true).length;
+            const percentage = Math.round((readCount / total) * 100);
+            document.getElementById('read-progress').textContent = `${percentage}%`;
+        }
+
+        // Search Bar Logic
+        function searchMateri() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const articles = document.querySelectorAll('article[data-search]');
+            
+            articles.forEach(article => {
+                const searchTags = article.getAttribute('data-search');
+                if (searchTags.includes(query)) {
+                    article.style.display = "block";
+                } else {
+                    article.style.display = "none";
+                }
+            });
+        }
+
+        // Start Quiz
+        function startQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            isAnswered = false;
+            document.getElementById('quiz-intro').classList.add('hidden');
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-panel').classList.remove('hidden');
+            loadQuestion();
+        }
+
+        // Load Question Data into DOM
+        function loadQuestion() {
+            isAnswered = false;
+            const qData = kuisDatabase[currentQuestion];
+            
+            document.getElementById('current-question-num').textContent = currentQuestion + 1;
+            document.getElementById('total-questions-num').textContent = kuisDatabase.length;
+            document.getElementById('question-text').textContent = qData.pertanyaan;
+            
+            const pct = ((currentQuestion + 1) / kuisDatabase.length) * 100;
+            document.getElementById('quiz-progress-bar').style.width = `${pct}%`;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            qData.pilihan.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 border border-neutral-300 hover:border-black rounded-sm font-semibold text-sm transition duration-150 focus:outline-none";
+                btn.textContent = opt;
+                btn.onclick = () => selectOption(idx, btn);
+                optionsContainer.appendChild(btn);
+            });
+
+            // Reset feedback
+            const feedbackBox = document.getElementById('feedback-box');
+            feedbackBox.classList.add('hidden');
+            feedbackBox.className = "hidden border p-4 rounded-sm";
+            
+            // Disable Next Button
+            document.getElementById('btn-next').disabled = true;
+        }
+
+        // Option Selection Logic
+        function selectOption(selectedIdx, clickedButton) {
+            if (isAnswered) return;
+            isAnswered = true;
+            
+            const qData = kuisDatabase[currentQuestion];
+            const optionsContainer = document.getElementById('options-container');
+            const buttons = optionsContainer.getElementsByTagName('button');
+            const feedbackBox = document.getElementById('feedback-box');
+            const feedbackStatus = document.getElementById('feedback-status');
+            const feedbackExplanation = document.getElementById('feedback-explanation');
+
+            // Check correctness
+            if (selectedIdx === qData.jawabanBenar) {
+                score += 10; // 10 points per question
+                clickedButton.className = "w-full text-left p-4 border-2 border-black bg-neutral-100 font-bold text-sm rounded-sm";
+                feedbackBox.className = "border-2 border-black bg-neutral-50 p-4 rounded-sm";
+                feedbackStatus.textContent = "✔ JAWABAN BENAR";
+                feedbackStatus.className = "block font-bold text-xs uppercase tracking-wider mb-1 text-black";
+            } else {
+                clickedButton.className = "w-full text-left p-4 border border-neutral-300 line-through text-neutral-400 font-semibold text-sm rounded-sm";
+                // Highlight the correct one
+                buttons[qData.jawabanBenar].className = "w-full text-left p-4 border-2 border-black font-bold text-sm rounded-sm";
+                feedbackBox.className = "border border-neutral-400 bg-neutral-50 p-4 rounded-sm";
+                feedbackStatus.textContent = "✘ JAWABAN KURANG TEPAT";
+                feedbackStatus.className = "block font-bold text-xs uppercase tracking-wider mb-1 text-neutral-500";
+            }
+
+            feedbackExplanation.textContent = qData.penjelasan;
+            feedbackBox.classList.remove('hidden');
+            document.getElementById('btn-next').disabled = false;
+        }
+
+        // Navigate to Next Question or End Quiz
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < kuisDatabase.length) {
+                loadQuestion();
+            } else {
+                showQuizResult();
+            }
+        }
+
+        // Display Score Screen
+        function showQuizResult() {
+            document.getElementById('quiz-panel').classList.add('hidden');
+            const resultBox = document.getElementById('quiz-result');
+            resultBox.classList.remove('hidden');
+
+            const scoreDisplay = document.getElementById('final-score');
+            scoreDisplay.textContent = `${score} / 100`;
+
+            const gradeDisplay = document.getElementById('score-grade');
+            const commentDisplay = document.getElementById('score-comment');
+
+            if (score >= 90) {
+                gradeDisplay.textContent = "Sangat Memuaskan (Cum Laude)";
+                commentDisplay.textContent = "Luar biasa! Pemahaman Anda terhadap metode penafsiran, logika deduksi-induksi, dan pendeteksian fallacy hukum setara dengan praktisi hukum ahli.";
+            } else if (score >= 70) {
+                gradeDisplay.textContent = "Baik (Memuaskan)";
+                commentDisplay.textContent = "Kerja bagus! Anda memahami konsep dasar logika hukum dan mampu menganalisis kasus secara runut. Sedikit lagi menuju kesempurnaan.";
+            } else if (score >= 50) {
+                gradeDisplay.textContent = "Cukup (Cukup Baik)";
+                commentDisplay.textContent = "Cukup baik. Namun, harap luangkan waktu kembali untuk membaca modul interpretasi norma dan penalaran a contrario agar tidak keliru dalam persidangan.";
+            } else {
+                gradeDisplay.textContent = "Kurang (Butuh Mengulang)";
+                commentDisplay.textContent = "Nilai Anda berada di bawah batas kompetensi minimum. Silakan baca kembali setiap bab modul dengan seksama dan coba kuis ini sekali lagi.";
+            }
+        }
+
+        // Auto initialize on load
+        window.onload = function() {
+            // Default load
+            switchTab('materi');
+        };
+    </script>
+</body>
+</html>
