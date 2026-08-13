@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reo Kurniawan I.P | Portfolio </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Lucide Icons for Catalog Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- AOS (Animate On Scroll) Library for animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a; /* Dark background */
+            color: #e5e7eb; /* Light gray text */
+        }
+        
+        /* Animated Gradient Background */
+        .animated-gradient {
+            background: linear-gradient(-45deg, #1e3a8a, #4c1d95, #047857, #7c2d12);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Card Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            height: 100%; /* Make cards in a grid have same height */
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        /* Typing effect */
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.5rem;
+            background-color: #3b82f6;
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .contact-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            color: #9ca3af;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .contact-icon:hover {
+            transform: translateY(-5px);
+            background-color: rgba(59, 130, 246, 0.2);
+            color: #ffffff;
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .skill-tag {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            background-color: rgba(59, 130, 246, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            padding-bottom: 2rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+            padding-bottom: 0;
+        }
+        .timeline-icon {
+            position: absolute;
+            left: -1.2rem;
+            top: 0;
+            width: 2.25rem;
+            height: 2.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background-color: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        /* Custom style for profile picture position */
+        .profile-image {
+            object-position: center 20%; 
+        }
+
+        /* Toast Message */
+        #verification-toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            border: 1px solid #eab308;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        #verification-toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+        /* Custom scrollbar-hide to keep horizontal scrolling beautiful without ugly scrollbar */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Modal transitions */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-backdrop {
+            animation: fadeIn 0.2s ease-out;
+        }
+        .modal-content {
+            animation: slideUp 0.3s ease-out;
+        }
+        .product-image-container {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .group:hover .product-image-container img {
+            transform: scale(1.05);
+        }
+
+        /* Custom Toast Notification styling for Dark Theme */
+        .toast-notification {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 24px;
+            border-radius: 12px;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.3s ease-out;
+            max-width: calc(100vw - 48px);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Verification Toast -->
+    <div id="verification-toast">This profile has been verified as Reo Kurniawan I.P</div>
+
+    <!-- Header & Navigation -->
+    <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-white tracking-widest">
+                PORTFOLIO
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="hidden lg:flex space-x-8">
+                    <a href="#pengalaman" class="text-gray-300 hover:text-white font-medium">Experience</a>
+                    <a href="#pendidikan" class="text-gray-300 hover:text-white font-medium">Education</a>
+                    <a href="#keahlian" class="text-gray-300 hover:text-white font-medium">Skills</a>
+                    <a href="#proyek" class="text-gray-300 hover:text-white font-medium">Projects</a>
+                    <a href="#sertifikasi" class="text-gray-300 hover:text-white font-medium">Certifications</a>
+                    <a href="#store" class="text-gray-300 hover:text-white font-medium">Store</a>
+                    <a href="#kontak" class="text-gray-300 hover:text-white font-medium">Contact</a>
+                </div>
+
+                <!-- Shopping Cart Button -->
+                <button onclick="openCartModal()" class="relative p-2 text-gray-300 hover:text-blue-400 transition-colors focus:outline-none" aria-label="Shopping Cart" title="Shopping Cart">
+                    <i class="w-6 h-6" data-lucide="shopping-cart"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 inline-flex items-center justify-center px-2 py-0.5 text-[10px] font-bold leading-none text-white transform bg-blue-600 rounded-full hidden">0</span>
+                </button>
+
+                <!-- Verification Star Button -->
+                <button id="verification-btn" class="text-yellow-400 hover:text-yellow-300 transition-colors" title="Verify">
+                    <i data-feather="star" class="w-6 h-6 fill-current text-yellow-400"></i>
+                </button>
+                <!-- Donate Button -->
+                <a href="https://sibagi.com/reokurniawan" target="_blank" class="text-red-500 hover:text-red-400 transition-colors" title="Donate">
+                    <i data-feather="heart" class="w-6 h-6 fill-current"></i>
+                </a>
+                
+                <!-- Kerja (Work) Dropdown Menu Button -->
+                <div class="relative inline-block text-left">
+                    <button id="kerja-btn" class="text-gray-300 hover:text-blue-400 transition-colors focus:outline-none p-1 flex items-center justify-center" title="Menu Kerja" aria-label="Kerja Menu">
+                        <i data-feather="briefcase" class="w-6 h-6"></i>
+                    </button>
+                    <!-- Dropdown Content -->
+                    <div id="kerja-dropdown" class="origin-top-right absolute right-0 mt-2 w-52 rounded-xl shadow-2xl bg-zinc-950/95 border border-white/10 backdrop-blur-md ring-1 ring-black ring-opacity-5 focus:outline-none hidden z-50">
+                        <div class="py-1.5" role="none"> 
+                            </button>
+                            <button onclick="handleKerjaMenu('management_surat')" class="w-full text-left block px-4 py-3 text-xs md:text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">
+                                Management Surat <span class="text-[10px] bg-blue-500/20 text-blue-400 px-1.5 py-0.5 rounded ml-2 font-bold">Key</span>
+                            </button>
+                            <button onclick="handleKerjaMenu('profil_pt')" class="w-full text-left block px-4 py-3 text-xs md:text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">
+                                Profil PT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:hidden">
+                    <button id="menu-btn" class="text-gray-300 focus:outline-none">
+                        <i data-feather="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden lg:hidden bg-black/90 backdrop-blur-md absolute w-full left-0 top-full border-b border-gray-800">
+            <a href="#pengalaman" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Experience</a>
+            <a href="#pendidikan" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Education</a>
+            <a href="#keahlian" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Skills</a>
+            <a href="#proyek" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Projects</a>
+            <a href="#sertifikasi" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Certifications</a>
+            <a href="#store" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Store</a>
+            <a href="#kontak" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-20">
+
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-[80vh] flex items-center mb-20 md:mb-32">
+            <div class="absolute inset-0 animated-gradient opacity-20 blur-3xl"></div>
+            <div class="relative z-10 flex flex-col-reverse md:flex-row items-center w-full">
+                <div class="md:w-3/5 text-center md:text-left mt-10 md:mt-0" data-aos="fade-right">
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4">
+                        Reo Kurniawan I.P C.MTr.
+                    </h1>
+                    <!-- TYPING EFFECT SECTION -->
+                    <h2 class="text-2xl md:text-3xl font-semibold text-blue-400 mb-6 min-h-[40px] flex items-center justify-center md:justify-start">
+                        <span id="typing-effect"></span><span class="typing-cursor"></span>
+                    </h2>
+                    
+                    <p class="text-lg text-gray-400 max-w-xl mx-auto md:mx-0 mb-8">
+                        "Founder of PT ZHEDVANOIS CREATIVE AGENCY with a background in deep analysis and practical execution in the field. Experienced in leading digital transformation through web media management and services oriented towards real results and business partner satisfaction."
+                    </p>
+                    <a href="#kontak" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300 shadow-lg shadow-blue-500/30">Contact Me</a>
+                </div>
+                <div class="md:w-2/5 flex justify-center md:justify-end" data-aos="fade-left" data-aos-delay="200">
+                    <div class="relative w-72 h-72 md:w-96 md:h-96">
+                        <div class="absolute inset-0 animated-gradient rounded-full blur-md"></div>
+                        <!-- Profile Image -->
+                        <div class="relative rounded-full w-full h-full p-1 bg-black/20 overflow-hidden border-2 border-white/10">
+                           <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKcYLfBQi55Ot2CIUYqRJeUR4rtnjFzLvCf4uop3I3TJ34aYgsXcSOwZPMtMqLg0v41k5bERbmNZS_H7OFFUoLGXFD6FP3twgJ5RCr8MntqAQ4lRXBLnhOYZsqOKtMPURP8HR_iti7Pps4RhUD_1E8LBFBTMcS9S36DD9p-8-Yq4h0-8WBbuw9xYUTb0w-/s1024/IMG_2374.png" alt="Profile of Reo Kurniawan" class="w-full h-full object-cover profile-image hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience -->
+        <section id="pengalaman" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Work Experience</h2>
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
+                <!-- HR -->
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-teal-500/20 p-4 rounded-full border border-teal-500/30"><i data-feather="users" class="text-teal-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">kompleksuara.com</p>
+                            <p class="text-sm text-gray-300">Jun 2022 - Present</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">Editor-in-Chief</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4"></p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Writing SEO-friendly blog articles with correct H1, H2, H3 structures.</li>
+                                <li>Successfully increased organic website traffic by 40% within 3 months.</li>
+                                <li>Increased average time on page (reading duration) from 1 minute to 3 minutes through content structure improvements.</li>
+                                <li>Increased ad Click-Through Rate (CTR) by 1.5% through copywriting optimization on headlines.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Brand Analyst -->
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-purple-500/20 p-4 rounded-full border border-purple-500/30"><i data-feather="bar-chart-2" class="text-purple-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">DPS TMI AL AMIEN PRENDUAN</p>
+                            <p class="text-sm text-gray-300">June 2017 - Agust 2022</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">Faction Member Student Representative Council</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4"></p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Policy Formulation Actively formulated, reviewed, and evaluated student regulations to maintain a disciplined and conducive learning environment..</li>
+                                <li>Student Advocacy Acted as a primary liaison between students and school management, effectively channeling student feedback regarding facilities and activities.</li>
+                                <li>Legislative Sessions Participated in plenary sessions and legislative debates to review organizational budgets and student program implementations.</li>
+                                <li>Conflict Resolution Mediated student grievances and facilitated peaceful resolutions in alignment with institutional values.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content Creative -->
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-pink-500/20 p-4 rounded-full border border-pink-500/30"><i data-feather="camera" class="text-pink-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">OT GROUP</p>
+                            <p class="text-sm text-gray-300">Jun 2025 - July 2025</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">SALES TAKING ORDER</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4"></p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Rapid Onboarding & Execution Successfully adapted to the company’s product catalog and sales ecosystem within the first week, enabling immediate deployment and field execution.</li>
+                                <li>Target Achievement Achieved 100% of the sales order targets assigned for the short-term project duration through aggressive daily client visits.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Manager -->
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-orange-500/20 p-4 rounded-full border border-orange-500/30"><i data-feather="trending-up" class="text-orange-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">ZHEDVANOIS OFFICIAL</p>
+                            <p class="text-sm text-gray-400">Aug 2018 - Oct 2022</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">MANAGER</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4"></p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Led the team in managing several internal boarding school competition categories across student cohorts.</li>
+                                <li>Mentored several peers to achieve multiple awards and championships.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Recruiter & Fraud Analyst -->
+                <div class="glass-card p-8 md:col-span-2" data-aos="fade-up" data-aos-delay="500">
+                    <div class="flex items-start">
+                        <div class="mr-6">
+                            <div class="bg-blue-500/20 p-4 rounded-full border border-blue-500/30"><i data-feather="briefcase" class="text-blue-400 w-8 h-8"></i></div>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400">MYROBIN.ID</p>
+                            <p class="text-sm text-gray-300">Nov 2023 - Present</p>
+                            <h3 class="text-2xl font-bold text-white mt-1">Recruiter & Fraud Analyst</h3>
+                            <p class="text-lg font-medium text-gray-300 mb-4"></p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm">
+                                <li>Successfully reduced fraud incidents in the monitored area by <span class="font-bold text-green-400">80%</span>.</li>
+                                <li>Exceeded client fulfillment targets by <span class="font-bold text-green-400">20%</span>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Education History -->
+        <section id="pendidikan" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Education History</h2>
+            <div class="max-w-3xl mx-auto glass-card p-8" data-aos="zoom-in" data-aos-delay="100">
+                <div class="relative">
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
+                        <div class="timeline-icon"><i data-feather="award" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">Muhammadiyah University of Malang</h3>
+                        <p class="text-gray-400">Law / Legal Studies</p>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="300">
+                        <div class="timeline-icon"><i data-feather="book-open" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">MA. Insan Generasi Islami</h3>
+                        <p class="text-xs text-gray-400">Islamic Senior High School</p>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="400">
+                        <div class="timeline-icon"><i data-feather="book-open" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">MTS TMI Al-Amien Prenduan</h3>
+                        <p class="text-xs text-gray-400">Islamic Junior High School</p>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="500">
+                        <div class="timeline-icon"><i data-feather="book" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">SDN Tagangser Daya 01</h3>
+                        <p class="text-xs text-gray-400">Elementary School</p>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left" data-aos-delay="600">
+                        <div class="timeline-icon"><i data-feather="gift" class="text-blue-400 w-5 h-5"></i></div>
+                        <h3 class="text-xl font-bold text-white">TK Al-Amien Jember</h3>
+                        <p class="text-xs text-gray-400">Kindergarten</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Skills -->
+        <section id="keahlian" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Core Skills</h2>
+            <div class="max-w-5xl mx-auto text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="skill-tag">Data Analysis</span>
+                    <span class="skill-tag">Google Sheets & Docs</span>
+                    <span class="skill-tag">AppSheet</span>
+                    <span class="skill-tag">Looker Studio</span>
+                    <span class="skill-tag">Video Editing</span>
+                    <span class="skill-tag">Graphic Design</span>
+                    <span class="skill-tag">Copywriting</span>
+                    <span class="skill-tag">Problem Solving</span>
+                    <span class="skill-tag">Public Speaking</span>
+                    <span class="skill-tag">Customer Service</span>
+                    <span class="skill-tag">Recruitment & ATS</span>
+                    <span class="skill-tag">Team Management</span>
+                    <span class="skill-tag">Brand Analysis</span>
+                    <span class="skill-tag">Content Strategy</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects & Achievements -->
+        <section id="proyek" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Projects & Achievements</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-green-500/20 p-3 rounded-full w-max mb-4 border border-green-500/30"><i data-feather="edit-3" class="text-green-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Creative Editing</h3>
+                    <p class="text-gray-400">Responsible for creative editing at MA. Insan Generasi Islami for various school events.</p>
+                </div>
+                <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-purple-500/20 p-3 rounded-full w-max mb-4 border border-purple-500/30"><i data-feather="users" class="text-purple-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Event Management Team</h3>
+                    <p class="text-gray-400">Successfully managed annual boarding school events with over 500 participants.</p>
+                </div>
+                <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-blue-500/20 p-3 rounded-full w-max mb-4 border border-blue-500/30"><i data-feather="bar-chart" class="text-blue-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Fraud Analysis</h3>
+                    <p class="text-gray-400">Developed an effective manual monitoring system to detect fraudulent patterns on the work platform.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="sertifikasi" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Certifications</h2>
+            <div class="max-w-4xl mx-auto mb-16" data-aos="zoom-in">
+                
+                <!-- First Certificate -->
+                <div class="glass-card overflow-hidden">
+                    <div class="p-4 bg-white/5 border-b border-white/10 flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2 bg-yellow-500/20 rounded-lg">
+                                <i data-feather="award" class="text-yellow-400 w-5 h-5"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Certificate of Expertise</h3>
+                        </div>
+                        <span class="text-xs text-gray-400 px-3 py-1 rounded-full border border-white/10">Verified</span>
+                    </div>
+                    <div class="p-4 flex justify-center">
+                        <img 
+                            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh9QQk5ubPhCOS2nY4nDBPxgbCEC0_i4yy9_g8O68GVBegMTPX1NYZvvm5fjJdB3ZLfDHtgNeJJ5EdfAwuPS3udOb7AT92kdG_XP-qMaZCyMg1V-FpFlwrOrHyfolwSL1x_1HUz4dr6AWiQ1GkaK6-J60vK5l02mgMWr1V790SRBkms1vcjMZewkUujnSFu/s1746/1000066702.png" 
+                            alt="Reo Kurniawan Certificate" 
+                            class="rounded-lg max-w-full h-auto shadow-2xl hover:scale-[1.02] transition-transform duration-500 cursor-zoom-in"
+                            onclick="openLightbox(this.src)"
+                        >
+                    </div>
+                </div>
+
+                <!-- Second Certificate -->
+                <div class="glass-card overflow-hidden mt-8">
+                    <div class="p-4 bg-white/5 border-b border-white/10 flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2 bg-yellow-500/20 rounded-lg">
+                                <i data-feather="award" class="text-yellow-400 w-5 h-5"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Additional Certificate</h3>
+                        </div>
+                        <span class="text-xs text-gray-400 px-3 py-1 rounded-full border border-white/10">Verified</span>
+                    </div>
+                    <div class="p-4 flex justify-center">
+                        <img 
+                            src="https://blogger.googleusercontent.com/img/a/AVvXsEipZqPTIvxoIdVWMtK9iH4u9apmzyV3UcfG2SwkPe6wRg3qxyznC0TB2F_jnFbC4rz-GNwzz5Rg9PHkFiNmRcGsYXIaSNflk5PGNTNiy8foUawxcGbEmucYESZW9-hj6U5AbVWrdpDQ0ZAj1pNk6E61GixLEG3Y95_tOePtQlwyVQYA_klND0KjBEFF8ZSP" 
+                            alt="Reo Kurniawan Additional Certificate" 
+                            class="rounded-lg max-w-full h-auto shadow-2xl hover:scale-[1.02] transition-transform duration-500 cursor-zoom-in"
+                            onclick="openLightbox(this.src)"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificates & Works Gallery -->
+            <div class="max-w-6xl mx-auto" data-aos="fade-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                        <i data-feather="grid" class="text-blue-400"></i> Certificates & Works Gallery
+                    </h3>
+                    <div class="flex gap-2">
+                        <button id="slide-prev" class="bg-white/5 border border-white/10 p-2.5 rounded-full hover:bg-blue-600/30 hover:border-blue-500 transition-all text-gray-300 hover:text-white" title="Slide Left">
+                            <i data-feather="chevron-left" class="w-5 h-5"></i>
+                        </button>
+                        <button id="slide-next" class="bg-white/5 border border-white/10 p-2.5 rounded-full hover:bg-blue-600/30 hover:border-blue-500 transition-all text-gray-300 hover:text-white" title="Slide Right">
+                            <i data-feather="chevron-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Slider Container -->
+                <div id="cert-slider" class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide pb-6">
+                    <!-- Slide 1 -->
+                    <div class="flex-none w-72 md:w-80 snap-start">
+                        <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
+                            <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
+                                <img src="sertifikat2.png" alt="Sertifikat 2" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Certificate of Achievement</h4>
+                                <p class="text-xs text-gray-400 mt-1">1st Place National Level Preaching Competition</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="flex-none w-72 md:w-80 snap-start">
+                        <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
+                            <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
+                                <img src="sertifikat3.png" alt="Sertifikat 3" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Certificate of Achievement</h4>
+                                <p class="text-xs text-gray-400 mt-1">2nd Place Provincial Level Oratory Competition</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="flex-none w-72 md:w-80 snap-start">
+                        <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
+                            <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
+                                <img src="sertifikat4.png" alt="Sertifikat 4" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Certificate of Achievement</h4>
+                                <p class="text-xs text-gray-400 mt-1">1st Place Regency Level Speech Competition</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="flex-none w-72 md:w-80 snap-start">
+                        <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
+                            <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
+                                <img src="sertifikat5.png" alt="Sertifikat 5" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Certificate of Achievement</h4>
+                                <p class="text-xs text-gray-400 mt-1">3rd Runner-Up Regency Level Animated Video Competition</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="flex-none w-72 md:w-80 snap-start">
+                        <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
+                            <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
+                                <img src="sertifikat6.png" alt="Sertifikat 6" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Certificate of Training</h4>
+                                <p class="text-xs text-gray-400 mt-1">Literacy Training</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 6 -->
+                    <div class="flex-none w-72 md:w-80 snap-start">
+                        <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
+                            <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
+                                <img src="sertifikat7.png" alt="Sertifikat 7" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Establishment Certificate</h4>
+                                <p class="text-xs text-gray-400 mt-1">Verified</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 7 -->
+                    <div class="flex-none w-72 md:w-80 snap-start">
+                        <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
+                            <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
+                                <img src="sertifikat8.png" alt="Sertifikat 8" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Official Decree</h4>
+                                <p class="text-xs text-gray-400 mt-1">Ministry of Law, Republic of Indonesia</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 8 -->
+                    <div class="flex-none w-72 md:w-80 snap-start">
+                        <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
+                            <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
+                                <img src="sertifikat9.png" alt="Sertifikat 9" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Creative Work</h4>
+                                <p class="text-xs text-gray-400 mt-1">No Need to be Bright, Just Dim But Not Extinguished (Tak Perlu Terang Cukup Redup Tapi Tak Padam)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 9 -->
+                    <div class="flex-none w-72 md:w-80 snap-start">
+                        <div class="glass-card overflow-hidden p-4 flex flex-col justify-between h-full">
+                            <div class="relative overflow-hidden rounded-lg bg-black/40 aspect-[4/3] flex items-center justify-center">
+                                <img src="sertifikat10.png" alt="Sertifikat 10" class="object-contain max-h-full w-full hover:scale-105 transition-transform duration-300 cursor-zoom-in" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=600&auto=format&fit=crop'; this.title='Alternative Image'" onclick="openLightbox(this.src)">
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-semibold text-white tracking-wide uppercase">Creative Work</h4>
+                                <p class="text-xs text-gray-400 mt-1">Ambiguity | Qof | Avicenna | Fly (Ambigu | Qof | Avicenna | Terbang)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Zhedvanois Store Section -->
+        <section id="store" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Zhedvanois Store</h2>
+            <div class="mb-8 text-center" data-aos="fade-up">
+                <p class="text-gray-400 mt-1 max-w-xl mx-auto">Discover a wide range of premium digital and creative products selected just for you.</p>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6" id="product-grid" data-aos="fade-up">
+                <!-- Products will be rendered here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="kontak" class="mb-20">
+            <h2 class="section-title" data-aos="fade-up">Contact Me</h2>
+            <div class="max-w-4xl mx-auto glass-card p-8 md:p-12 text-center" data-aos="zoom-in">
+                <p class="text-xl text-gray-300 mb-8">Interested in collaborating or have any questions? Feel free to reach out to me.</p>
+                
+                <div class="flex flex-wrap justify-center items-center gap-6 mb-10">
+                    <!-- Website -->
+                    <a href="https://kompleksuara.com" target="_blank" class="contact-icon group relative" aria-label="Website">
+                        <i data-feather="globe" class="w-8 h-8"></i>
+                        <span class="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[10px] text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">kompleksuara.com</span>
+                    </a>
+
+                    <!-- WhatsApp -->
+                    <a href="https://wa.me/6285190002348" target="_blank" class="contact-icon group relative" aria-label="WhatsApp">
+                        <i data-feather="message-circle" class="w-8 h-8"></i>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">WhatsApp</span>
+                    </a>
+                    
+                     <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/reo-kurniawan-iriandito-p-759b5a305?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="contact-icon group relative" aria-label="LinkedIn">
+                        <i data-feather="linkedin" class="w-8 h-8"></i>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">LinkedIn</span>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/rexyndx" target="_blank" class="contact-icon group relative" aria-label="Instagram">
+                        <i data-feather="instagram" class="w-8 h-8"></i>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Instagram</span>
+                    </a>
+
+                    <!-- TikTok -->
+                    <a href="https://www.tiktok.com/@rxyndx_wb" target="_blank" class="contact-icon group relative" aria-label="TikTok">
+                        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">TikTok</span>
+                    </a>
+
+                    <!-- Email -->
+                    <a href="mailto:reokurniawan@example.com" class="contact-icon group relative" aria-label="Email">
+                        <i data-feather="mail" class="w-8 h-8"></i>
+                        <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Email</span>
+                    </a>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <a href="https://wa.me/62811190396" target="_blank" class="bg-white text-black font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition-colors shadow-lg">
+                        Chat on WhatsApp
+                    </a>
+                    <a href="https://zhedvanois.id" target="_blank" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-colors shadow-lg">
+                        Visit Website
+                    </a>
+                    <a href="https://zhedvanois.toko.vip" target="_blank" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-colors shadow-lg">
+                        Top-Up Service
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Password Verification Modal -->
+    <div class="fixed inset-0 z-[110] hidden items-center justify-center p-4 sm:p-0" id="password-modal">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm modal-backdrop" onclick="closePasswordModal()"></div>
+        
+        <!-- Modal Container -->
+        <div class="bg-zinc-950/95 border border-white/10 rounded-2xl shadow-2xl w-full max-w-sm relative z-10 modal-content overflow-hidden p-6 flex flex-col">
+            <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2" id="password-title">
+                <i data-lucide="lock" class="text-blue-500 w-5 h-5"></i> Enter Password
+            </h3>
+            <p class="text-xs text-gray-400 mb-4">Fitur ini diproteksi oleh sandi keamanan. Harap masukkan kata sandi akses.</p>
+            
+            <input type="password" id="kerja-password-input" onkeydown="if(event.key === 'Enter') verifyKerjaPassword()" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm mb-5" placeholder="Masukkan Sandi Keamanan">
+            
+            <div class="flex gap-3">
+                <button onclick="closePasswordModal()" class="flex-1 border border-white/10 hover:bg-white/5 text-gray-300 font-semibold py-2.5 rounded-xl transition text-sm">
+                    Batal
+                </button>
+                <button onclick="verifyKerjaPassword()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl shadow-lg shadow-blue-500/20 transition text-sm">
+                    Masuk
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Modal -->
+    <div class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-0" id="cart-modal">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm modal-backdrop" onclick="closeCartModal()"></div>
+        
+        <!-- Modal Container -->
+        <div class="bg-zinc-950/95 border border-white/10 rounded-2xl shadow-2xl w-full max-w-md relative z-10 modal-content overflow-hidden flex flex-col max-h-[90vh]">
+            
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-white/10 flex justify-between items-center bg-white/5">
+                <div class="flex items-center gap-2">
+                    <i class="text-blue-400 w-5 h-5" data-lucide="shopping-cart"></i>
+                    <h3 class="text-lg font-bold text-white">Shopping Cart</h3>
+                </div>
+                <button class="text-gray-400 hover:text-white p-1 rounded-full hover:bg-white/10 transition" onclick="closeCartModal()">
+                    <i class="w-5 h-5" data-lucide="x"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="px-6 py-4 overflow-y-auto flex-grow" id="cart-items-container">
+                <!-- Dynamic cart items here -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 border-t border-white/10 bg-zinc-900/50">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-sm font-medium text-gray-400">Total Order:</span>
+                    <span class="text-xl font-extrabold text-blue-400" id="cart-total-price">Rp.0</span>
+                </div>
+                <div class="flex gap-3">
+                    <button onclick="closeCartModal()" class="flex-1 border border-white/10 hover:bg-white/5 text-gray-300 font-semibold py-3 rounded-xl transition text-sm">
+                        Add Items
+                    </button>
+                    <button onclick="proceedToCheckout()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-blue-500/20 transition text-sm flex items-center justify-center gap-2">
+                        Proceed to Checkout <i class="w-4 h-4" data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout / Payment Modal -->
+    <div class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-0" id="checkout-modal">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm modal-backdrop" onclick="closeModal()"></div>
+        
+        <!-- Modal Container -->
+        <div class="bg-zinc-950/95 border border-white/10 rounded-2xl shadow-2xl w-full max-w-md relative z-10 modal-content overflow-hidden flex flex-col max-h-[90vh]">
+            
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-white/10 flex justify-between items-center bg-white/5">
+                <h3 class="text-lg font-bold text-white">Complete Payment</h3>
+                <button class="text-gray-400 hover:text-white p-1 rounded-full hover:bg-white/10 transition" onclick="closeModal()">
+                    <i class="w-5 h-5" data-lucide="x"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="px-6 py-4 overflow-y-auto flex-grow text-gray-300">
+                <!-- Order Summary -->
+                <div class="bg-blue-950/30 rounded-xl p-4 mb-5 border border-blue-500/20">
+                    <p class="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-2">Order Summary</p>
+                    <div class="max-h-40 overflow-y-auto space-y-3 pr-1" id="checkout-items-list">
+                        <!-- Dynamic item list -->
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-blue-500/20 flex justify-between items-center">
+                        <span class="text-sm font-semibold text-gray-300">Total Payment:</span>
+                        <span class="text-lg font-bold text-blue-400" id="checkout-total-price">Rp.0</span>
+                    </div>
+                </div>
+
+                <form class="space-y-4" id="checkout-form" onsubmit="event.preventDefault();">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1" for="buyer-name">Full Name <span class="text-red-500">*</span></label>
+                        <input class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm" id="buyer-name" placeholder="Enter your full name" required type="text" />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1" for="buyer-phone">WhatsApp Number <span class="text-red-500">*</span></label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 text-sm">+62</span>
+                            <input class="w-full bg-white/5 border border-white/10 pl-12 pr-4 py-2 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm" id="buyer-phone" placeholder="8123456789" required type="tel" />
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Use numbers after 0 (example: 812...)</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1" for="buyer-address">Shipping Address <span class="text-red-500">*</span></label>
+                        <textarea class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm resize-none" id="buyer-address" placeholder="Enter full address (Street, Block/Unit, District, City, Postcode)" required rows="3"></textarea>
+                    </div>
+
+                    <!-- Payment Method Options -->
+                    <div class="pt-2">
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Payment Method <span class="text-red-500">*</span></label>
+                        <div class="grid grid-cols-2 gap-3 mb-3">
+                            <div onclick="selectPaymentMethod('qris')" id="pay-qris-card" class="border-2 border-white/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/50 hover:bg-white/5 transition relative">
+                                <input type="radio" name="payment_method" value="qris" id="pay-qris" class="sr-only" required>
+                                <i data-lucide="qr-code" class="w-6 h-6 text-gray-400 mb-1"></i>
+                                <span class="text-xs font-bold text-gray-300">QRIS</span>
+                                <div class="absolute top-1.5 right-1.5 text-blue-400 hidden" id="qris-check-icon">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <div onclick="selectPaymentMethod('bri')" id="pay-bri-card" class="border-2 border-white/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/50 hover:bg-white/5 transition relative">
+                                <input type="radio" name="payment_method" value="bri" id="pay-bri" class="sr-only">
+                                <span class="text-sm font-extrabold text-blue-400 mb-1">BRI</span>
+                                <span class="text-xs font-bold text-gray-300">Bank Transfer</span>
+                                <div class="absolute top-1.5 right-1.5 text-blue-400 hidden" id="bri-check-icon">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Selected Payment Details Box -->
+                        <div id="payment-details" class="p-4 bg-white/5 border border-white/10 rounded-xl hidden transition-all duration-300">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 border-t border-white/10 bg-zinc-900/50">
+                <button class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-green-900/20 transition flex items-center justify-center gap-2 focus:outline-none" onclick="submitOrder()" type="button">
+                    <i class="w-5 h-5" data-lucide="message-circle"></i>
+                    Buy via WhatsApp
+                </button>
+                <p class="text-center text-[11px] text-gray-500 mt-3">
+                    <i class="w-3 h-3 inline" data-lucide="shield-check"></i> Your data is secure and sent directly to the seller.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal for Large Image Preview -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-4 transition-all duration-300 opacity-0" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white hover:text-red-500 transition-colors bg-white/10 p-2.5 rounded-full" onclick="closeLightbox()" title="Close">
+            <i data-feather="x" class="w-8 h-8"></i>
+        </button>
+        <div class="max-w-5xl max-h-[85vh] flex items-center justify-center" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="Enlarge Certificate" class="max-w-full max-h-[80vh] rounded-lg shadow-2xl object-contain">
+        </div>
+    </div>
+
+    <footer class="bg-black/80 py-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; 2026 PT ZHEDVANOIS CREATIVE AGENCY. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Verification Button Toast
+        const vBtn = document.getElementById('verification-btn');
+        const toast = document.getElementById('verification-toast');
+        vBtn.addEventListener('click', () => {
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
+        });
+
+        // Typing Effect Logic
+        const words = [
+            "CONTENT WRITER", 
+            "MANAGER", 
+            "BRAND ANALYST", 
+            "RECRUITER & FRAUD ANALYST"
+        ];
+        
+        let i = 0;
+        let timer;
+
+        function typingEffect() {
+            let wordText = words[i];
+            let charIndex = 0;
+            
+            var loopTyping = function() {
+                if (charIndex < wordText.length) {
+                    document.getElementById('typing-effect').innerHTML += wordText.charAt(charIndex);
+                    charIndex++;
+                    timer = setTimeout(loopTyping, 100);
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                }
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let wordText = document.getElementById('typing-effect').innerHTML;
+            
+            var loopDeleting = function() {
+                if (wordText.length > 0) {
+                    wordText = wordText.substring(0, wordText.length - 1);
+                    document.getElementById('typing-effect').innerHTML = wordText;
+                    timer = setTimeout(loopDeleting, 50);
+                } else {
+                    i = (i + 1) % words.length;
+                    typingEffect();
+                }
+            };
+            loopDeleting();
+        }
+
+        // Start the typing effect
+        typingEffect();
+
+        // Carousel / Slider Scroll Logic
+        const slider = document.getElementById('cert-slider');
+        const btnPrev = document.getElementById('slide-prev');
+        const btnNext = document.getElementById('slide-next');
+
+        if (slider && btnPrev && btnNext) {
+            btnPrev.addEventListener('click', () => {
+                slider.scrollBy({ left: -320, behavior: 'smooth' });
+            });
+
+            btnNext.addEventListener('click', () => {
+                slider.scrollBy({ left: 320, behavior: 'smooth' });
+            });
+        }
+
+        // Lightbox Modal Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(src) {
+            if (lightbox && lightboxImg) {
+                lightboxImg.src = src;
+                lightbox.classList.remove('hidden');
+                lightbox.classList.add('flex');
+                // Trigger transition
+                setTimeout(() => {
+                    lightbox.classList.add('opacity-100');
+                }, 10);
+            }
+        }
+
+        function closeLightbox() {
+            if (lightbox) {
+                lightbox.classList.remove('opacity-100');
+                // Wait for transition before hiding
+                setTimeout(() => {
+                    lightbox.classList.add('hidden');
+                    lightbox.classList.remove('flex');
+                }, 300);
+            }
+        }
+
+        // Keyboard support for Lightbox
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // --- ZHEDVANOIS STORE E-CATALOG SYSTEM ---
+
+        // Original Products Data with Translated Titles
+        const products = [
+            {
+                id: 1,
+                image: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7jdOSxS902R0P7PWycFb0khgJ0d2WC6-As_XkC2sWODv0rBp9ncaPDjEYejlthwoAtly6Ge489oJqLIjUf-33hMXk4nSHlA3VYBhLUAZK1l2bKP91pK7sHfLr6fLymbg4rYQSpAwOYpS9lJFKywqXeJ-8aQFjqePH9JKZWookOdrOylF7FpKbFCe3AmB8/s1024/IMG_0255.png',
+                name: 'BOOK: TAK PERLU TERANG CUKUP REDUP TAPI TAK PADAM',
+                price: 'Rp.85.000',
+                sold: 1017
+            },
+            {
+                id: 2,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEibRWdEOk6Ssi-qKy2AE1ptCvaXFiq_S2hdJEmzWBVfzPJUC21LiarHEyvvPl3G1jJuP7reX56NjcNLbZAqXQrxnmLWQ2wlbli0jXJAZvnJYm49DOihzZw4mn7G8Oi6wOys74EwZfJojyhIMzjIEJi4Pf47diFWNhZkxbFF3FsEJoHljyPnib98upgePC8f',
+                name: 'BOOK: KETIKA AKU TERBANG TINGGI SETINGGI ANGKASA',
+                price: 'Rp.75.000',
+                sold: 3641
+            },
+            {
+                id: 3,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEhd6QHOYfR6qpQ7LnD4ZHgOxqcYq7ekUTcj3TNVYtlmq493hUto9Z5atsKkGOc72tHsBthc-T3Ja2fbhujnJIlzLKPAqbppYwypRmNX8RBD7s3_v5nVJRaDKolRiMQPhmTfItib_aXtaU423w4KnOpzLDz8-5lk02BYGoQToVvvke5ipeuKbvg99s4KIbFS',
+                name: 'BOOK: QOF',
+                price: 'Rp.80.000',
+                sold: 6001
+            },
+            {
+                id: 4,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEinVUk1B6BcqtWIBymrnLdYt3FfrlOne6T8Q64HucEzkKkKN2WrRCxBZWzRvRkDInW845KlxcXlFITXacBqSPB5kzKzSFb3iCtIYfeHgGePxLKex7efEDuwOBAXgDy2EW893llO_yYHz_xynTffawqmz4UgLwPrWf70dylZ-cT3VdZvBdtQZ8Wqq1oqtpER',
+                name: 'BOOK: AVICENNA',
+                price: 'Rp.80.500',
+                sold: 4893
+            },
+            {
+                id: 5,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEiHiNXe3PSSrlUO1HVjJFhLOReuLpNE_pa4xk6dpQA0ckNhAZF9MqO-uqsRKVqJaiMbnRvs41Y-KOBX2yOJrg_YNbrt4LKX32NWrnCU1qcGSW1I20qTo4QzB82RtUluqh1ybjp0kTxEZISInA_Tkp0lkgytLwHx_tgiHCvVkdJSWpxcoZKY78r7XIjIFyl3',
+                name: 'BOOK: AMBIGU',
+                price: 'Rp.99.500',
+                sold: 1151
+            },
+            {
+                id: 6,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEgOc-UgTewhgCjhOCorQYy3OnxJ-ZMu51X6xHHSbG6kqQakvb6iw0d2yvoH6-uJozYLo6GTZaKeCJriOq-i3p53xdwIrV8vpLDeuOayUMWuH2tIrO86gZHzyMMVCLeT26zjv4y-QNid2PG6Dv4HZ_K9srn5F4AO9xIoEOpzl8bDonCWJd9MeKlA0iG_IvTX',
+                name: "BOOK: LO GAK SENDIRIAN SUMPAH !!!",
+                price: 'Rp.89.999',
+                sold: 3641
+            },
+            {
+                id: 7,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEh2dJv4DnXT0jjH72lP8_bm9OeLPAVZrRL_2ESpWHAVeaY01nCzakyVgur_2AWIzeYQd0BDncmonMi1RKiMn5YCdYzdIry6cfMo0jlB3-7p_B6k2DxUT7kRn8hf3CXXbytlB-oBLWKvymqtgKo4XgN3vPYQpMk5gBQEx0tp8XxwDeQCkNQ6l6yyph6PA7UK',
+                name: 'REXER PERFUME BUNDLE PACK',
+                price: 'Rp.99.999',
+                sold: 12832
+            },
+            {
+                id: 8,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEhEVGQDEMAxc04CaPMpx_nbEtw-znupBD0EZ6mhIVp1466B3EjNVDAbnB1kZygQmB9lRNRTG2OVP3t8OIIoSezQpo0oqyX3y9wuKZlkt_N2un5f9RWM7let9El0e18dxYBAYyG-gFtvmY_59tyiqnP9x3UO67I5TaeeRw8j-vI_oThQYmg5A9r7D-v0Ix9G',
+                name: 'REXER PERFUME MOON LIGHT X',
+                price: 'Rp.39.000',
+                sold: 17900
+            },
+            {
+                id: 9,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEiWWmuUSKIV1QlzMawI110g4fzknpFNRNmjz3MqfBrTvKOS531s3NpwBoKCVqADXL6xIYvFgGd3_4yC3zxvpep5qmhnQ7YAFnJPcDbFMziR4QcO0cC7MnVsaF5wtTF6Eyzkfxo0t9RvnKmxZK8gfNpxmkXfNCmYCjK_pPKyPykq3kXI0OvNjw9F3NDOv7Ly',
+                name: 'REXER PERFUME LOOK MAN',
+                price: 'Rp.39.000',
+                sold: 21336
+            },
+            {
+                id: 10,
+                image: 'https://blogger.googleusercontent.com/img/a/AVvXsEiTASGw-ZV-0lcyW0kc_FMAxF9NiX8r2rx0vOnvXn7BDz7zG9zSo1iZu83guRxqQgxVSxJqJtuMtUX5u1e1447q4z8aBe-Sb0qE7rtZrTsHhBbIp8PN11NyYsu690y1hxioCqlsogR3K7_pSYClnCoVvAblrKXeLLf7_lMgWjVR-Ig1Ey_UmQccM4lPYrz-',
+                name: 'REXER PERFUME HYPER X',
+                price: 'Rp.39.000',
+                sold: 20251
+            }
+        ];
+
+        // Main Shopping Cart State
+        let cart = [];
+        let selectedPayment = '';
+
+        // Load cart from localStorage if exists
+        try {
+            const savedCart = localStorage.getItem('tokopedia_cart_data');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+            }
+        } catch (e) {
+            console.error("Failed to load cart data", e);
+        }
+
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        function parsePrice(priceStr) {
+            return parseInt(priceStr.replace(/[^0-9]/g, ''), 10);
+        }
+
+        function formatRupiah(num) {
+            return "Rp." + formatNumber(num);
+        }
+
+        // Render Product Grid inside Dark Glass-Card elements
+        const grid = document.getElementById('product-grid');
+        
+        products.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'group glass-card overflow-hidden flex flex-col hover:border-blue-500/50 transition-all duration-300';
+            
+            card.innerHTML = `
+                <div class="product-image-container relative">
+                    <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.src='https://placehold.co/400?text=Image+Unavailable'">
+                    <div class="absolute top-2 right-2 bg-black/80 backdrop-blur text-[11px] font-semibold px-2 py-1 rounded-full shadow-sm flex items-center gap-1 text-gray-300">
+                        <i data-lucide="star" class="w-3 h-3 text-yellow-400 fill-yellow-400"></i> ${formatNumber(product.sold)} Sold
+                    </div>
+                </div>
+                <div class="p-4 flex flex-col flex-grow">
+                    <h3 class="text-xs font-semibold text-gray-200 line-clamp-2 leading-tight mb-2 group-hover:text-blue-400 transition-colors" title="${product.name}">${product.name}</h3>
+                    <div class="mt-auto">
+                        <p class="text-base font-extrabold text-blue-400 mb-3">${product.price}</p>
+                        <div class="flex gap-2">
+                            <!-- Add to Cart Button -->
+                            <button onclick="addToCart(${product.id})" class="flex-1 bg-blue-500/10 text-blue-400 hover:bg-blue-600 hover:text-white font-medium py-2 rounded-lg transition-colors flex items-center justify-center gap-1 text-[11px] border border-blue-500/30 hover:border-blue-600" title="Add to Cart">
+                                <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i> +Cart
+                            </button>
+                            <!-- Buy Now Button -->
+                            <button onclick="buyNow(${product.id})" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition-colors flex items-center justify-center gap-1 text-[11px] shadow-sm shadow-blue-500/20">
+                                Buy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+        
+        // Initial render of Lucide icons & update badge
+        lucide.createIcons();
+        updateCartBadge();
+
+        // --- SHOPPING CART SYSTEM (CART LOGIC) ---
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cart-badge');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (totalItems > 0) {
+                badge.textContent = totalItems;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function saveCart() {
+            try {
+                localStorage.setItem('tokopedia_cart_data', JSON.stringify(cart));
+            } catch (e) {
+                console.error("Failed to save cart data", e);
+            }
+            updateCartBadge();
+        }
+
+        function addToCart(productId, showConfirm = true) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            saveCart();
+            if (showConfirm) {
+                showToast(`"${product.name}" successfully added to cart!`);
+            }
+        }
+
+        function buyNow(productId) {
+            const existingItem = cart.find(item => item.id === productId);
+            if (!existingItem) {
+                addToCart(productId, false);
+            }
+            proceedToCheckout();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            renderCartItems();
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (!item) return;
+
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                removeFromCart(productId);
+            } else {
+                saveCart();
+                renderCartItems();
+            }
+        }
+
+        function getCartTotal() {
+            return cart.reduce((total, item) => {
+                return total + (parsePrice(item.price) * item.quantity);
+            }, 0);
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            const totalPriceEl = document.getElementById('cart-total-price');
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="flex flex-col items-center justify-center py-12 text-center">
+                        <i class="w-16 h-16 text-gray-600 mb-4" data-lucide="shopping-cart"></i>
+                        <p class="text-gray-400 font-medium">Your Cart is Empty</p>
+                        <p class="text-xs text-gray-500 mt-1">Please select some products from our store.</p>
+                    </div>
+                `;
+                totalPriceEl.textContent = 'Rp.0';
+                lucide.createIcons();
+                return;
+            }
+
+            let html = '<div class="space-y-4">';
+            cart.forEach(item => {
+                const itemTotal = parsePrice(item.price) * item.quantity;
+                html += `
+                    <div class="flex items-center gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-lg object-cover border border-white/10">
+                        <div class="flex-grow min-w-0">
+                            <p class="text-xs font-semibold text-white line-clamp-1 leading-snug">${item.name}</p>
+                            <p class="text-xs font-bold text-blue-400 mt-0.5">${item.price}</p>
+                            
+                            <div class="flex items-center justify-between mt-2">
+                                <div class="flex items-center border border-white/10 bg-black/40 rounded-lg overflow-hidden">
+                                    <button onclick="updateQuantity(${item.id}, -1)" class="px-2 py-1 text-gray-400 hover:bg-white/10 transition focus:outline-none">
+                                        <i class="w-3 h-3" data-lucide="minus"></i>
+                                    </button>
+                                    <span class="px-3 py-0.5 text-xs font-bold text-white border-x border-white/10 bg-white/5">${item.quantity}</span>
+                                    <button onclick="updateQuantity(${item.id}, 1)" class="px-2 py-1 text-gray-400 hover:bg-white/10 transition focus:outline-none">
+                                        <i class="w-3 h-3" data-lucide="plus"></i>
+                                    </button>
+                                </div>
+                                
+                                <button onclick="removeFromCart(${item.id})" class="text-red-400 hover:text-red-500 p-1 rounded-full hover:bg-red-500/10 transition focus:outline-none">
+                                    <i class="w-4 h-4" data-lucide="trash-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            container.innerHTML = html;
+            totalPriceEl.textContent = formatRupiah(getCartTotal());
+            lucide.createIcons();
+        }
+
+        function openCartModal() {
+            renderCartItems();
+            const cartModal = document.getElementById('cart-modal');
+            cartModal.classList.remove('hidden');
+            cartModal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Shopping Cart Modal
+        function closeCartModal() {
+            const cartModal = document.getElementById('cart-modal');
+            cartModal.classList.add('hidden');
+            cartModal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // --- CHECKOUT SYSTEM & PAYMENT METHOD ---
+
+        const modal = document.getElementById('checkout-modal');
+        const form = document.getElementById('checkout-form');
+
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                showToast("Your shopping cart is empty!", "error");
+                return;
+            }
+
+            closeCartModal();
+
+            // Set up Dynamic Order Summary
+            const checkoutItemsList = document.getElementById('checkout-items-list');
+            const checkoutTotalPrice = document.getElementById('checkout-total-price');
+
+            let listHtml = '';
+            cart.forEach(item => {
+                const subtotal = parsePrice(item.price) * item.quantity;
+                listHtml += `
+                    <div class="flex gap-3 items-center py-2 border-b border-white/5 last:border-0">
+                        <img src="${item.image}" alt="${item.name}" class="w-10 h-10 rounded-lg object-cover border border-white/10">
+                        <div class="flex-grow min-w-0">
+                            <p class="text-[11px] font-bold text-gray-200 leading-tight line-clamp-1">${item.name}</p>
+                            <p class="text-[10px] text-gray-500 mt-0.5">${item.quantity}x @ ${item.price}</p>
+                        </div>
+                        <span class="text-xs font-bold text-blue-400">${formatRupiah(subtotal)}</span>
+                    </div>
+                `;
+            });
+
+            checkoutItemsList.innerHTML = listHtml;
+            checkoutTotalPrice.textContent = formatRupiah(getCartTotal());
+
+            // Reset Payment Choice Form
+            selectedPayment = '';
+            document.getElementById('pay-qris').checked = false;
+            document.getElementById('pay-bri').checked = false;
+            document.getElementById('qris-check-icon').classList.add('hidden');
+            document.getElementById('bri-check-icon').classList.add('hidden');
+            document.getElementById('pay-qris-card').className = 'border-2 border-white/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/50 hover:bg-white/5 transition relative';
+            document.getElementById('pay-bri-card').className = 'border-2 border-white/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/50 hover:bg-white/5 transition relative';
+            
+            const paymentDetails = document.getElementById('payment-details');
+            paymentDetails.classList.add('hidden');
+            paymentDetails.innerHTML = '';
+
+            // Show Checkout Modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+            form.reset();
+        }
+
+        // Handle Payment Selection Method
+        function selectPaymentMethod(method) {
+            selectedPayment = method;
+
+            document.getElementById('pay-qris').checked = (method === 'qris');
+            document.getElementById('pay-bri').checked = (method === 'bri');
+
+            const qrisCard = document.getElementById('pay-qris-card');
+            const briCard = document.getElementById('pay-bri-card');
+            const qrisCheck = document.getElementById('qris-check-icon');
+            const briCheck = document.getElementById('bri-check-icon');
+            const detailsBox = document.getElementById('payment-details');
+
+            if (method === 'qris') {
+                qrisCard.className = 'border-2 border-blue-500 bg-blue-500/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer transition relative';
+                briCard.className = 'border-2 border-white/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/50 hover:bg-white/5 transition relative';
+                qrisCheck.classList.remove('hidden');
+                briCheck.classList.add('hidden');
+
+                const totalNominal = getCartTotal();
+                detailsBox.classList.remove('hidden');
+                detailsBox.innerHTML = `
+                    <div class="text-center space-y-2">
+                        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Scan QRIS to Pay</p>
+                        <p class="text-xs font-extrabold text-blue-400">PT ZHEDVANOIS CREATIVE AGENCY</p>
+                        <div class="w-40 h-40 mx-auto border border-white/20 rounded-lg overflow-hidden bg-white p-1 shadow-sm">
+                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnQDck-3LLV0c9g_q0ZwI9YIwzGqUqW5eX8Vgtb7r8wWqoWVo6cxbnGGw8LlBDp07iFuo_Ldw6XNDdOvZLwnU9_Wc8ZvKgy6pFt2m-pyo04e6wiZsW61_Z_F8QjY_TWu3VHLfy0nSgnDRkW1rYLRR5BABlbwtqnrGN88r2fTUMU-8NYyH3Eb3ZfuAffplL/s572/376e4202-8cfe-479d-967b-35fb7cef656f.jpeg" alt="QRIS PT ZHEDVANOIS" class="w-full h-full object-contain">
+                        </div>
+                        <div class="pt-1">
+                            <p class="text-[10px] text-gray-500">Total amount to pay:</p>
+                            <p class="text-sm font-extrabold text-red-400">${formatRupiah(totalNominal)}</p>
+                        </div>
+                    </div>
+                `;
+            } else if (method === 'bri') {
+                qrisCard.className = 'border-2 border-white/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/50 hover:bg-white/5 transition relative';
+                briCard.className = 'border-2 border-blue-500 bg-blue-500/10 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer transition relative';
+                qrisCheck.classList.add('hidden');
+                briCheck.classList.remove('hidden');
+
+                detailsBox.classList.remove('hidden');
+                detailsBox.innerHTML = `
+                    <div class="space-y-3 text-xs">
+                        <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider text-center">BRI Bank Transfer</p>
+                        <div class="bg-white/5 p-3 rounded-lg border border-white/10 space-y-1">
+                            <p class="text-[9px] text-gray-400 font-medium">Account Number</p>
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-sm text-white tracking-wider">646801000142569</span>
+                                <button onclick="copyToClipboard('646801000142569')" class="text-blue-400 hover:text-blue-300 text-[10px] font-bold flex items-center gap-1 bg-blue-500/10 border border-blue-500/20 px-2 py-1 rounded focus:outline-none">
+                                    <i data-lucide="copy" class="w-3 h-3"></i> Copy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="bg-white/5 p-3 rounded-lg border border-white/10 space-y-1">
+                            <p class="text-[9px] text-gray-400 font-medium">Bank &amp; Beneficiary Name</p>
+                            <p class="font-bold text-white text-[11px]">BRI - PT ZHEDVANOIS CREATIVE AGENCY</p>
+                        </div>
+                    </div>
+                `;
+            }
+            lucide.createIcons();
+        }
+
+        // Send Order via WhatsApp & Validate Form Inputs
+        function submitOrder() {
+            const name = document.getElementById('buyer-name').value.trim();
+            const phone = document.getElementById('buyer-phone').value.trim();
+            const address = document.getElementById('buyer-address').value.trim();
+            
+            if (!name || !phone || !address) {
+                showToast("Please complete all shipping details first.", "error");
+                return;
+            }
+
+            if (!selectedPayment) {
+                showToast("Please select your payment method.", "error");
+                return;
+            }
+
+            const targetPhone = "6285190002348";
+
+            // Format cart items details for WhatsApp body
+            let itemsMessage = '';
+            cart.forEach((item, idx) => {
+                const subTotal = parsePrice(item.price) * item.quantity;
+                itemsMessage += `${idx + 1}. ${item.name} (${item.quantity}x) = ${formatRupiah(subTotal)}\n`;
+            });
+
+            const totalPayable = formatRupiah(getCartTotal());
+            const paymentText = selectedPayment === 'qris' 
+                ? 'QRIS (PT ZHEDVANOIS CREATIVE AGENCY)' 
+                : 'Bank Transfer (646801000142569 BRI a.n PT ZHEDVANOIS CREATIVE AGENCY)';
+
+            // WhatsApp Message Template
+            const message = `Hello, I would like to order the following items:\n\n*🛍️ ORDER DETAILS:*\n${itemsMessage}\n💰 *Total Payment:* ${totalPayable}\n💳 *Payment Method:* ${paymentText}\n\n*🏠 SHIPPING DATA:*\n👤 Full Name: ${name}\n📞 WhatsApp No.: +62${phone}\n📍 Full Address:\n${address}\n\nPlease let me know the product availability and payment confirmation. Thank you!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const waUrl = `https://wa.me/${targetPhone}?text=${encodedMessage}`;
+
+            // Reset shopping cart state after successful redirect
+            cart = [];
+            saveCart();
+
+            window.open(waUrl, '_blank');
+            closeModal();
+        }
+
+        // --- TOAST NOTIFICATIONS & COPY TO CLIPBOARD ---
+
+        function showToast(message, type = 'success') {
+            const existingToast = document.querySelector('.toast-notification');
+            if (existingToast) {
+                existingToast.remove();
+            }
+
+            const toast = document.createElement('div');
+            toast.className = `toast-notification ${type === 'success' ? 'border-l-4 border-l-green-500' : 'border-l-4 border-l-red-500'}`;
+            
+            const icon = type === 'success' ? 'check-circle' : 'alert-circle';
+            const iconColor = type === 'success' ? 'text-green-500' : 'text-red-500';
+
+            toast.innerHTML = `
+                <i data-lucide="${icon}" class="w-5 h-5 ${iconColor}"></i>
+                <span class="text-xs font-semibold text-gray-200">${message}</span>
+            `;
+            
+            document.body.appendChild(toast);
+            lucide.createIcons();
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function copyToClipboard(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast("Account number successfully copied!");
+        }
+
+        // --- ZHEDVANOIS PORTFOLIO: KERJA NAVIGATION & PASSWORD VERIFICATION ---
+
+        const kerjaBtn = document.getElementById('kerja-btn');
+        const kerjaDropdown = document.getElementById('kerja-dropdown');
+        let targetKerjaType = '';
+
+        // Toggle Dropdown Menu
+        if (kerjaBtn && kerjaDropdown) {
+            kerjaBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                kerjaDropdown.classList.toggle('hidden');
+            });
+
+            // Close dropdown if clicked outside
+            document.addEventListener('click', (e) => {
+                if (!kerjaDropdown.contains(e.target) && e.target !== kerjaBtn) {
+                    kerjaDropdown.classList.add('hidden');
+                }
+            });
+        }
+
+        // Handle Menu Option Clicks
+        function handleKerjaMenu(type) {
+            // Hide dropdown
+            if (kerjaDropdown) {
+                kerjaDropdown.classList.add('hidden');
+            }
+
+            if (type === 'profil_pt') {
+                // No password needed for PT Profile
+                window.location.href = 'profil_pt.html';
+            } else {
+                // Password verification needed
+                targetKerjaType = type;
+                openPasswordModal(type);
+            }
+        }
+
+        // Open custom password modal
+        function openPasswordModal(type) {
+            const modal = document.getElementById('password-modal');
+            const titleEl = document.getElementById('password-title');
+            const inputEl = document.getElementById('kerja-password-input');
+            
+            if (titleEl) {
+                const displayName = type === 'belajar_bareng' ? 'BelajarBareng' : 'Management Surat';
+                titleEl.innerHTML = `<i data-lucide="lock" class="text-blue-500 w-5 h-5"></i> Access ${displayName}`;
+            }
+            
+            if (inputEl) {
+                inputEl.value = '';
+            }
+
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+                if (inputEl) {
+                    setTimeout(() => inputEl.focus(), 100);
+                }
+            }
+            lucide.createIcons();
+        }
+
+        // Close custom password modal
+        function closePasswordModal() {
+            const modal = document.getElementById('password-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Validate Key Code
+        function verifyKerjaPassword() {
+            const inputEl = document.getElementById('kerja-password-input');
+            const password = inputEl ? inputEl.value.trim() : '';
+            
+            if (password === '234817') {
+                closePasswordModal();
+                showToast("Akses diizinkan! Mengalihkan halaman...", "success");
+                setTimeout(() => {
+                    if (targetKerjaType === 'belajar_bareng') {
+                        window.location.href = 'belajar_bareng.html';
+                    } else if (targetKerjaType === 'management_surat') {
+                        window.location.href = 'management_surat.html';
+                    }
+                }, 1200);
+            } else {
+                showToast("Sandi akses salah! Silakan coba lagi.", "error");
+                if (inputEl) {
+                    inputEl.select();
+                }
+            }
+        }
+    </script>
+</body>
+</html>
