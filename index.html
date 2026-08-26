@@ -241,6 +241,7 @@
                     <a href="#proyek" class="text-gray-300 hover:text-white font-medium">Projects</a>
                     <a href="#sertifikasi" class="text-gray-300 hover:text-white font-medium">Certifications</a>
                     <a href="#store" class="text-gray-300 hover:text-white font-medium">Store</a>
+                    <a href="#video-saya" class="text-gray-300 hover:text-white font-medium">Video</a>
                     <a href="#kontak" class="text-gray-300 hover:text-white font-medium">Contact</a>
                 </div>
 
@@ -267,7 +268,6 @@
                     <!-- Dropdown Content -->
                     <div id="kerja-dropdown" class="origin-top-right absolute right-0 mt-2 w-52 rounded-xl shadow-2xl bg-zinc-950/95 border border-white/10 backdrop-blur-md ring-1 ring-black ring-opacity-5 focus:outline-none hidden z-50">
                         <div class="py-1.5" role="none"> 
-                            </button>
                             <button onclick="handleKerjaMenu('management_surat')" class="w-full text-left block px-4 py-3 text-xs md:text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">
                                 Management Surat <span class="text-[10px] bg-blue-500/20 text-blue-400 px-1.5 py-0.5 rounded ml-2 font-bold">Key</span>
                             </button>
@@ -292,6 +292,7 @@
             <a href="#proyek" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Projects</a>
             <a href="#sertifikasi" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Certifications</a>
             <a href="#store" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Store</a>
+            <a href="#video-saya" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800 border-b border-gray-800">Video</a>
             <a href="#kontak" class="block py-4 px-6 text-sm text-gray-300 hover:bg-gray-800">Contact</a>
         </div>
     </header>
@@ -697,6 +698,50 @@
             <!-- Product Grid -->
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6" id="product-grid" data-aos="fade-up">
                 <!-- Products will be rendered here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Featured YouTube Video Section -->
+        <section id="video-saya" class="mb-20 md:mb-32">
+            <h2 class="section-title" data-aos="fade-up">Video Pembahasan</h2>
+            <div class="max-w-4xl mx-auto" data-aos="zoom-in" data-aos-delay="100">
+                <div class="glass-card overflow-hidden border border-white/10 rounded-2xl shadow-2xl">
+                    <!-- Video Header Bar -->
+                    <div class="p-4 bg-white/5 border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2 bg-red-600/20 text-red-400 rounded-lg border border-red-500/30">
+                                <i data-feather="youtube" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-base sm:text-lg font-bold text-white leading-tight">
+                                    Permasalahan Gen Z dalam Berkehidupan Sosial
+                                </h3>
+                                <p class="text-xs text-gray-400 mt-0.5">Oleh: REO KURNIAWAN IRIANDITO P</p>
+                            </div>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=3Eda3DCMU5o" target="_blank" class="inline-flex items-center gap-1.5 text-xs bg-red-600 hover:bg-red-700 text-white font-semibold px-3 py-1.5 rounded-lg transition-colors shadow-sm shadow-red-600/30" title="Tonton Langsung di YouTube">
+                            <i data-feather="external-link" class="w-3.5 h-3.5"></i> Buka di YouTube
+                        </a>
+                    </div>
+
+                    <!-- Responsive Video Iframe Player Container (16:9 Aspect Ratio) -->
+                    <div class="relative w-full aspect-video bg-black/80">
+                        <iframe 
+                            class="absolute inset-0 w-full h-full border-0"
+                            src="https://www.youtube.com/embed/3Eda3DCMU5o" 
+                            title="Permasalahan Gen Z dalam Berkehidupan Sosial - Reo Kurniawan" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <!-- Video Description & Details -->
+                    <div class="p-5 sm:p-6 bg-white/[0.02]">
+                        <p class="text-sm text-gray-300 leading-relaxed">
+                            Sebuah analisis dan diskusi mendalam mengenai tantangan kesehatan mental, tekanan sosial-emosional, karir, serta faktor lingkungan yang dihadapi generasi muda saat ini untuk menyongsong Indonesia Emas 2045.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
