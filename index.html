@@ -640,9 +640,25 @@ html[data-theme] main{max-width:none;width:calc(100% - 280px);padding-left:4rem;
                 <p class="text-gray-400 mt-1 max-w-xl mx-auto">Discover a wide range of premium digital and creative products selected just for you.</p>
             </div>
 
-            <!-- Product Grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6" id="product-grid" data-aos="fade-up">
-                <!-- Products will be rendered here by JavaScript -->
+            <div class="max-w-6xl mx-auto" data-aos="fade-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                        <i data-feather="shopping-bag" class="text-blue-400"></i> Products
+                    </h3>
+                    <div class="flex gap-2">
+                        <button id="store-prev" class="bg-white/5 border border-white/10 p-2.5 rounded-full hover:bg-blue-600/30 hover:border-blue-500 transition-all text-gray-300 hover:text-white" title="Slide Left">
+                            <i data-feather="chevron-left" class="w-5 h-5"></i>
+                        </button>
+                        <button id="store-next" class="bg-white/5 border border-white/10 p-2.5 rounded-full hover:bg-blue-600/30 hover:border-blue-500 transition-all text-gray-300 hover:text-white" title="Slide Right">
+                            <i data-feather="chevron-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Slider (scroll ke samping) -->
+                <div id="product-grid" class="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide pb-6">
+                    <!-- Products will be rendered here by JavaScript -->
+                </div>
             </div>
         </section>
 
@@ -1029,6 +1045,20 @@ html[data-theme] main{max-width:none;width:calc(100% - 280px);padding-left:4rem;
             });
         }
 
+        // Store Product Slider Scroll Logic
+        const storeSlider = document.getElementById('product-grid');
+        const storePrev = document.getElementById('store-prev');
+        const storeNext = document.getElementById('store-next');
+
+        if (storeSlider && storePrev && storeNext) {
+            storePrev.addEventListener('click', () => {
+                storeSlider.scrollBy({ left: -storeSlider.clientWidth * 0.8, behavior: 'smooth' });
+            });
+            storeNext.addEventListener('click', () => {
+                storeSlider.scrollBy({ left: storeSlider.clientWidth * 0.8, behavior: 'smooth' });
+            });
+        }
+
         // Lightbox Modal Logic
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
@@ -1170,7 +1200,7 @@ html[data-theme] main{max-width:none;width:calc(100% - 280px);padding-left:4rem;
         
         products.forEach(product => {
             const card = document.createElement('div');
-            card.className = 'group glass-card overflow-hidden flex flex-col hover:border-blue-500/50 transition-all duration-300';
+            card.className = 'flex-none w-44 sm:w-52 md:w-56 snap-start group glass-card overflow-hidden flex flex-col hover:border-blue-500/50 transition-all duration-300';
             
             card.innerHTML = `
                 <div class="product-image-container relative">
